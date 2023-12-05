@@ -1,0 +1,34 @@
+.kozepszek{
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#seat-map {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+.seat {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.seat.selected {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.seat.occupied {
+    background-color: #a72828;
+    color: #fff;
+}
