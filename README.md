@@ -6,3 +6,5 @@ npm i bcryptjs
 npm i dotenv
 npm i email-validator
 npm i nodemon -D
+
+Duna Mozi mapán belül kell kiadni!
