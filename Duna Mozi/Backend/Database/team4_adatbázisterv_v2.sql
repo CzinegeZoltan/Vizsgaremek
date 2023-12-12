@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `DunaMozi`.`filmek` (
   `filmkorhatár` INT NULL,
   `film_KategoriaId` INT NOT NULL,
   PRIMARY KEY (`idfilmek`),
-  INDEX `fk_filmek_kategoria1_idx` (`film_KategoriaId` ASC) VISIBLE,
+  INDEX `fk_filmek_kategoria1_idx` (`film_KategoriaId`) ,
   CONSTRAINT `fk_filmek_kategoria1`
     FOREIGN KEY (`film_KategoriaId`)
     REFERENCES `DunaMozi`.`kategoria` (`KategoriaId`)
@@ -84,8 +84,8 @@ CREATE TABLE IF NOT EXISTS `DunaMozi`.`Vetitesek` (
   `VetitoTerem_idVetitoTerem` INT NOT NULL,
   `filmek_idfilmek` INT NOT NULL,
   PRIMARY KEY (`idVetitesek`),
-  INDEX `fk_Vetitesek_VetitoTerem1_idx` (`VetitoTerem_idVetitoTerem` ASC) VISIBLE,
-  INDEX `fk_Vetitesek_filmek1_idx` (`filmek_idfilmek` ASC) VISIBLE,
+  INDEX `fk_Vetitesek_VetitoTerem1_idx` (`VetitoTerem_idVetitoTerem` ) ,
+  INDEX `fk_Vetitesek_filmek1_idx` (`filmek_idfilmek` ) ,
   CONSTRAINT `fk_Vetitesek_VetitoTerem1`
     FOREIGN KEY (`VetitoTerem_idVetitoTerem`)
     REFERENCES `DunaMozi`.`VetitoTerem` (`idVetitoTerem`)
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `DunaMozi`.`ülések` (
   `szekszam` INT NULL,
   `foglalt` TINYINT NULL,
   PRIMARY KEY (`ules_id`),
-  INDEX `fk_ülések_VetitoTerem1_idx` (`VetitoTerem_idVetitoTerem` ASC) VISIBLE,
+  INDEX `fk_ülések_VetitoTerem1_idx` (`VetitoTerem_idVetitoTerem`) ,
   CONSTRAINT `fk_ülések_VetitoTerem1`
     FOREIGN KEY (`VetitoTerem_idVetitoTerem`)
     REFERENCES `DunaMozi`.`VetitoTerem` (`idVetitoTerem`)
