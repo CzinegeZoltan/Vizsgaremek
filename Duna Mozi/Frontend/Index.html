@@ -7,8 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/filmek.css">
     <link rel="icon" type="image/x-icon" href="IMG/icon.ico">
-    <title>Duna Mozi Főoldal</title>
+    <title>Duna Mozi Filmek</title>
 </head>
 
 <body>
@@ -17,82 +18,66 @@
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
             <div class=" navbar-collapse">
                 <ul class="navbar-nav">
-                    <li class="nav-item active"><a class="nav-link" href="HTML/filmek.html">Filmek</a></li>
                     <li class="nav-item active"><a class="nav-link" href="HTML/jegyvasarlas.html">Jegyvásárlás</a></li>
-                    <!-- <li class="nav-item active"><a class="nav-link" href="HTMLS/main.html">ENG</a></li> -->
+                    <!-- <li class="nav-item active"><a class="nav-link" href="movies.html">ENG</a></li> -->
                 </ul>
-                <samp id="nyelv"></samp>
+                <!--<form action="POST"></form>
+                <select name="nyelv" id="lang" class="form-select-lg" onchange="Nyelvvalaszt()">
+                    <option value="1">HU</option>
+                    <option value="2">ENG</option>
+                </select>
+                <samp id="nyelv"></samp>-->
             </div>
         </nav>
     </header>
     <main>
-        <div class="container-fluid">
-            <div class="row">
-                <div>
-                    <h2>Nyitvatartás:</h2>
-                    <table class="table table-bordered table-hover table-striped">
-                        <tr>
-                            <th>Nap </th> <th>Nyitás</th> <th>Zárás</th>
-                        </tr>
-                        <tr>
-                            <td>Hétfő</td> <td></td> <td></td>
-                        </tr>
-                        <tr>
-                            <td>Kedd</td> <td></td> <td></td>
-                        </tr>
-                        <tr>
-                            <td>Szerda</td> <td></td> <td></td>
-                        </tr>
-                        <tr>
-                            <td>Csütörtök</td> <td></td> <td></td>
-                        </tr>
-                        <tr>
-                            <td>Péntek</td> <td></td> <td></td>
-                        </tr>
-                        <tr>
-                            <td>Szombat</td> <td></td> <td></td>
-                        </tr>
-                        <tr>
-                            <td>Vasárnap</td> <td></td> <td></td>
-                        </tr>
-                    </table>
-                    <h2>Jegyárak:</h2>
-                    <table class="table table-bordered table-hover table-striped">
-                        <tr>
-                            <th>Név </th> <th>Ár</th> 
-                        </tr>
-                        <tr>
-                            <td>Felnőtt (18-65)</td> <td>Ft</td> 
-                        </tr>
-                        <tr>
-                            <td>Gyermek (0-18)</td> <td>Ft</td> 
-                        </tr>
-                        <tr>
-                            <td>Nyugdíjas (65-)</td> <td>Ft</td> 
-                        </tr>
-                        <tr>
-                            <td>Családi (2db felnőtt 2db gyermek)</td> <td>Ft</td> 
-                        </tr>
-                        <tr>
-                            <td>Csoportos (10db felnött)</td> <td>Ft</td> 
-                        </tr>
-                        <tr>
-                            <td></td> <td></td> 
-                        </tr>
-                        <tr>
-                            <td></td> <td></td> 
-                        </tr>
-                    </table>
+        <div class="row">
+            <form action="POST">
+                <div class="valasztas">
+                    <select name="kategoria" id="kat" class="form-select-lg" onchange="Katker()">
+                        <optgroup label="Film kategoria ">Film kategiria</optgroup>
+                        <option value="0">Összes</option>
+                        <option value="1">Akció</option>
+                        <option value="2">Animációs</option>
+                        <option value="3">Autóversenyzős</option>
+                        <option value="4">Áldokumentumfilmek</option>
+                        <option value="5">Börtönfilmek</option>
+                        <option value="6">Bünügyi</option>
+                        <option value="7">Családi</option>
+                        <option value="8">Dokumentumfilmek</option>
+                        <option value="9">Életrajzi</option>
+                        <option value="10">Fantasi</option>
+                        <option value="11">Filmdráma</option>
+                        <option value="12">Filmszatíra</option>
+                        <option value="13">Harcmüvészeti</option>
+                        <option value="14">Háborus</option>
+                        <option value="15">Horror</option>
+                        <option value="16">Kaland</option>
+                        <option value="17">Kalózos</option>
+                        <option value="18">Kémfilmek</option>
+                        <option value="19">Musical</option>
+                        <option value="20">Romantikus</option>
+                        <option value="21">Sci-Fi</option>
+                        <option value="22">Thriller</option>
+                        <option value="23">Történelmi</option>
+                        <option value="24">Vígjáték</option>
+                        <option value="25">Western</option>
+                    </select>
+                    <input type="text">
+                    <button type="button" onclick="" class="button-subscribe" >Keresés</button>
                 </div>
-            </div>
+            </form>
         </div>
+        <p id="filmek_helye"></p>
     </main>
     <footer>
-        <h6>Kapcsolat</h6>
-        <p>Tel.:</p>
+        <h6>Kapcsolat / Contact:</h6>
+        <p>Tel. / Phone num.:</p>
         <p>E-mail:</p>
     </footer>
-    <!--<script src="JS/nyelvvalasztas.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="JS/kereses.js"></script>
+    <!--<script src="../JS/nyelvvalasztas.js"></script>-->
 </body>
 
 </html>

@@ -18,7 +18,7 @@ main {
 .container,
 footer,
 header {
-    border: 1px solid rgb(190, 139, 71);
+    /*border: 1px solid rgb(190, 139, 71);*/
     color: black;
     background-color: rgb(0, 255, 220);
 }

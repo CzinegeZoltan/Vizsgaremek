@@ -5,6 +5,8 @@
     display: flex;
     flex-direction: column;
     background-color: rgb(204, 206, 209);
+    margin-top: 100px;
+    margin-bottom: 90px;
 }
 
 .input-container {
