@@ -12,7 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap; /* Új sor: flex wrap hozzáadása */
+    flex-wrap: wrap;
 }
 
 #seat-map {
