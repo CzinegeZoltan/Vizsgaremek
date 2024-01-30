@@ -34,8 +34,8 @@ app.post('/login', (req,res) =>{
         console.log('Sikeres csatlakozás');
     })
 
-    const userSQL = "SELECT alkalmazottNev, admin FROM alkalmazott WHERE alkalmazottNev = ? AND jelszo = ?";
-    con.query(userSQL, [req.body.name, req.body.password], (err, result) => {
+    const userSQL = "SELECT admin,idalkalmazott, alkalmazottNev FROM alkalmazott WHERE email = ? AND jelszo = ?";
+    con.query(userSQL, [req.body.email, req.body.password], (err, result) => {
         if (err) {
           console.log(err);
           res.status(500).send({ status: 500, error: "Hiba a lekérdezéskor" });
@@ -45,18 +45,18 @@ app.post('/login', (req,res) =>{
             res.status(401).json({ status: 'error', message: 'Sikertelen bejelentkezés' });
           } else if (result.length === 1) {
             console.log("Sikeres bejelentkezés");
-            const userRole = result[0].szerepkor;
+            const userRole = result[0].admin;
             switch (userRole) {
               case 0:
-                res.status(200).json({ status: 'success', message: 'Sikeres bejelentkezés', redirect: 'dolgozohub.html', valami:0 });
+                res.status(200).json({ status: 'success', message: 'Sikeres bejelentkezés', admin:0});
                 console.log("Dolgozó");
                 break; 
               case 1:
-                res.status(200).json({ status: 'success', message: 'Sikeres bejelentkezés', redirect: 'admin.html',valami:1 });
+                res.status(200).json({ status: 'success', message: 'Sikeres bejelentkezés', admin:1});
                 console.log("Admin")
                 break;
               default:
-                res.status(404).json({ status: 'error', message: 'Sikertelen bejelentkezés', redirect: '/', valami:2 });
+                res.status(404).json({ status: 'error', message: 'Sikertelen bejelentkezés'});
                 console.log("failed")
                 break;
             }
@@ -73,8 +73,6 @@ app.post('/reg', (req, res) => {
         if (err) throw err;
         console.log('sikeres csatlakozás');
     })
-
-
         const userSQL = 'insert into alkalmazott (alkalmazottNev,jelszo,email,admin) values (?,?,?,?)';
         con.query(userSQL, [req.body.name, req.body.password, req.body.email,0], (err, result) => {
             if (err) {
