@@ -84,6 +84,99 @@ app.post('/reg', (req, res) => {
         })
 });
 
+app.get('/kategoria', (req, res) => {
+
+  var con = mysql.createConnection(new Config());
+  con.connect(function (err) {
+      if (err) throw err;
+      console.log('sikeresen le lett kérdezve a kategóriák');
+  })
+  con.query('select KategoriaId,kategoriNev from kategoria', (err, result) => {
+      if (err) throw err;
+      res.send(result);
+  })
+})
+
+app.get('/filmek', (req, res) => {
+
+  var con = mysql.createConnection(new Config());
+  con.connect(function (err) {
+      if (err) throw err;
+      console.log('sikeresen le lett kérdezve a filmek');
+  })
+  con.query('select idfilmek,filmnev,filmdescription,filmhossz,filmkorhatár,film_KategoriaId,film_keplink from filmek', (err, result) => {
+      if (err) res.status(404).send({ status: 404, error: "Hiba a filmek lekérdezésekor" });
+      res.send(result);
+  })
+})
+
+// app.get('/kereses', (req, res) => {
+
+//   var con = mysql.createConnection(new Config());
+//   con.connect(function (err) {
+//       if (err) throw err;
+//       console.log('sikeresen le lett kérdezve a filmek kategóriával');
+//       console.log(req.body.katvalue)
+//   })
+//     if(req.body.katvalue == "0"){
+//       console.log('nincs id');
+//       con.query('select idfilmek,filmnev,filmdescription,filmhossz,filmkorhatár,film_KategoriaId,film_keplink from filmek INNER JOIN kategoria ON filmek.film_KategoriaId = kategoria.KategoriaId', (err, result) => {
+//         if (err) res.status(404).send({ status: 404, error: "Hiba a film keresésekor kategóriával" });;
+//         res.send(result);
+//     })
+//   }
+//   else  {
+//     console.log('van id');
+//     con.query('select idfilmek,filmnev,filmdescription,filmhossz,filmkorhatár,film_KategoriaId,film_keplink from filmek INNER JOIN kategoria ON filmek.film_KategoriaId = kategoria.KategoriaId WHERE KategoriaId LIKE ?',[req.body.katvalue], (err, result) => {
+//       if (err) res.status(404).send({ status: 404, error: "Hiba a film keresésekor kategóriával" });;
+//       res.send(result);
+//     })
+//   }
+
+// })
+
+app.get('/kereses', (req, res) => {
+  const kvalue = req.body.katvalue;
+
+  var con = mysql.createConnection(new Config());
+
+  con.connect(function (err) {
+      if (err) throw err;
+      console.log('Successfully connected to the database');
+      console.log(kvalue);
+  });
+
+  if (kvalue == "0") {
+      console.log('No category ID specified');
+      con.query('SELECT idfilmek, filmnev, filmdescription, filmhossz, filmkorhatár, film_KategoriaId, film_keplink FROM filmek INNER JOIN kategoria ON filmek.film_KategoriaId = kategoria.KategoriaId', (err, result) => {
+          if (err) {
+              res.status(404).send({ status: 404, error: "Error querying films with category" });
+          } else {
+              res.send(result);
+          }
+      });
+  } else {
+      console.log('Category ID specified');
+      con.query('SELECT idfilmek, filmnev, filmdescription, filmhossz, filmkorhatár, film_KategoriaId, film_keplink FROM filmek INNER JOIN kategoria ON filmek.film_KategoriaId = kategoria.KategoriaId WHERE KategoriaId LIKE ?', [kvalue], (err, result) => {
+          if (err) {
+              res.status(404).send({ status: 404, error: "Error querying films with category" });
+          } else {
+              res.send(result);
+          }
+      });
+  }
+
+  con.end(); // Close the database connection
+})
+
+
+
+
+
+
+
+
+
 
 
 

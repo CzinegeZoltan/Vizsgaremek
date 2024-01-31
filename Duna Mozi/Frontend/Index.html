@@ -12,7 +12,7 @@
     <title>Duna Mozi Filmek</title>
 </head>
 
-<body>
+<body onload="documentReady()">
     <header class=" fixelt row">
         <h1 class="kozepszoveg"><img src="IMG/icon.png" alt="" id="ico">Duna Mozi</h1>
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -32,44 +32,22 @@
     </header>
     <main>
         <div class="row">
-            <form action="POST">
+            <form action="GET">
                 <div class="valasztas">
-                    <select name="kategoria" id="kat" class="form-select-lg" onchange="Katker()">
+                    <select name="kategoria" id="dropdown" class="form-select-lg" onload="fillKategoriaList()" onchange="Katker()">
                         <optgroup label="Film kategoria ">Film kategiria</optgroup>
                         <option value="0">Összes</option>
-                        <option value="1">Akció</option>
-                        <option value="2">Animációs</option>
-                        <option value="3">Autóversenyzős</option>
-                        <option value="4">Áldokumentumfilmek</option>
-                        <option value="5">Börtönfilmek</option>
-                        <option value="6">Bünügyi</option>
-                        <option value="7">Családi</option>
-                        <option value="8">Dokumentumfilmek</option>
-                        <option value="9">Életrajzi</option>
-                        <option value="10">Fantasi</option>
-                        <option value="11">Filmdráma</option>
-                        <option value="12">Filmszatíra</option>
-                        <option value="13">Harcmüvészeti</option>
-                        <option value="14">Háborus</option>
-                        <option value="15">Horror</option>
-                        <option value="16">Kaland</option>
-                        <option value="17">Kalózos</option>
-                        <option value="18">Kémfilmek</option>
-                        <option value="19">Musical</option>
-                        <option value="20">Romantikus</option>
-                        <option value="21">Sci-Fi</option>
-                        <option value="22">Thriller</option>
-                        <option value="23">Történelmi</option>
-                        <option value="24">Vígjáték</option>
-                        <option value="25">Western</option>
                     </select>
                     <input type="text">
                     <button type="button" onclick="" class="button-subscribe">Keresés</button>
                 </div>
             </form>
         </div>
-        <div class="row">
-            <p id="filmek_helye"></p>
+        <div class="row" id="poszter">
+            
+            
+
+            <!-- <p id="filmek_helye"></p> -->
         </div>
     </main>
     <footer>
@@ -81,7 +59,16 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <script src="JS/kereses.js"></script>
+    <script>
+        function documentReady(){
+            fillKategoriaList()
+        }
+    </script>
     <!--<script src="../JS/nyelvvalasztas.js"></script>-->
+    <script src="JS/filmek.js"></script>
+    <script src="JS/kategoriak.js"></script>
+    
+    
 </body>
 
 </html>
