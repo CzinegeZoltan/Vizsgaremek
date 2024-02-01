@@ -14,6 +14,8 @@ function livetoken(){
             err.innerHTML = data.error;
         }
         console.log(data)
+        if(!data)
+        window.location.href = "../index.html";
         })
     .catch((err) => {
         console.error(err);

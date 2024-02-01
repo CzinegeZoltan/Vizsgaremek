@@ -10,7 +10,11 @@ const jwt = require("jsonwebtoken");
 
 const Key = 'kulcs';
 
+//id raktározás
 const { felhIDraktarozas, felhIDlekeres, felhIDtorles } = require('./auth.js');
+
+//token tárolás
+const { felhTOKENraktarozas, felhTOKENlekeres, felhTOKENtorles } = require('./authToken.js');
 
 app.use(cors({ origin: '*' })); //CORS Betöltés
 app.use(express.json()); //POST kérésekben body elérése
