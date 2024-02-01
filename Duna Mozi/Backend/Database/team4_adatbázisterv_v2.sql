@@ -418,7 +418,7 @@ BEGIN
       SELECT admin,idalkalmazott,alkalmazottNev,email,token FROM alkalmazott WHERE alkalmazott.email = email AND alkalmazott.jelszo = SHA2(password,256);
 END;
 
-DELIMITER;
+DELIMITER//
 
 
 DELIMITER //
@@ -428,6 +428,8 @@ CALL `userLogin`("sanyi@gmail.com","Admin");
 CALL `UpdateToken`(1,"valami");
 
 CALL `alkalmazottREG`("Sanyi","fa","sanyi@gmail.com")
+
+CALL `alkalmazottMOD`("Kis Misi","1234","kismisi@gmail.com","14")
 
 SELECT SHA2("Admin",256)
 
@@ -441,5 +443,15 @@ BEGIN
 END;
 
 DELIMITER//
+
+DELIMITER //
+
+CREATE PROCEDURE IF NOT EXISTS alkalmazottMOD(IN nev VARCHAR(255), password VARCHAR(255), email VARCHAR(255), id INT)
+BEGIN
+    UPDATE alkalmazott SET `alkalmazottNev`=nev,jelszo=SHA2(password,256),`email`=email WHERE idalkalmazott = id;
+END;
+
+DELIMITER//
+
 
 

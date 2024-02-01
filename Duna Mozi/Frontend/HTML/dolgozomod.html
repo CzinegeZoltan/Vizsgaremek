@@ -3,9 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../JS/livetoken.js"></script>
+    <script src="../JS/felhasznaloMOD.js"></script>
+    <script>
+        function documentReady(){
+            livetoken();
+            fillUserList();
+        }
+    </script>
     <title>Dolgozó módosítása</title>
 </head>
-<body>
-    
+<body onload="documentReady()">
+    <form method="post">
+        <div>
+            <select name="felhasznalo" id="dropdown" class="form-select-lg" onload="fillUserList()" onchange="">
+                <optgroup label="Felhasználók">Felhasználók</optgroup>
+            </select>
+            <h2>Alkalmazott módosítása</h2>
+                <div class="input-container">
+                    <label class="form-label form-label" for="userName">Felhasználónév:</label><br>
+                    <input type="text" name="name" id="name" required="">
+                </div>
+                <div class="input-container ">
+                    <label class="form-label form-label" for="Email-address">Email-cím:</label><br>
+                    <input type="email" name="email" id="email" required="">
+                </div>
+                <div class="input-container">
+                    <label class="form-label form-label" for="Password">Jelszó:</label><br>
+                    <input type="password" name="password" id="password" required="">
+                </div>
+        </div>
+    </form>
 </body>
+
 </html>

@@ -30,7 +30,7 @@ app.get('/user', (req, res) => {
         if (err) throw err;
         console.log('sikeresen le lett kérdezve a user csatlakozás');
     })
-    con.query('select * from alkalmazott', (err, result) => {
+    con.query('select idalkalmazott,alkalmazottNev,jelszo,email from alkalmazott', (err, result) => {
         if (err) throw err;
         res.send(result);
     })
@@ -203,7 +203,7 @@ app.post('/usermod', (req, res) => {
         if (err) throw err;
         console.log('sikeres csatlakozás: USERMOD');
     })
-        const userSQL = 'UPDATE alkalmazott SET `alkalmazottNev` = ?,jelszo = ?, email = ? Where idalkalmazott = ?';
+        const userSQL = 'CALL alkalmazottMOD(?,?,?,?)';
         con.query(userSQL, [req.body.name, req.body.password, req.body.email,req.body.id], (err, result) => {
             if (err) {
                 console.log(err)

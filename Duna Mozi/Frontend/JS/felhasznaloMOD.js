@@ -1,0 +1,23 @@
+function regisztracio(){
+    const data = {
+        name: document.getElementById("name").value,
+        password: document.getElementById("password").value,
+        email: document.getElementById("email").value,
+        id: document.getElementById("").value
+        }
+    
+        console.log(data)
+    
+        postData("http://localhost:8000/usermod",data)
+        .then((response) => {
+            return response.json();
+        }).then((data) => {
+            if (data.status == 404) {
+                err = document.getElementById("error");
+                err.innerHTML = data.error;
+            }
+            console.log(data.error);
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
