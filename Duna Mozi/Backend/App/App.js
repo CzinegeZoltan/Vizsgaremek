@@ -125,9 +125,9 @@ app.post('/reg', (req, res) => {
     var con = mysql.createConnection(new Config());
     con.connect(function (err) {
         if (err) throw err;
-        console.log('sikeres csatlakozás');
+        console.log('sikeres csatlakozás a regre');
     })
-        const userSQL = 'insert into alkalmazott (alkalmazottNev,jelszo,email,admin) values (?,?,?,?)';
+        const userSQL = 'CALL `alkalmazottREG`(?,?,?)';
         con.query(userSQL, [req.body.name, req.body.password, req.body.email,0], (err, result) => {
             if (err) {
                 console.log(err)
