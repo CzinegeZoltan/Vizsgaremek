@@ -142,7 +142,23 @@ app.post('/kereses', (req, res) => {
   con.end(); // Close the database connection
 })
 
+app.post('/usermod', (req, res) => {
 
+    var con = mysql.createConnection(new Config());
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log('sikeres csatlakozás: USERMOD');
+    })
+        const userSQL = 'UPDATE alkalmazott SET `alkalmazottNev` = ?,jelszo = ?, email = ? Where idalkalmazott = ?';
+        con.query(userSQL, [req.body.name, req.body.password, req.body.email,req.body.id], (err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(404).send({ status: 404, error: "Hiba a user módosításakor" });
+            } else {
+                res.status(200).send({ status: 200, success: "Sikeres user módosítás" })
+            }
+        })
+});
 
 
 
