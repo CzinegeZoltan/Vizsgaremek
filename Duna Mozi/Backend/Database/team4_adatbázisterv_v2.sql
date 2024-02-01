@@ -406,7 +406,7 @@ DELIMITER//
 CREATE PROCEDURE IF NOT EXISTS UpdateToken(IN id int, token TEXT)
 BEGIN
       UPDATE alkalmazott SET alkalmazott.token = token WHERE alkalmazott.idalkalmazott = id;
-END;
+END//
 
 DELIMITER;
 
@@ -423,11 +423,23 @@ DELIMITER;
 
 DELIMITER //
 
-CALL `userLogin`("havlagb1@gmail.com","Admin");
+CALL `userLogin`("sanyi@gmail.com","Admin");
 
 CALL `UpdateToken`(1,"valami");
 
+CALL `alkalmazottREG`("Sanyi","fa","sanyi@gmail.com")
 
 SELECT SHA2("Admin",256)
 
 SELECT * from alkalmazott WHERE email = "havlagb1@gmail.com" AND jelszo = sha2("Admin",256);
+
+DELIMITER//
+
+CREATE PROCEDURE IF NOT EXISTS alkalmazottREG(IN nev VARCHAR(255), password VARCHAR(255), email VARCHAR(255))
+BEGIN
+    INSERT INTO alkalmazott (`alkalmazottNev`,jelszo,email,admin) VALUES(nev,SHA2(password,256),email,0);
+END;
+
+DELIMITER//
+
+

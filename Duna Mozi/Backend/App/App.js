@@ -8,6 +8,10 @@ const app = express();
 const port = 8000;
 const jwt = require("jsonwebtoken");
 
+const Key = 'kulcs';
+
+const { felhIDraktarozas, felhIDlekeres, felhIDtorles } = require('./auth.js');
+
 app.use(cors({ origin: '*' })); //CORS Betöltés
 app.use(express.json()); //POST kérésekben body elérése
 
@@ -42,11 +46,12 @@ app.post('/login', (req,res) =>{
         if (result[0].length > 0){
             let alkalmazott = result[0][0];
 
+            felhIDraktarozas(result[0][0].idalkalmazott);
+
             const jasonba1 = {
                 id: result[0][0].idalkalmazott,
                 email: result[0][0].email
-            }
-            const Key = 'your_secret_key_here';
+            } 
             const options = {
                 expiresIn:"2h",
             }
@@ -59,7 +64,7 @@ app.post('/login', (req,res) =>{
             const userRole = result[0][0].admin;
             switch (userRole) {
               case 0:
-                res.status(200).json({ status: 'success', message: 'Sikeres bejelentkezés', admin:0, redirection:".html"});
+                res.status(200).json({ status: 'success', message: 'Sikeres bejelentkezés', admin:0, redirection:"alkalmazott.html"});
                 console.log("Dolgozó");
                 break; 
               case 1:
@@ -86,6 +91,30 @@ app.post('/login', (req,res) =>{
         }
     })
 });
+
+app.post('/userToken', (req, res) => {
+    const userID = felhIDlekeres();
+    console.log(userID);
+    var con = mysql.createConnection(new Config());
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log('sikeresen le lett kérdezve a token');
+    })
+    con.query('select token from alkalmazott WHERE idalkalmazott = ?',[userID], (err, result) => {
+        const token = result[0].token;
+        jwt.verify(token, Key, (err, decoded) => {
+            if (err) {
+              console.error('Token verifikálás sikertelen:', err.message);
+              if (err.name === 'TokenExpiredError') {
+                console.log('Elavult token');
+              }
+            } else {
+              console.log('A token valid eddig:', new Date(decoded.exp * 1000));
+              res.send(result);
+            }
+          });        
+    })
+})
 
 app.post('/reg', (req, res) => {
 
