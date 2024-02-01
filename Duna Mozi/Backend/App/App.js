@@ -6,6 +6,7 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 const app = express();
 const port = 8000;
+const jwt = require("jsonwebtoken");
 
 app.use(cors({ origin: '*' })); //CORS Betöltés
 app.use(express.json()); //POST kérésekben body elérése
@@ -34,36 +35,56 @@ app.post('/login', (req,res) =>{
         console.log('Sikeres csatlakozás');
     })
 
-    const userSQL = "SELECT admin,idalkalmazott, alkalmazottNev FROM alkalmazott WHERE email = ? AND jelszo = ?";
-    con.query(userSQL, [req.body.email, req.body.password], (err, result) => {
-        if (err) {
-          console.log(err);
-          res.status(500).send({ status: 500, error: "Hiba a lekérdezéskor" });
-        } else {
-          if (result.length === 0) {
-            console.log("Sikertelen bejelentkezés");
-            res.status(401).json({ status: 'error', message: 'Sikertelen bejelentkezés' });
-          } else if (result.length === 1) {
-            console.log("Sikeres bejelentkezés");
-            const userRole = result[0].admin;
+    const sql = 'call userLogin(?,?)';
+        
+    con.query(sql,[req.body.email,req.body.password], (err,result) =>{
+        if (err) throw err;
+        if (result[0].length > 0){
+            let alkalmazott = result[0][0];
+
+            const jasonba1 = {
+                id: result[0][0].idalkalmazott,
+                email: result[0][0].email
+            }
+            const Key = 'your_secret_key_here';
+            const options = {
+                expiresIn:"2h",
+            }
+            const token = jwt.sign(jasonba1, Key, options);
+
+            con.query('call UpdateToken(?,?)',[result[0][0].idalkalmazott,token],(err,result,fields)=>{
+                if (err) throw err;
+                alkalmazott.token = token;
+            });
+            const userRole = result[0][0].admin;
             switch (userRole) {
               case 0:
-                res.status(200).json({ status: 'success', message: 'Sikeres bejelentkezés', admin:0});
+                res.status(200).json({ status: 'success', message: 'Sikeres bejelentkezés', admin:0, redirection:".html"});
                 console.log("Dolgozó");
                 break; 
               case 1:
-                res.status(200).json({ status: 'success', message: 'Sikeres bejelentkezés', admin:1});
+                res.status(200).json({ status: 'success', message: 'Sikeres bejelentkezés', admin:1, redirection:"admin.html"});
                 console.log("Admin")
                 break;
               default:
                 res.status(404).json({ status: 'error', message: 'Sikertelen bejelentkezés'});
-                console.log("failed")
+                console.log("Sikertelen bejelentkezés")
                 break;
             }
-          }
+
+            jwt.verify(token, Key, (err, decoded) => {
+                if (err) {
+                  // Token verifikálása sikertelen (már nem érvényes vagy nem valid)
+                  console.error('Nem sikerült verifikálni a tokent:', err.message);
+                } else {
+                  console.log('Valid:', new Date(decoded.exp * 1000));
+                }
+              });
         }
-      });
-    con.end();
+        else{
+            res.status(401).send("nem engedélyezett belépés");
+        }
+    })
 });
 
 app.post('/reg', (req, res) => {
@@ -116,11 +137,11 @@ app.post('/kereses', (req, res) => {
 
   con.connect(function (err) {
       if (err) throw err;
-      console.log('Successfully connected to the database');
+      console.log('Sikeres csatlakozás az adatbázishoz');
   });
 
   if (kvalue == "0") {
-      console.log('No category ID specified');
+      console.log('Kategória ID nincs');
       con.query('SELECT idfilmek, filmnev, filmdescription, filmhossz, filmkorhatár, film_KategoriaId, film_keplink FROM filmek INNER JOIN kategoria ON filmek.film_KategoriaId = kategoria.KategoriaId', (err, result) => {
           if (err) {
               res.status(404).send({ status: 404, error: "Error querying films with category" });
@@ -129,7 +150,7 @@ app.post('/kereses', (req, res) => {
           }
       });
   } else {
-      console.log('Category ID specified');
+      console.log('Kategória ID van');
       con.query('SELECT idfilmek, filmnev, filmdescription, filmhossz, filmkorhatár, film_KategoriaId, film_keplink FROM filmek INNER JOIN kategoria ON filmek.film_KategoriaId = kategoria.KategoriaId WHERE KategoriaId LIKE ?', [kvalue], (err, result) => {
           if (err) {
               res.status(404).send({ status: 404, error: "Error querying films with category" });
@@ -139,7 +160,7 @@ app.post('/kereses', (req, res) => {
       });
   }
 
-  con.end(); // Close the database connection
+  con.end(); // Bezárjuk az adatbázist
 })
 
 app.post('/usermod', (req, res) => {

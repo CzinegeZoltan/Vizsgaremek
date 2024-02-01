@@ -1,11 +1,13 @@
-const user = [];
-
 function login(){
     const data = {
-        email: document.getElementById('email').value,
-        password: document.getElementById('password').value
+        method: "POST",
+        headers: {"Content-Type" : "application/json",},
+        body: JSON.stringify({
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value
+        })       
     }
-loginData(data);
+    loginData(data)
 } 
   
 loginData = (data) => {
@@ -25,6 +27,8 @@ loginData = (data) => {
             err.innerHTML = data.error;
         }
             console.log(data)
-        }).catch(console.log("hiba"))
+            window.location.href = data.redirection;
+        }).catch((err) => {
+            console.error(err);
+        });
 }
-
