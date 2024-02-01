@@ -25,8 +25,8 @@ function Katker() {
         
             // Create a column for each film
             const div = document.createElement("div");
-            div.className = "col-xs-6 col-sm-6 col-md-3 col-lg-3";
-            div.innerHTML = `<img src="${film.film_keplink}" class="img-thumbnail"/>`;
+            div.className = "col-xs-6 col-sm-6 col-md-6 col-lg-3 col-xl-3";
+            div.innerHTML = `<img src="${film.film_keplink}" class="img-thumbnail poster"/>`;
             
             // Append the column to the last row
             const rows = filmposzter.querySelectorAll(".row");
