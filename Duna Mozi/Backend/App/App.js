@@ -196,6 +196,22 @@ app.post('/kereses', (req, res) => {
   con.end(); // Bezárjuk az adatbázist
 })
 
+app.post('/szovegkeres', (req, res) => {
+
+    var con = mysql.createConnection(new Config());
+    con.connect(function (err) {
+      if (err) throw err;
+      console.log('sikeresen le lett kérdezve a filmek szövegesen');
+    })
+
+    const sql='CALL szovegKeres(?)'
+    con.query(sql,[req.body.name], (err, result) => {
+        if (err) res.status(404).send({ status: 404, error: "Hiba a filmek lekérdezésekor névvel" });
+        res.send(result[0]);
+    })
+  con.end(); // Bezárjuk az adatbázist
+});
+
 app.post('/usermod', (req, res) => {
 
     var con = mysql.createConnection(new Config());

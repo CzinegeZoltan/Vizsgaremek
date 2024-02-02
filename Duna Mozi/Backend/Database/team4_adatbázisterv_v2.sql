@@ -495,6 +495,14 @@ END;
 
 DELIMITER ;
 
+DELIMITER //
+
+CREATE PROCEDURE IF NOT EXISTS szovegKeres(IN nev VARCHAR(255))
+BEGIN
+    SELECT idfilmek, filmnev, filmdescription, filmhossz, filmkorhatár, film_KategoriaId, film_keplink FROM filmek WHERE filmnev LIKE CONCAT('%',nev,'%');
+END;
+
+DELIMITER ;
 
 
-
+CALL `szovegKeres`("star")
