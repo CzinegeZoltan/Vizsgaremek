@@ -442,7 +442,17 @@ BEGIN
     INSERT INTO alkalmazott (`alkalmazottNev`,jelszo,email,admin) VALUES(nev,SHA2(password,256),email,0);
 END;
 
-DELIMITER//
+DELIMITER //
+
+DELIMITER //
+
+CREATE PROCEDURE IF NOT EXISTS alkalmazottTOR(IN id INT)
+BEGIN
+    DELETE FROM alkalmazott WHERE idalkalmazott = id;
+END;
+
+DELIMITER ;
+
 
 DELIMITER //
 
@@ -451,7 +461,40 @@ BEGIN
     UPDATE alkalmazott SET `alkalmazottNev`=nev,jelszo=SHA2(password,256),`email`=email WHERE idalkalmazott = id;
 END;
 
-DELIMITER//
+DELIMITER //
+
+DELIMITER //
+
+CREATE PROCEDURE IF NOT EXISTS filmREG(IN nev VARCHAR(255), leiras TEXT, hossz VARCHAR(10), korhatar VARCHAR(2), filmKategoria INT, keplink TEXT)
+BEGIN
+    INSERT INTO filmek (`filmnev`,`filmdescription`,`filmhossz`,`filmkorhatár`,`film_KategoriaId`,film_keplink) VALUES(nev,leiras,hossz,korhatar,filmKategoria,keplink);
+END;
+
+DELIMITER ;
+
+CALL filmREG("ABC","XYZdddddddddddddddddddddddafwiubawfbaiwbfuabfibaiwbfaiuwbfuiabwfibawbfawbfiabwfiabwfbwaifb","100 perc","10","1","https://i.pinimg.com/736x/f8/0a/0a/f80a0a86e5ffb5a977ab80a3365ace9a.jpg")
+
+
+DELIMITER //
+
+CREATE PROCEDURE IF NOT EXISTS filmMOD(IN nev VARCHAR(255),leiras TEXT, hossz VARCHAR(10), korhatar VARCHAR(2), filmKategoria INT, keplink TEXT, id INT)
+BEGIN
+    UPDATE filmek SET `filmnev`= nev, filmdescription = leiras, filmhossz = hossz, `filmkorhatár` = korhatar, `film_KategoriaId` = filmKategoria, film_keplink = keplink WHERE idfilmek = id;
+END;
+
+DELIMITER //
+
+CALL filmMOD("XYZ","tttttttttttttttttttttttttttttttttttttttttttttttttttttt","10 perc","12","2","https://i.pinimg.com/736x/f8/0a/0a/f80a0a86e5ffb5a977ab80a3365ace9a.jpg","66");
+
+DELIMITER //
+
+CREATE PROCEDURE IF NOT EXISTS filmTOR(IN id INT)
+BEGIN
+    DELETE FROM filmek WHERE idfilmek = id;
+END;
+
+DELIMITER ;
+
 
 
 

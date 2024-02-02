@@ -15,7 +15,7 @@ const data = {
             err = document.getElementById("error");
             err.innerHTML = data.error;
         }
-        console.log(data.error);
+        window.location.href = data.redirection;
     }).catch((error) => {
         console.log(error);
     });

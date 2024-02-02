@@ -16,6 +16,7 @@
     <title>Dolgozó módosítása</title>
 </head>
 <body onload="documentReady()">
+    <button onclick="history.back()">Vissza az előző oldalra</button>
     <form method="post">
         <div>
             <select name="felhasznalo" id="dropdown" class="form-select-lg" onload="fillUserList()" onchange="felhAdatBetolt()">
@@ -37,7 +38,8 @@
                 
         </div>
     </form>
-    <button class="button" onclick="felhMod()">katt</button>
+    <button class="button" onclick="felhMod()">Felhasználó módosítása</button>
+    <button class="button" onclick="felhTOR()">Felhasználó törlése</button>
 </body>
 
 </html>

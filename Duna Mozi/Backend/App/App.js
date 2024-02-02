@@ -105,7 +105,7 @@ app.post('/userToken', (req, res) => {
         console.log('sikeresen le lett kérdezve a token');
     })
     con.query('select token from alkalmazott WHERE idalkalmazott = ?',[userID], (err, result) => {
-        const token = result[0].token;
+        const token = result[0].token;       
         jwt.verify(token, Key, (err, decoded) => {
             if (err) {
               console.error('Token verifikálás sikertelen:', err.message);
@@ -133,7 +133,7 @@ app.post('/reg', (req, res) => {
                 console.log(err)
                 res.status(404).send({ status: 404, error: "Hiba a user rögzítésekor" });
             } else {
-                res.status(200).send({ status: 200, success: "Sikeres adatrögzítés" })
+                res.status(200).send({ status: 200, success: "Sikeres adatrögzítés"})
             }
         })
 });
@@ -209,7 +209,79 @@ app.post('/usermod', (req, res) => {
                 console.log(err)
                 res.status(404).send({ status: 404, error: "Hiba a user módosításakor" });
             } else {
-                res.status(200).send({ status: 200, success: "Sikeres user módosítás" })
+                res.status(200).send({ status: 200, success: "Sikeres user módosítás"})
+            }
+        })
+});
+
+app.post('/usertor', (req, res) => {
+
+    var con = mysql.createConnection(new Config());
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log('sikeres csatlakozás: USERTOR');
+    })
+        const userSQL = 'CALL alkalmazottTOR(?)';
+        con.query(userSQL, [req.body.id], (err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(404).send({ status: 404, error: "Hiba a user törlésekor" });
+            } else {
+                res.status(200).send({ status: 200, success: "Sikeres dolgozó törlés"})
+            }
+        })
+});
+
+app.post('/filmreg', (req, res) => {
+
+    var con = mysql.createConnection(new Config());
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log('sikeres csatlakozás a filmREGRE');
+    })
+        const userSQL = 'CALL filmREG(?,?,?,?,?,?)';
+        con.query(userSQL, [req.body.name, req.body.desription, req.body.hossz, req.body.korhatar, req.body.kategoria, req.body.link], (err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(404).send({ status: 404, error: "Hiba a film rögzítésekor" });
+            } else {
+                res.status(200).send({ status: 200, success: "Sikeres film adatrögzítés" })
+            }
+        })
+});
+
+app.post('/filmmod', (req, res) => {
+
+    var con = mysql.createConnection(new Config());
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log('sikeres csatlakozás a filmMODRA');
+    })
+        const userSQL = 'CALL filmMOD(?,?,?,?,?,?,?)';
+        con.query(userSQL, [req.body.name, req.body.desription, req.body.hossz, req.body.korhatar, req.body.kategoria, req.body.link,req.body.id], (err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(404).send({ status: 404, error: "Hiba a film rögzítésekor" });
+            } else {
+                res.status(200).send({ status: 200, success: "Sikeres film adat módósítás"})
+            }
+        })
+});
+
+app.post('/filmtor', (req, res) => {
+
+    var con = mysql.createConnection(new Config());
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log('sikeres csatlakozás: FILMTOR');
+    })
+        const userSQL = 'CALL filmTOR(?)';
+        con.query(userSQL, [req.body.id], (err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(404).send({ status: 404, error: "Hiba a film törlésekor" });
+            } else {
+                res.status(200).send({ status: 200, success: "Sikeres film törlés"})
             }
         })
 });
@@ -224,6 +296,27 @@ app.post('/usermod', (req, res) => {
 
 
 
+
+
+
+
+
+app.get('/kilep', (req, res) => {
+
+    function kilep(err){
+        console.log('sikeres kijelentkezés');
+    
+        felhIDtorles();
+    
+        if (err) {
+            console.log(err)
+            res.status(404).send({ status: 404, error: "Hiba kijelentkezéskor"});
+        } else {
+            res.status(200).send({ status: 200, success: "Sikeres kijelentkezés", redirection:"bejel.html"})
+        }
+    }
+    kilep();
+});
 
 app.listen(port, () => {
     console.log(`Példa alkalmazás publikálva ${port}-on`);

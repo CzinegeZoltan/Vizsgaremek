@@ -7,10 +7,12 @@ function fillUserList(){
         const kategoriaDropDown = document.getElementById("dropdown");
         //Betöltjük a felhasználókat
         data.forEach((user) => {
+            if(user.admin != "1"){
             const option = document.createElement("option");
             option.value = user.idalkalmazott;
             option.text = user.alkalmazottNev;
             kategoriaDropDown.appendChild(option);
+            }  
         });
     })
     .catch((err) => {
