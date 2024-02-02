@@ -1,5 +1,3 @@
-console.log("ddddddddddddddd")
-
 function fillUserList(){
     fetch('http://localhost:8000/user')
     .then((response) => {
@@ -7,11 +5,11 @@ function fillUserList(){
     })
     .then(data => {
         const kategoriaDropDown = document.getElementById("dropdown");
-
+        //Betöltjük a felhasználókat
         data.forEach((user) => {
             const option = document.createElement("option");
-            option.value = user.alkalmazottNev;
-            option.text = user.idalkalmazott;
+            option.value = user.idalkalmazott;
+            option.text = user.alkalmazottNev;
             kategoriaDropDown.appendChild(option);
         });
     })
@@ -19,5 +17,3 @@ function fillUserList(){
         console.error(err);
     });
 }
-
-fillUserList();

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../JS/livetoken.js"></script>
+    <script src="../JS/felhasznaloLEK.js"></script>
+    <script src="../JS/felhasznaloADATBETOLT.js"></script>
     <script src="../JS/felhasznaloMOD.js"></script>
     <script>
         function documentReady(){
@@ -16,7 +18,7 @@
 <body onload="documentReady()">
     <form method="post">
         <div>
-            <select name="felhasznalo" id="dropdown" class="form-select-lg" onload="fillUserList()" onchange="">
+            <select name="felhasznalo" id="dropdown" class="form-select-lg" onload="fillUserList()" onchange="felhAdatBetolt()">
                 <optgroup label="Felhasználók">Felhasználók</optgroup>
             </select>
             <h2>Alkalmazott módosítása</h2>
@@ -32,8 +34,10 @@
                     <label class="form-label form-label" for="Password">Jelszó:</label><br>
                     <input type="password" name="password" id="password" required="">
                 </div>
+                
         </div>
     </form>
+    <button class="button" onclick="felhMod()">katt</button>
 </body>
 
 </html>

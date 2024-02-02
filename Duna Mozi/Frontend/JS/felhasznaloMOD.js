@@ -1,14 +1,18 @@
-function regisztracio(){
+function felhMod(){
     const data = {
-        name: document.getElementById("name").value,
-        password: document.getElementById("password").value,
-        email: document.getElementById("email").value,
-        id: document.getElementById("").value
-        }
+        method: "POST",
+        headers: {"Content-Type" : "application/json",},
+        body: JSON.stringify({
+            name: document.getElementById("name").value,
+            password: document.getElementById("password").value,
+            email: document.getElementById("email").value,
+            id: document.getElementById("dropdown").value
+        })  
+    }
     
         console.log(data)
     
-        postData("http://localhost:8000/usermod",data)
+        fetch("http://localhost:8000/usermod",data)
         .then((response) => {
             return response.json();
         }).then((data) => {
@@ -16,7 +20,6 @@ function regisztracio(){
                 err = document.getElementById("error");
                 err.innerHTML = data.error;
             }
-            console.log(data.error);
         }).catch((error) => {
             console.log(error);
         });
