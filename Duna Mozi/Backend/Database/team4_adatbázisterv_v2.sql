@@ -78,22 +78,19 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `DunaMozi`.`Vetitesek` (
   `idVetitesek` INT NOT NULL AUTO_INCREMENT,
-  `vetitesidopont` DATETIME NULL,
-  `VetitesHelyID` INT NULL,
-  `VetitesFilmID` INT NULL,
-  `SzabadJegyek` INT(50) NULL,
-  `VetitoTerem_idVetitoTerem` INT NOT NULL,
-  `filmek_idfilmek` INT NOT NULL,
+  `vetitesDATUM` DATETIME NULL,
+  `Vetites_idVetitoTerem` INT NOT NULL,
+  `Vetites_idfilmek` INT NOT NULL,
   PRIMARY KEY (`idVetitesek`),
-  INDEX `fk_Vetitesek_VetitoTerem1_idx` (`VetitoTerem_idVetitoTerem` ) ,
-  INDEX `fk_Vetitesek_filmek1_idx` (`filmek_idfilmek` ) ,
+  INDEX `fk_Vetitesek_VetitoTerem1_idx` (`Vetites_idVetitoTerem` ) ,
+  INDEX `fk_Vetitesek_filmek1_idx` (`Vetites_idfilmek` ) ,
   CONSTRAINT `fk_Vetitesek_VetitoTerem1`
-    FOREIGN KEY (`VetitoTerem_idVetitoTerem`)
+    FOREIGN KEY (`Vetites_idVetitoTerem`)
     REFERENCES `DunaMozi`.`VetitoTerem` (`idVetitoTerem`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Vetitesek_filmek1`
-    FOREIGN KEY (`filmek_idfilmek`)
+    FOREIGN KEY (`Vetites_idfilmek`)
     REFERENCES `DunaMozi`.`filmek` (`idfilmek`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -122,6 +119,16 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+INSERT INTO vetitesek VALUES(NULL,"2024-02-02 13:15:00",1,1);
+
+SELECT
+  vetitesek.`idVetitesek`,vetitesek.`vetitesDATUM`,filmek.filmnev,vetitoterem.`Terem`,ulesek.sor, ulesek.szekszam, ulesek.foglalt
+  FROM
+  vetitesek
+  INNER join filmek ON vetitesek.`Vetites_idfilmek` = filmek.idfilmek
+  INNER JOIN vetitoterem ON vetitesek.`Vetites_idVetitoTerem` = vetitoterem.`idVetitoTerem`
+  INNER JOIN ulesek ON vetitoterem.`idVetitoTerem` = ulesek.`VetitoTerem_idVetitoTerem`;
 
 INSERT INTO kategoria VALUES (NULL,"Akció"),(NULL,"Animációs"),(NULL,"Autóversenyzős"),(NULL,"Áldokumentumfilmek"),(NULL,"Börtönfilmek"),(NULL,"Bünügyi"),(NULL,"Családi"),(NULL,"Dokumentumfilmek"),(NULL,"Életrajzi"),(NULL,"Fantasi"),(NULL,"Filmdráma"),(NULL,"Filmszatíra"),(NULL,"Harcmüvészeti"),(NULL,"Háborus"),(NULL,"Horror"),(NULL,"Kaland"),(NULL,"Kalózos"),(NULL,"Kémfilmek"),(NULL,"Musical"),(NULL,"Romantikus"),(NULL,"Sci-Fi"),(NULL,"Thriller"),(NULL,"Történelmi"),(NULL,"Vígjáték"),(NULL,"Western");
 INSERT INTO `VetitoTerem` VALUES (NULL,"1-es terem"),(NULL,"2-es terem"),(NULL,"3-mas terem"),(NULL,"4-es terem");
@@ -504,5 +511,52 @@ END;
 
 DELIMITER ;
 
-
 CALL `szovegKeres`("star")
+
+DELIMITER //
+
+CREATE PROCEDURE IF NOT EXISTS vetitesek()
+BEGIN
+  SELECT
+  vetitesek.`idVetitesek`,filmek.filmnev
+  FROM
+  vetitesek
+  INNER join filmek ON vetitesek.`Vetites_idfilmek` = filmek.idfilmek;
+END;
+
+DELIMITER ;
+
+CREATE PROCEDURE IF NOT EXISTS vetitesINFO(IN id INT)
+BEGIN
+  SELECT
+  DATE_FORMAT(vetitesek.`vetitesDATUM`,"%Y.%m.%d %H:%i:%s") as "datum",vetitoterem.`Terem`
+  FROM
+  vetitesek
+  INNER JOIN vetitoterem ON vetitesek.`Vetites_idVetitoTerem` = vetitoterem.`idVetitoTerem`
+  WHERE vetitesek.`idVetitesek` = id;
+END;
+DELIMITER ;
+
+CREATE PROCEDURE IF NOT EXISTS vetitesULESEK(IN id INT)
+BEGIN
+  SELECT
+  ulesek.sor, ulesek.szekszam, ulesek.foglalt
+  FROM
+  vetitesek
+  INNER JOIN vetitoterem ON vetitesek.`Vetites_idVetitoTerem` = vetitoterem.`idVetitoTerem`
+  INNER JOIN ulesek ON vetitoterem.`idVetitoTerem` = ulesek.`VetitoTerem_idVetitoTerem`;
+END;
+DELIMITER ;
+
+
+
+CALL vetitesek();
+
+CALL `vetitesINFO`(1)
+
+SELECT CURDATE();
+
+
+
+
+

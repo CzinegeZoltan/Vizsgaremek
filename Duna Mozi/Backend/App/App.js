@@ -164,6 +164,7 @@ app.get('/filmek', (req, res) => {
   })
 })
 
+// PROCCEDÚRÁVÁ át alakítás kellene
 app.post('/kereses', (req, res) => {
     const kvalue = req.body.katvalue;
     var con = mysql.createConnection(new Config());
@@ -301,6 +302,34 @@ app.post('/filmtor', (req, res) => {
             }
         })
 });
+
+app.get('/vetitesek', (req, res) => {
+
+    var con = mysql.createConnection(new Config());
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log('sikeresen le lett kérdezve a vetítések');
+    })
+    const sql = 'CALL vetitesek();'
+    con.query(sql, (err, result) => {
+        if (err) res.status(404).send({ status: 404, error: "Hiba a vetítések lekérdezésekor" });
+        res.send(result[0]);
+    })
+})
+
+app.post('/vetitesekinfo', (req, res) => {
+
+    var con = mysql.createConnection(new Config());
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log('sikeresen le lett kérdezve a vetítésekINFO');
+    })
+    const sql = 'CALL vetitesINFO(?);'
+    con.query(sql,[req.body.id], (err, result) => {
+        if (err) res.status(404).send({ status: 404, error: "Hiba a vetítésekINFO lekérdezésekor" });
+        res.send(result[0]);
+    })
+})
 
 
 

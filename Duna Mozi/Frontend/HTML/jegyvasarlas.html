@@ -9,6 +9,13 @@
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="../CSS/jegy.css">
     <link rel="icon" type="image/x-icon" href="../IMG/icon.ico">
+    <script src="../JS/vetitesDROPDOWN.js"></script>
+    <script src="../JS/vetitesINFO.js"></script>
+    <script>
+        function documentREADY(){
+            FillVetittesekList();
+        }
+    </script>
     <title>Duna Mozi Helyfoglaló</title>
 </head>
 
@@ -32,15 +39,27 @@
                 <form action="POST">
                     <div class="row">
                         <div class="valasztas col-xs-6 col-sm-6 col-md-10 col-lg-10">
-                            <select name="kategoria" id="vetit" class="form-select-lg" onclick="">
+                            <select name="kategoria" id="dropdown" class="form-select-lg" onchange="VetitesekINFO()">
                                 <optgroup label="vetitések">Vetitések</optgroup>
+                                <option value=""></option>
                             </select>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
-                            <button type="button" onclick="" class="button-subscribe">Vásátlás</button>
+                            <button type="button" onclick="" class="button-subscribe">Vásárlás</button>
                         </div>
                     </div>
                 </form>
+            </div>
+            <div>
+                <h2>Vetítés információk:</h2>
+                <div class="input-container">
+                    <label class="form-label form-label" for="Filmnev">Film vetítése:</label><br>
+                    <p id="idopont"></p>
+                </div>
+                <div class="input-container">
+                    <label class="form-label form-label" for="Filmnev">Helyszín:</label><br>
+                    <p id="helyszin"></p>
+                </div>
             </div>
             <div class="row">
                 <div id="seat-map">
@@ -161,6 +180,7 @@
                 <p>Választott helyek: <span id="selected-seats"></span></p>
             </div>
         </div>
+        <button onclick="">vetitések</button>
     </main>
     <footer>
         <h6>Kapcsolat</h6>
