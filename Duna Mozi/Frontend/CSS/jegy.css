@@ -1,3 +1,7 @@
+.ulessor{
+    display: inline-block;
+}
+
 .kiir {
     margin: 5px;
     cursor: pointer;
@@ -37,10 +41,5 @@
 
 .seat.selected {
     background-color: #28a745;
-    color: #fff;
-}
-
-.seat.occupied {
-    background-color: #a72828;
     color: #fff;
 }

@@ -544,11 +544,10 @@ BEGIN
   FROM
   vetitesek
   INNER JOIN vetitoterem ON vetitesek.`Vetites_idVetitoTerem` = vetitoterem.`idVetitoTerem`
-  INNER JOIN ulesek ON vetitoterem.`idVetitoTerem` = ulesek.`VetitoTerem_idVetitoTerem`;
+  INNER JOIN ulesek ON vetitoterem.`idVetitoTerem` = ulesek.`VetitoTerem_idVetitoTerem`
+  WHERE vetitesek.`idVetitesek` = id;
 END;
 DELIMITER ;
-
-
 
 CALL vetitesek();
 
@@ -556,7 +555,7 @@ CALL `vetitesINFO`(1)
 
 SELECT CURDATE();
 
-
+CALL `vetitesULESEK`(1)
 
 
 

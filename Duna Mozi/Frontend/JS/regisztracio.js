@@ -15,7 +15,8 @@ const data = {
             err = document.getElementById("error");
             err.innerHTML = data.error;
         }
-        window.location.href = data.redirection;
+        alert("Sikeres felhasználó regisztrálása");
+        history.back();
     }).catch((error) => {
         console.log(error);
     });

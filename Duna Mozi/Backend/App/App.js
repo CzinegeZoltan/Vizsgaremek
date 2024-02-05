@@ -7,6 +7,16 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 8000;
 const jwt = require("jsonwebtoken");
+// const session = require('express-session');
+
+// app.use(session({
+//     secret: '',
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: { secure: true }
+// }));
+
+
 
 const Key = 'kulcs';
 
@@ -331,7 +341,19 @@ app.post('/vetitesekinfo', (req, res) => {
     })
 })
 
+app.post('/szekek', (req, res) => {
 
+    var con = mysql.createConnection(new Config());
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log('sikeresen le lett kérdezve a székek');
+    })
+    const sql = 'CALL vetitesULESEK(?);'
+    con.query(sql,[req.body.id] ,(err, result) => {
+        if (err) res.status(404).send({ status: 404, error: "Hiba a székek lekérdezésekor" });
+        res.send(result[0]);
+    })
+})
 
 
 

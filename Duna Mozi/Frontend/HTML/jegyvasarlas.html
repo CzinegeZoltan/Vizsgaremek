@@ -11,6 +11,7 @@
     <link rel="icon" type="image/x-icon" href="../IMG/icon.ico">
     <script src="../JS/vetitesDROPDOWN.js"></script>
     <script src="../JS/vetitesINFO.js"></script>
+    <script src="../JS/szekbetolt.js"></script>
     <script>
         function documentREADY(){
             FillVetittesekList();
@@ -39,7 +40,7 @@
                 <form action="POST">
                     <div class="row">
                         <div class="valasztas col-xs-6 col-sm-6 col-md-10 col-lg-10">
-                            <select name="kategoria" id="dropdown" class="form-select-lg" onchange="VetitesekINFO()">
+                            <select name="kategoria" id="dropdown" class="form-select-lg" onchange="VetitesekINFO(), fillSzekList()">
                                 <optgroup label="vetitések">Vetitések</optgroup>
                                 <option value=""></option>
                             </select>
@@ -65,115 +66,39 @@
                 <div id="seat-map">
                     <div class="row kozepszek">
                         <div class="kiir">A sor:</div>
-                        <div class="seat" data-seat="A1">1</div>
-                        <div class="seat" data-seat="A2">2</div>
-                        <div class="seat" data-seat="A3">3</div>
-                        <div class="seat" data-seat="A4">4</div>
-                        <div class="seat" data-seat="A5">5</div>
-                        <div class="seat" data-seat="A6">6</div>
-                        <div class="seat" data-seat="A7">7</div>
-                        <div class="seat" data-seat="A8">8</div>
-                        <div class="seat" data-seat="A9">9</div>
-                        <div class="seat" data-seat="A10">10</div>
+                        <div id="seatmapA">
+
+                        </div>
                     </div>
                     <div class="row kozepszek">
                         <div class="kiir">B sor:</div>
-                        <div class="seat" data-seat="B1">1</div>
-                        <div class="seat" data-seat="B2">2</div>
-                        <div class="seat" data-seat="B3">3</div>
-                        <div class="seat" data-seat="B4">4</div>
-                        <div class="seat" data-seat="B5">5</div>
-                        <div class="seat" data-seat="B6">6</div>
-                        <div class="seat" data-seat="B7">7</div>
-                        <div class="seat" data-seat="B8">8</div>
-                        <div class="seat" data-seat="B9">9</div>
-                        <div class="seat" data-seat="B10">10</div>
-                        <div class="seat" data-seat="B11">11</div>
+                        <div id="seatmapB">
+
+                        </div>
                     </div>
                     <div class="row kozepszek">
                         <div class="kiir">C sor:</div>
-                        <div class="seat" data-seat="C1">1</div>
-                        <div class="seat" data-seat="C2">2</div>
-                        <div class="seat" data-seat="C3">3</div>
-                        <div class="seat" data-seat="C4">4</div>
-                        <div class="seat" data-seat="C5">5</div>
-                        <div class="seat" data-seat="C6">6</div>
-                        <div class="seat" data-seat="C7">7</div>
-                        <div class="seat" data-seat="C8">8</div>
-                        <div class="seat" data-seat="C9">9</div>
-                        <div class="seat" data-seat="C10">10</div>
-                        <div class="seat" data-seat="C11">11</div>
-                        <div class="seat" data-seat="C12">12</div>
+                        <div id="seatmapC">
+
+                        </div>
                     </div>
                     <div class="row kozepszek">
                         <div class="kiir">D sor:</div>
-                        <div class="seat" data-seat="D1">1</div>
-                        <div class="seat" data-seat="D2">2</div>
-                        <div class="seat" data-seat="D3">3</div>
-                        <div class="seat" data-seat="D4">4</div>
-                        <div class="seat" data-seat="D5">5</div>
-                        <div class="seat" data-seat="D6">6</div>
-                        <div class="seat" data-seat="D7">7</div>
-                        <div class="seat" data-seat="D8">8</div>
-                        <div class="seat" data-seat="D9">9</div>
-                        <div class="seat" data-seat="D10">10</div>
-                        <div class="seat" data-seat="D11">11</div>
-                        <div class="seat" data-seat="D12">12</div>
-                        <div class="seat" data-seat="D13">13</div>
+                        <div id="seatmapD">
+
+                        </div>
                     </div>
                     <div class="row kozepszek">
                         <div class="kiir">E sor:</div>
-                        <div class="seat" data-seat="E1">1</div>
-                        <div class="seat" data-seat="E2">2</div>
-                        <div class="seat" data-seat="E3">3</div>
-                        <div class="seat" data-seat="E4">4</div>
-                        <div class="seat" data-seat="E5">5</div>
-                        <div class="seat" data-seat="E6">6</div>
-                        <div class="seat" data-seat="E7">7</div>
-                        <div class="seat" data-seat="E8">8</div>
-                        <div class="seat" data-seat="E9">9</div>
-                        <div class="seat" data-seat="E10">10</div>
-                        <div class="seat" data-seat="E11">11</div>
-                        <div class="seat" data-seat="E12">12</div>
-                        <div class="seat" data-seat="E13">13</div>
-                        <div class="seat" data-seat="E14">14</div>
+                        <div id="seatmapE">
+
+                        </div>
                     </div>
                     <div class="row kozepszek">
                         <div class="kiir">F sor:</div>
-                        <div class="seat" data-seat="F1">1</div>
-                        <div class="seat" data-seat="F2">2</div>
-                        <div class="seat" data-seat="F3">3</div>
-                        <div class="seat" data-seat="F4">4</div>
-                        <div class="seat" data-seat="F5">5</div>
-                        <div class="seat" data-seat="F6">6</div>
-                        <div class="seat" data-seat="F7">7</div>
-                        <div class="seat" data-seat="F8">8</div>
-                        <div class="seat" data-seat="F9">9</div>
-                        <div class="seat" data-seat="F10">10</div>
-                        <div class="seat" data-seat="F11">11</div>
-                        <div class="seat" data-seat="F12">12</div>
-                        <div class="seat" data-seat="F13">13</div>
-                        <div class="seat" data-seat="F14">14</div>
-                        <div class="seat" data-seat="F15">15</div>
-                    </div>
-                    <div class="row kozepszek">
-                        <div class="kiir">G sor:</div>
-                        <div class="seat" data-seat="G1">1</div>
-                        <div class="seat" data-seat="G2">2</div>
-                        <div class="seat" data-seat="G3">3</div>
-                        <div class="seat" data-seat="G4">4</div>
-                        <div class="seat" data-seat="G5">5</div>
-                        <div class="seat" data-seat="G6">6</div>
-                        <div class="seat" data-seat="G7">7</div>
-                        <div class="seat" data-seat="G8">8</div>
-                        <div class="seat" data-seat="G9">9</div>
-                        <div class="seat" data-seat="G10">10</div>
-                        <div class="seat" data-seat="G11">11</div>
-                        <div class="seat" data-seat="G12">12</div>
-                        <div class="seat" data-seat="G13">13</div>
-                        <div class="seat" data-seat="G14">14</div>
-                        <div class="seat" data-seat="G15">15</div>
-                        <div class="seat" data-seat="G16">16</div>
+                        <div id="seatmapF">
+
+                        </div>
                     </div>
                 </div>
                 <span id="ulesek_helye"></span>
