@@ -1,0 +1,26 @@
+.form {
+    text-align: center;
+    margin: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(204, 206, 209);
+    margin-top: 190px;
+    margin-bottom: 180px;
+}
+
+.input-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.form-label {
+    position: absolute;
+    left: 10px;
+}

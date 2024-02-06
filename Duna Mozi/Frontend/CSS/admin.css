@@ -1,0 +1,28 @@
+.rowgomb {
+    justify-content: space-between; /* Az elemeket egymás között helyezi el */
+    flex-wrap: nowrap; /* Megakadályozza a gombok több sorba kerülését */
+}
+
+.atiranyito{
+    max-width: 30%;
+    height: 90px;
+}
+.atiranyitodolg{
+    max-width: 47%;
+    height: 90px;
+}
+
+.vezerlopanel {
+    text-align: center;
+    margin: auto;
+    width: 60%; /* Teljes szélességűre állítjuk */
+    height: 50vh; /* Teljes magasságúra állítjuk */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Az elemek középen helyezkedjenek el a függőleges tengelyen */
+}
+.kilep{
+    max-width: 110px;
+    position: absolute;
+    right: 10px;
+}
