@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var seats = document.querySelectorAll('.seat');
+    var seats = document.querySelectorAll('#szek');
 
     seats.forEach(function (seat) {
         seat.addEventListener('click', function () {

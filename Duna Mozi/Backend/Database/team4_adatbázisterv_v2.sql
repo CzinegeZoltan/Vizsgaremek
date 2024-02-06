@@ -540,7 +540,7 @@ DELIMITER ;
 CREATE PROCEDURE IF NOT EXISTS vetitesULESEK(IN id INT)
 BEGIN
   SELECT
-  ulesek.sor, ulesek.szekszam, ulesek.foglalt
+  ulesek.ules_id, ulesek.sor, ulesek.szekszam, ulesek.foglalt
   FROM
   vetitesek
   INNER JOIN vetitoterem ON vetitesek.`Vetites_idVetitoTerem` = vetitoterem.`idVetitoTerem`

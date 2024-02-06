@@ -12,6 +12,7 @@
     <script src="../JS/vetitesDROPDOWN.js"></script>
     <script src="../JS/vetitesINFO.js"></script>
     <script src="../JS/szekbetolt.js"></script>
+
     <script>
         function documentREADY(){
             FillVetittesekList();
@@ -73,7 +74,7 @@
                     <div class="row kozepszek">
                         <div class="kiir">B sor:</div>
                         <div id="seatmapB">
-
+                            
                         </div>
                     </div>
                     <div class="row kozepszek">
@@ -116,6 +117,20 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <script src="../JS/jegyfoglalas.js"></script>
+
+    <script>
+     
+        const buttons = document.querySelectorAll('.gomb');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+
+            const buttonText = this.textContent;
+            console.log("Clicked button's textContent:", buttonText);
+            });
+        });
+
+    </script>
 </body>
 
 </html>

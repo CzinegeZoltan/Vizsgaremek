@@ -28,13 +28,13 @@ function fillSzekList(){
             if(szekek.sor == "A"){
                 if(szekek.foglalt == "1"){
                     const div = document.createElement("div");
-                    div.className = "ulessor"
-                    div.innerHTML=`<div class='seat' id="${szekek.sor}${szekek.szekszam}" data-seat="${szekek.sor}${szekek.szekszam}" style=background-color:red>${szekek.szekszam}</div>`
+                    div.id = "sor";                    
+                    div.innerHTML="<div class='seat' value="+szekek.sor +szekek.szekszam+" datasor="+szekek.sor +" "+"dataszam="+szekek.szekszam+" id='szek' style='background-color: red'>"+szekek.szekszam+"</div>"
                     szekekButtonsA.appendChild(div);
                 } else {
                     const div = document.createElement("div");
-                    div.className = "ulessor"
-                    div.innerHTML=`<div class='seat' id="${szekek.sor}${szekek.szekszam}" data-seat="${szekek.sor}${szekek.szekszam}">${szekek.szekszam}</div>`
+                    div.id = "sor";                    
+                    div.innerHTML="<button value="+szekek.sor +szekek.szekszam+" datasor="+szekek.sor +" "+"dataszam="+szekek.szekszam+" id='szek' class='gomb'>"+szekek.szekszam+"</button>"
                     szekekButtonsA.appendChild(div);
                 }
                 
