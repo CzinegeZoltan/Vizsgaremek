@@ -318,7 +318,9 @@ BEGIN
   vetitesek.`idVetitesek`,filmek.filmnev
   FROM
   vetitesek
-  INNER join filmek ON vetitesek.`Vetites_idfilmek` = filmek.idfilmek;
+  INNER join filmek ON vetitesek.`Vetites_idfilmek` = filmek.idfilmek
+  WHERE
+ vetitesek.`vetitesDATUM` >= CURDATE();
 END;
 
 DELIMITER ;
