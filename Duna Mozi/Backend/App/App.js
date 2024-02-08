@@ -355,9 +355,125 @@ app.post('/szekek', (req, res) => {
     })
 })
 
+app.post('/vetitesreg', (req, res) => {
 
+    var con = mysql.createConnection(new Config());
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log('sikeres csatlakozás a vetitesREGRE');
+    })
+        const userSQL = 'CALL vetitesREG(?,?,?)';
+        con.query(userSQL, [req.body.date, req.body.terem, req.body.film], (err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(404).send({ status: 404, error: "Hiba a film rögzítésekor" });
+            } else {
+                res.status(200).send({ status: 200, success: "Sikeres vetites adatrögzítés" })
+            }
+        })
 
+        const newvetites = 'SELECT idVetitesek as valamiid, Vetites_idVetitoTerem AS teremszam FROM vetitesek WHERE idVetitesek = (SELECT MAX(idVetitesek) FROM vetitesek)';
+        con.query(newvetites,(err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(404).send({ status: 404, error: "Hiba a film rögzítésekor" });
+            } else{
+                const MAXid = result[0].valamiid;
+                const MAXterem = result[0].teremszam;
 
+                if(MAXterem == 1){
+                    const ulesREG1 = 'CALL ulesREG1(?)';
+                    con.query(ulesREG1,[MAXid], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.status(404).send({ status: 404, error: "Hiba az 1-es terem ülések rögzítésekor" });
+                        } else {
+                            console.log("Sikeres 1-es terem ülések adatrögzítés")
+                        }
+                    })
+                } else if(MAXterem == 2){
+                    const ulesREG2 = 'CALL ulesREG2(?)';
+                    con.query(ulesREG2,[MAXid], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.status(404).send({ status: 404, error: "Hiba az 2-es terem ülések rögzítésekor" });
+                        } else {
+                            console.log("Sikeres 2-es terem ülések adatrögzítés")
+                        }
+                    })
+                } else if(MAXterem == 3){
+                    const ulesREG3 = 'CALL ulesREG3(?)';
+                    con.query(ulesREG3,[MAXid], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.status(404).send({ status: 404, error: "Hiba az 3-as terem ülések rögzítésekor" });
+                        } else {
+                            console.log("Sikeres 3-as terem ülések adatrögzítés")
+                        }
+                    })
+                } else if(MAXterem == 4){
+                    const ulesREG4 = 'CALL ulesREG4(?)';
+                    con.query(ulesREG4,[MAXid], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.status(404).send({ status: 404, error: "Hiba az 4-es terem ülések rögzítésekor" });
+                        } else {
+                            console.log("Sikeres 4-es terem ülések adatrögzítés")
+                        }
+                    })
+                } else {
+                    console.log("Nincs ilyen terem: " + MAXterem);
+                }
+            }
+        })
+});
+
+app.post('/vetitesmod', (req, res) => {
+
+    var con = mysql.createConnection(new Config());
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log('sikeres csatlakozás a vetitesMODRA');
+    })
+        const userSQL = 'CALL vetitesMOD(?,?,?,?)';
+        con.query(userSQL, [req.body.date, req.body.terem, req.body.film, req.body.vetitesid], (err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(404).send({ status: 404, error: "Hiba a film rögzítésekor" });
+            } else {
+                res.status(200).send({ status: 200, success: "Sikeres vetites adatmódosításában" })
+            }
+        })
+});
+
+app.post('/vetitestor', (req, res) => {
+
+    var con = mysql.createConnection(new Config());
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log('sikeres csatlakozás a vetitesTORRE');
+    })
+        const vetid = req.body.vetitesid;
+        const userSQL = 'CALL vetitesTOR(?)';
+        con.query(userSQL, vetid, (err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(404).send({ status: 404, error: "Hiba a film rögzítésekor" });
+            } else {
+                res.status(200).send({ status: 200, success: "Sikeres vetites adatmódosításában" })
+            }
+        })
+
+        const ulestorL = 'CALL ulesTOR(?)';
+        con.query(ulestorL, vetid, (err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(404).send({ status: 404, error: "Hiba a székek törlésekor" });
+            } else {
+                console.log("Sikeresen törölve lettek az ülések")
+            }
+        }) 
+});
 
 
 

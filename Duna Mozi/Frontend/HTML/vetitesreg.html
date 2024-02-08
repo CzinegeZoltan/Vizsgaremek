@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../JS/livetoken.js"></script>
+    <script src="../JS/filmDROPDOWN.js"></script>
+    <script src="../JS/vetitesREG.js"></script>
+    <script>
+        function documentReady(){
+            //livetoken();
+        }
+    </script>
+    <title>Vetités létrehozása</title>
+</head>
+<body onload="documentReady()">
+    <button onclick="history.back()">Vissza az előző oldalra</button>
+    <form method="post">
+        <div>
+            <h2>Vetités létrehozása</h2>
+                <div class="input-container">
+                    <label class="form-label form-label" for="Date">Dátum:</label><br>
+                    <input type="date" name="date" id="date" required="">
+                </div>
+                <div class="input-container">
+                    <label class="form-label form-label" for="Time">Óra:Perc</label><br>
+                    <input type="time" name="time" id="time" required="">
+                </div>
+                <div class="input-container ">
+                    <label class="form-label form-label" for="Terem">Terem(1-4):</label><br>
+                    <input type="number" name="terem" id="terem" min="1" max="4" required="">
+                </div>
+                <div class="input-container">
+                    <label for="form-label form-label" for="film"></label>
+                    <select name="" id="filmdropdown" class="form-select-lg">
+                        <optgroup label="Vetitések">Filmek</optgroup>
+                    </select>
+                </div>
+
+        </div>
+    </form>
+    <button class="button" onclick="vetitesREG()">Vetités regisztrálása</button>
+</body>
+
+</html>

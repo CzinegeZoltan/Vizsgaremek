@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../JS/livetoken.js"></script>
+    <script src="../JS/vetitesDROPDOWN.js"></script>
+    <script src="../JS/vetitesMOD.js"></script>
+    <script src="../JS/filmDROPDOWN.js"></script>
+    <script>
+        function documentReady(){
+            //livetoken();
+        }
+    </script>
+    <title>Vetités módosítása</title>
+</head>
+<body onload="documentReady()">
+    <button onclick="history.back()">Vissza az előző oldalra</button>
+    <form method="post">
+        <div>
+            <select name="" id="dropdown" class="form-select-lg" onload="fillVetitesekList()">
+                <optgroup label="Vetitések">Vetitések: Filmnév</optgroup>
+            </select>
+            <h2>Vetités módosítása</h2>
+                <div class="input-container">
+                    <label class="form-label form-label" for="Date">Dátum:</label><br>
+                    <input type="date" name="date" id="date" required="">
+                </div>
+                <div class="input-container">
+                    <label class="form-label form-label" for="Time">Óra:Perc</label><br>
+                    <input type="time" name="time" id="time" required="">
+                </div>
+                <div class="input-container ">
+                    <label class="form-label form-label" for="Terem">Terem(1-4):</label><br>
+                    <input type="number" name="terem" id="terem" min="1" max="4" required="">
+                </div>
+                <div class="input-container">
+                    <label for="form-label form-label" for="film"></label>
+                    <select name="" id="filmdropdown" class="form-select-lg" onload="" onchange="">
+                        <optgroup label="Vetitések">Filmek</optgroup>
+                    </select>
+                </div>
+                
+        </div>
+    </form>
+    <button class="button" onclick="vetitesMOD()">Vetités módosítása</button>
+    <button class="button" onclick="vetitesTOR()">Vetités törlése</button>
+</body>
+
+</html>
