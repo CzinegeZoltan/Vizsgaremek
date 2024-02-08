@@ -4,6 +4,7 @@ function filmMOD(){
         headers: {"Content-Type" : "application/json",},
         body: JSON.stringify({
             name: document.getElementById("name").value,
+            szereplok: document.getElementById("szereplok").value,
             desription: document.getElementById("desription").value,
             hossz: document.getElementById("hossz").value + " perc",
             korhatar: document.getElementById("korhatar").value,

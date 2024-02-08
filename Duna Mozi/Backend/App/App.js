@@ -168,7 +168,7 @@ app.get('/filmek', (req, res) => {
       if (err) throw err;
       console.log('sikeresen le lett kérdezve a filmek');
   })
-  con.query('select idfilmek,filmnev,filmdescription,filmhossz,filmkorhatár,film_KategoriaId,film_keplink from filmek', (err, result) => {
+  con.query('select idfilmek,foszereplok,filmnev,filmdescription,filmhossz,filmkorhatár,film_KategoriaId,film_keplink from filmek', (err, result) => {
       if (err) res.status(404).send({ status: 404, error: "Hiba a filmek lekérdezésekor" });
       res.send(result);
   })
@@ -266,8 +266,8 @@ app.post('/filmreg', (req, res) => {
         if (err) throw err;
         console.log('sikeres csatlakozás a filmREGRE');
     })
-        const userSQL = 'CALL filmREG(?,?,?,?,?,?)';
-        con.query(userSQL, [req.body.name, req.body.desription, req.body.hossz, req.body.korhatar, req.body.kategoria, req.body.link], (err, result) => {
+        const userSQL = 'CALL filmREG(?,?,?,?,?,?,?)';
+        con.query(userSQL, [req.body.name,req.body.szereplok,req.body.desription, req.body.hossz, req.body.korhatar, req.body.kategoria, req.body.link], (err, result) => {
             if (err) {
                 console.log(err)
                 res.status(404).send({ status: 404, error: "Hiba a film rögzítésekor" });
@@ -284,8 +284,8 @@ app.post('/filmmod', (req, res) => {
         if (err) throw err;
         console.log('sikeres csatlakozás a filmMODRA');
     })
-        const userSQL = 'CALL filmMOD(?,?,?,?,?,?,?)';
-        con.query(userSQL, [req.body.name, req.body.desription, req.body.hossz, req.body.korhatar, req.body.kategoria, req.body.link,req.body.id], (err, result) => {
+        const userSQL = 'CALL filmMOD(?,?,?,?,?,?,?,?)';
+        con.query(userSQL, [req.body.name,req.body.szereplok, req.body.desription, req.body.hossz, req.body.korhatar, req.body.kategoria, req.body.link,req.body.id], (err, result) => {
             if (err) {
                 console.log(err)
                 res.status(404).send({ status: 404, error: "Hiba a film rögzítésekor" });
