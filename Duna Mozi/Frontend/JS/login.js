@@ -26,7 +26,6 @@ loginData = (data) => {
             err = document.getElementById("error");
             err.innerHTML = data.error;
         }
-            console.log(data)
             window.location.href = data.redirection;
         }).catch((err) => {
             console.error(err);

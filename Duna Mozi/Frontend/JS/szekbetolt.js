@@ -27,7 +27,6 @@ function fillSzekList(){
             document.getElementById("selected-seats").innerHTML = "";
  
 
-
             // Szerezzen hivatkozásokat konténer elemekre
             const szekekButtonsA = document.getElementById("seatmapA");
             const szekekButtonsB = document.getElementById("seatmapB");
@@ -35,7 +34,6 @@ function fillSzekList(){
             const szekekButtonsD = document.getElementById("seatmapD");
             const szekekButtonsE = document.getElementById("seatmapE");
             const szekekButtonsF = document.getElementById("seatmapF");
-
 
 
             function updateSelectedSeats() {
@@ -89,13 +87,11 @@ function fillSzekList(){
 
                             selectedSeats.push(szekek.szekszam + szekek.sor);
                             selectedSeatsID.push(szekek.ules_id);
-                            console.log(selectedSeatsID);
                             button.style.backgroundColor = 'green'
                         } else {
 
                             selectedSeats.splice(seatIndex, 1);
                             selectedSeatsID.splice(seatIndex, 1);
-                            console.log(selectedSeatsID);
                             button.style.backgroundColor = 'burlywood'
                         }
 
@@ -142,8 +138,6 @@ function proba(){
             ulesek: selectedSeatsID
         })       
     }
-
-    console.log(data)
 
     fetch('http://localhost:8000/ulesfoglal', data)
         .then((response) => {

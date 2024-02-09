@@ -483,9 +483,6 @@ app.post('/ulesfoglal', (req, res) => {
         console.log('sikeres csatlakozás az ülésfoglalásra');
     })
         const idArray = req.body.ulesek
-
-        console.log(idArray)
-
         const ulesfoglalSQL = 'CALL ulesFOGLAL(?)';
 
         idArray.forEach(id => {
