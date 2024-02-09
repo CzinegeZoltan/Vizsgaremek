@@ -8,10 +8,12 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="../CSS/jegy.css">
+    <link rel="stylesheet" href="../CSS/popup.css">
     <link rel="icon" type="image/x-icon" href="../IMG/icon.ico">
     <script src="../JS/vetitesDROPDOWN.js"></script>
     <script src="../JS/vetitesINFO.js"></script>
     <script src="../JS/szekbetolt.js"></script>
+    <script src="../JS/jegyarak.js"></script>
 
     <script>
         function documentREADY(){
@@ -45,9 +47,6 @@
                                 <optgroup label="vetitések">Vetitések</optgroup>
                                 <option value=""></option>
                             </select>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
-                            <button type="button" onclick="" class="button-subscribe">Vásárlás</button>
                         </div>
                     </div>
                 </form>
@@ -106,7 +105,31 @@
                 <p>Választott helyek: <span id="selected-seats"></span></p>
             </div>
         </div>
-        <button onclick="proba()">próbagomb</button>
+        
+        <button id="popupButton" onclick="jegyarakVasarlas()">Vásárlás</button>
+
+        <div class="popup" id="popup">
+            <div class="popup-content">
+                <span class="close" id="close"></span>
+                <p>Jegyvásárlás</p>
+                <div class="input-container">
+                    <label class="form-label form-label" for="Time">Kiválasztott szék mennyiség:</label><br>
+                    <p id="mennyiseg"></p>
+                </div>
+                <div id="vasarlas">
+
+                </div>
+                <div class="input-container">
+                    <label class="form-label form-label" for="Time">Kiválasztott jegy(ek) mennyisége:</label><br>
+                    <p id="jegydb"></p>
+                </div>
+                <div class="input-container">
+                    <label class="form-label form-label" for="Time">Jegyek ára:</label><br>
+                    <p id="jegyar"></p>
+                </div>
+                <button onclick="proba()">Jegy(ek) megvásárlása</button>
+            </div>
+        </div>
     </main>
     <footer>
         <h6>Kapcsolat</h6>
@@ -116,6 +139,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+    <script src="../JS/popup.js"></script>
 </body>
 
 </html>

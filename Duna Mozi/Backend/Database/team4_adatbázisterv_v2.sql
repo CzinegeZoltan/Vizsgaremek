@@ -127,6 +127,19 @@ CREATE TABLE IF NOT EXISTS `dunamozi`.`jegyek` (
   PRIMARY KEY(`jegyid`)
 )
 
+-- -----------------------------------------------------
+-- Table `DunaMozi`.`vásárlások`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dunamozi`.`vasarlasok` (
+  `vasarlasid` INT NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(255),
+  `vetites` INT NOT NULL,
+  `ulesek` TEXT,
+  `fizetett(Ft)` INT,
+  `jegyek` TEXT,
+  PRIMARY KEY(`vasarlasid`)
+)
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -134,8 +147,6 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
 INSERT INTO jegyek VALUES(NULL,"Gyermek (0-17)",1000),(NULL,"Felnőtt (18-64)",4000),(NULL,"Nyugdíjas (+65)",1500),(NULL,"Családi (2db felnőtt 2db gyermek)",7600),(NULL,"Csoportos (10db felnött)",30000);
-
-INSERT INTO vetitesek VALUES(NULL,"2024-02-02 13:15:00",1,1);
 
 SELECT
   vetitesek.`idVetitesek`,vetitesek.`vetitesDATUM`,filmek.filmnev,vetitoterem.`Terem`,ulesek.sor, ulesek.szekszam, ulesek.foglalt

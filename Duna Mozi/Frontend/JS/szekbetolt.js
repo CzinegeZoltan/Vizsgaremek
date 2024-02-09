@@ -87,12 +87,14 @@ function fillSzekList(){
 
                             selectedSeats.push(szekek.szekszam + szekek.sor);
                             selectedSeatsID.push(szekek.ules_id);
-                            button.style.backgroundColor = 'green'
+                            button.style.backgroundColor = 'green';
+                            document.getElementById("mennyiseg").innerHTML = selectedSeatsID.length
                         } else {
 
                             selectedSeats.splice(seatIndex, 1);
                             selectedSeatsID.splice(seatIndex, 1);
                             button.style.backgroundColor = 'burlywood'
+                            document.getElementById("mennyiseg").innerHTML = selectedSeatsID.length
                         }
 
                         updateSelectedSeats();
@@ -154,3 +156,5 @@ function proba(){
             console.log(error);
         });
 }
+
+exports.selectedSeatsID = selectedSeatsID;
