@@ -52,3 +52,7 @@
 .gomb{
     background-color: burlywood;
 }
+
+.selected {
+    background-color: green;
+}
