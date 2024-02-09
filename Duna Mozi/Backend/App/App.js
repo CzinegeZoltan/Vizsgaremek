@@ -498,7 +498,18 @@ app.post('/ulesfoglal', (req, res) => {
         res.status(200).send({ status: 200, success: "Sikeres ülés foglalás" });
 });
 
-
+app.get('/jegyek', (req, res) => {
+    var con = mysql.createConnection(new Config());
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log('sikeresen le lett kérdezve a jegyek');
+    })
+    const sql = 'CALL jegyekLEK();'
+    con.query(sql, (err, result) => {
+        if (err) res.status(404).send({ status: 404, error: "Hiba a vetítések lekérdezésekor" });
+        res.send(result[0]);
+    })
+})
 
 
 

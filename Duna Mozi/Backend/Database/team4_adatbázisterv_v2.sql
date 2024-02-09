@@ -117,10 +117,23 @@ CREATE TABLE IF NOT EXISTS `DunaMozi`.`ulesek` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `DunaMozi`.`jegyek`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dunamozi`.`jegyek` (
+  `jegyid` INT NOT NULL AUTO_INCREMENT,
+  `jegynev` VARCHAR(100),
+  `ar` INT NOT NULL,
+  PRIMARY KEY(`jegyid`)
+)
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+INSERT INTO jegyek VALUES(NULL,"Gyermek (0-17)",1000),(NULL,"Felnőtt (18-64)",4000),(NULL,"Nyugdíjas (+65)",1500),(NULL,"Családi (2db felnőtt 2db gyermek)",7600),(NULL,"Csoportos (10db felnött)",30000);
 
 INSERT INTO vetitesek VALUES(NULL,"2024-02-02 13:15:00",1,1);
 
@@ -646,9 +659,14 @@ DELIMITER ;
 
 call ulesFOGLAL()
 
+DELIMITER //
 
+CREATE PROCEDURE IF NOT EXISTS jegyekLEK()
+BEGIN
+    SELECT jegyid,jegynev,ar FROM jegyek;
+END;
 
-
+DELIMITER ;
 
 
 
