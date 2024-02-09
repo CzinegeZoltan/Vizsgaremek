@@ -475,6 +475,34 @@ app.post('/vetitestor', (req, res) => {
         }) 
 });
 
+app.post('/ulesfoglal', (req, res) => {
+
+    var con = mysql.createConnection(new Config());
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log('sikeres csatlakozás az ülésfoglalásra');
+    })
+        const idArray = req.body.ulesek
+
+        console.log(idArray)
+
+        const ulesfoglalSQL = 'CALL ulesFOGLAL(?)';
+
+        idArray.forEach(id => {
+            con.query(ulesfoglalSQL, id, (err, result) => {
+                if (err) {
+                    console.log(err)
+                    res.status(404).send({ status: 404, error: "Hiba az ülés rögzítésekor" });
+                } else {
+                    console.log(`ID ${id} sikeres frissítve`);
+                }
+            });
+        });
+        res.status(200).send({ status: 200, success: "Sikeres ülés foglalás" });
+});
+
+
+
 
 
 

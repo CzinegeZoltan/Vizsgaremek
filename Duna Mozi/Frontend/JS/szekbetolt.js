@@ -1,5 +1,8 @@
+let selectedSeatsID = [];
+
 function fillSzekList(){
     const selectedSeats = []
+    selectedSeatsID = []
 
     const data = {
         method: "POST",
@@ -21,6 +24,9 @@ function fillSzekList(){
             document.getElementById("seatmapD").innerHTML = "";
             document.getElementById("seatmapE").innerHTML = "";
             document.getElementById("seatmapF").innerHTML = "";
+            document.getElementById("selected-seats").innerHTML = "";
+ 
+
 
             // Szerezzen hivatkozásokat konténer elemekre
             const szekekButtonsA = document.getElementById("seatmapA");
@@ -29,6 +35,8 @@ function fillSzekList(){
             const szekekButtonsD = document.getElementById("seatmapD");
             const szekekButtonsE = document.getElementById("seatmapE");
             const szekekButtonsF = document.getElementById("seatmapF");
+
+
 
             function updateSelectedSeats() {
                 const selectedSeatsSpan = document.getElementById("selected-seats");
@@ -69,8 +77,8 @@ function fillSzekList(){
                 } else {
                     const button = document.createElement("button");
                     button.value = szekek.ules_id;
-                    button.classList.add('gomb');
-                    button.setAttribute('id',szekek.ules_id);
+                    button.classList.add('a');
+                    button.setAttribute('id',"gomb");
                     button.textContent = szekek.szekszam;
 
                     // Adja hozzá az eseményfigyelőt a gombhoz
@@ -80,11 +88,15 @@ function fillSzekList(){
                         if (seatIndex === -1) {
 
                             selectedSeats.push(szekek.szekszam + szekek.sor);
-
+                            selectedSeatsID.push(szekek.ules_id);
+                            console.log(selectedSeatsID);
+                            button.style.backgroundColor = 'green'
                         } else {
 
                             selectedSeats.splice(seatIndex, 1);
-
+                            selectedSeatsID.splice(seatIndex, 1);
+                            console.log(selectedSeatsID);
+                            button.style.backgroundColor = 'burlywood'
                         }
 
                         updateSelectedSeats();
@@ -117,6 +129,34 @@ function fillSzekList(){
             });
         })
         .catch((error) => {
+            console.log(error);
+        });
+}
+
+
+function proba(){
+    const data = {
+        method: "POST",
+        headers: {"Content-Type" : "application/json",},
+        body: JSON.stringify({
+            ulesek: selectedSeatsID
+        })       
+    }
+
+    console.log(data)
+
+    fetch('http://localhost:8000/ulesfoglal', data)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            if (data.status == 404) {
+                err = document.getElementById("error");
+                err.innerHTML = data.error;
+            }
+            alert("Sikeres ülés foglalás");
+            window.location.href = "../Index.html"
+        }).catch((error) => {
             console.log(error);
         });
 }

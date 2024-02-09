@@ -618,8 +618,6 @@ INSERT INTO ulesek VALUES
 END;
 DELIMITER ;
 
-
-
 CALL `ulesREG4`(40)
 
 SELECT idVetitesek, Vetites_idVetitoTerem AS teremszam 
@@ -635,6 +633,34 @@ END;
 DELIMITER ;
 
 CALL `ulesTOR`(6);
+
+
+DELIMITER //
+
+CREATE PROCEDURE IF NOT EXISTS ulesFOGLAL(IN ulesid INT)
+BEGIN
+    UPDATE `ulesek` SET `foglalt`= 1 WHERE ules_id = ulesid;
+END;
+
+DELIMITER ;
+
+call ulesFOGLAL()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
