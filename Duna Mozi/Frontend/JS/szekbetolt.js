@@ -25,6 +25,14 @@ function fillSzekList(){
             document.getElementById("seatmapE").innerHTML = "";
             document.getElementById("seatmapF").innerHTML = "";
             document.getElementById("selected-seats").innerHTML = "";
+
+            // Sorok Meghatározása
+            document.getElementById("A").innerHTML = "A sor";
+            document.getElementById("B").innerHTML = "B sor";
+            document.getElementById("C").innerHTML = "C sor";
+            document.getElementById("D").innerHTML = "D sor";
+            document.getElementById("E").innerHTML = "E sor";
+            document.getElementById("F").innerHTML = "F sor";
  
 
             // Szerezzen hivatkozásokat konténer elemekre
@@ -156,5 +164,3 @@ function proba(){
             console.log(error);
         });
 }
-
-exports.selectedSeatsID = selectedSeatsID;

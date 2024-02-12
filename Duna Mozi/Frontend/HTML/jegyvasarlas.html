@@ -13,7 +13,7 @@
     <script src="../JS/vetitesDROPDOWN.js"></script>
     <script src="../JS/vetitesINFO.js"></script>
     <script src="../JS/szekbetolt.js"></script>
-    <script src="../JS/jegyarak.js"></script>
+    <script src="../JS/vasarlas.js"></script>
 
     <script>
         function documentREADY(){
@@ -65,37 +65,37 @@
             <div class="row">
                 <div id="seat-map">
                     <div class="row kozepszek">
-                        <div class="kiir">A sor:</div>
+                        <div class="kiir" id="A"></div>
                         <div id="seatmapA">
 
                         </div>
                     </div>
                     <div class="row kozepszek">
-                        <div class="kiir">B sor:</div>
+                        <div class="kiir" id="B"></div>
                         <div id="seatmapB">
                             
                         </div>
                     </div>
                     <div class="row kozepszek">
-                        <div class="kiir">C sor:</div>
+                        <div class="kiir" id="C"></div>
                         <div id="seatmapC">
 
                         </div>
                     </div>
                     <div class="row kozepszek">
-                        <div class="kiir">D sor:</div>
+                        <div class="kiir" id="D"></div>
                         <div id="seatmapD">
 
                         </div>
                     </div>
                     <div class="row kozepszek">
-                        <div class="kiir">E sor:</div>
+                        <div class="kiir" id="E"></div>
                         <div id="seatmapE">
 
                         </div>
                     </div>
                     <div class="row kozepszek">
-                        <div class="kiir">F sor:</div>
+                        <div class="kiir" id="F"></div>
                         <div id="seatmapF">
 
                         </div>
@@ -106,7 +106,7 @@
             </div>
         </div>
         
-        <button id="popupButton" onclick="jegyarakVasarlas()">Vásárlás</button>
+        <button id="popupButton" onclick="jegyarakVasarlas(), mennyiseg()">Vásárlás</button>
 
         <div class="popup" id="popup">
             <div class="popup-content">
