@@ -680,7 +680,14 @@ END;
 DELIMITER ;
 
 
+DELIMITER //
 
+CREATE PROCEDURE IF NOT EXISTS jegyVASARLAS(IN emailcim VARCHAR(255), vetitesid INT,ulesek VARCHAR(100), osszeg INT(11), jegyek TEXT)
+BEGIN
+  INSERT INTO vasarlasok(`email`,`vetites`,`ulesek`,`fizetett(Ft)`,`jegyek`) VALUE(emailcim,vetitesid,ulesek,osszeg,jegyek); 
+END;
+
+DELIMITER ;
 
 
 

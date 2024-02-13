@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 8000;
 const jwt = require("jsonwebtoken");
+const nodemailer = require('nodemailer');
 // const session = require('express-session');
 
 // app.use(session({
@@ -15,8 +16,6 @@ const jwt = require("jsonwebtoken");
 //     saveUninitialized: true,
 //     cookie: { secure: true }
 // }));
-
-
 
 const Key = 'kulcs';
 
@@ -28,6 +27,7 @@ const { felhTOKENraktarozas, felhTOKENlekeres, felhTOKENtorles } = require('./au
 
 app.use(cors({ origin: '*' })); //CORS Betöltés
 app.use(express.json()); //POST kérésekben body elérése
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => { //Szerver futási teszt
   res.send("<h1>Szerver fut</h1>")
@@ -511,7 +511,57 @@ app.get('/jegyek', (req, res) => {
     })
 })
 
+app.post('/jegyvasar', (req, res) => {
 
+    var con = mysql.createConnection(new Config());
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log('sikeres csatlakozás az ülésfoglalásra');
+    })
+        const vasarlassql = 'CALL jegyVASARLAS(?,?,?,?,?)';
+
+        con.query(vasarlassql, [req.body.email,req.body.vetitesid,req.body.ulesek,req.body.arosszeg,req.body.jegyek], (err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(404).send({ status: 404, error: "Hiba a vásárlás közben" });
+            } else {
+                console.log(`sikeres vásárlás`);
+            }
+        });
+
+        let maxid = 0;
+
+        const newvasarlas = 'SELECT vasarlasid FROM vasarlasok WHERE vasarlasid = (SELECT MAX(vasarlasid) FROM vasarlasok)';
+        con.query(newvasarlas, (err, result) => {
+            if (err) res.status(404).send({ status: 404, error: "Hiba a székek lekérdezésekor" });
+            maxid = result[0].vasarlasid
+            console.log(maxid)
+        })
+
+        // // Hozzon létre egy Nodemailer transzportert
+        // const transporter = nodemailer.createTransport({
+        // // A transzporter beállításainak konfigurálása (pl. SMTP beállítások)
+        // });
+        // // Construct email opciók
+        // const mailOptions = {
+        // from: 'duna.mozi@gmail.com',
+        // to: req.body.email,
+        // subject: "Megvásárolt jegyek",
+        // text: req.body.uzenet
+        // };
+
+        // transporter.sendMail(mailOptions, (error, info) => {
+        //     if (error) {
+        //         console.error('Error:', error);
+        //         res.status(500).send({ error: 'Nem sikerült elküldeni az e-mailt' });
+        //     } else {
+        //         console.log('Email elküldve:', info.response);
+        //         res.status(200).send({ status: 200, success: "Sikeres email elküldése" });
+        //     }
+        // });
+
+        
+});
 
 
 

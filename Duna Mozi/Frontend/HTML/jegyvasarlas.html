@@ -43,7 +43,7 @@
                 <form action="POST">
                     <div class="row">
                         <div class="valasztas col-xs-6 col-sm-6 col-md-10 col-lg-10">
-                            <select name="kategoria" id="dropdown" class="form-select-lg" onchange="VetitesekINFO(), fillSzekList()">
+                            <select name="kategoria" id="dropdown" class="form-select-lg" onchange="VetitesekINFO(), fillSzekList(), jegyekreset()">
                                 <optgroup label="vetitések">Vetitések</optgroup>
                                 <option value=""></option>
                             </select>
@@ -117,7 +117,11 @@
                     <p id="mennyiseg"></p>
                 </div>
                 <div id="vasarlas">
-
+                    
+                </div>
+                <div class="input-container">
+                    <label class="form-label form-label" for="Time">Email cím:</label><br>
+                    <input type="email" required="" id="email">
                 </div>
                 <div class="input-container">
                     <label class="form-label form-label" for="Time">Kiválasztott jegy(ek) mennyisége:</label><br>
@@ -127,7 +131,7 @@
                     <label class="form-label form-label" for="Time">Jegyek ára:</label><br>
                     <p id="jegyar"></p>
                 </div>
-                <button onclick="proba()">Jegy(ek) megvásárlása</button>
+                <button onclick="proba(), jegyvasarlas()">Jegy(ek) megvásárlása</button>
             </div>
         </div>
     </main>
