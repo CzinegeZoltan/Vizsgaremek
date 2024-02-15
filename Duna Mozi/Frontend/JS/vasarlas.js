@@ -16,7 +16,14 @@ function mennyiseg(){
 }
 
 function jegyekreset(){
-    return osszar = 0, jegydb = document.getElementById("mennyiseg").innerHTML, szekdb = 0, elozoertek = 0;
+    jegy1 = 0;
+    jegy2 = 0;
+    jegy3 = 0;
+    jegy4 = 0;
+    jegy5 = 0;
+    jegydb = 0;
+    osszar = 0;
+    return szekdb = 0, elozoertek = 0,document.getElementById("jegydb").innerHTML = jegydb,document.getElementById("jegyar").innerHTML = osszar + "Ft";
 }
 
 // Gyermek jegyek
