@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/vetitesmod.css">
     <link rel="icon" type="image/x-icon" href="../IMG/icon.ico">
     <script src="../JS/livetoken.js"></script>
     <script src="../JS/filmDROPDOWN.js"></script>
@@ -18,58 +20,43 @@
     </script>
     <title>Vetités létrehozása</title>
 </head>
+
 <body onload="documentReady()">
     <header class=" fixelt row col-12">
         <h1 class="kozepszoveg"><img src="../IMG/icon.png" alt="" id="ico">Duna Mozi</h1>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link " href="../Index.html">Filmek</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link " href="jegyvasarlas.html">Jegyvásárlás</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="vetitesek.html">Vetítések</a>
-                        </li>
-                    </ul>
-                </div>
-                <samp id="nyelv"></samp>
-            </div>
-        </nav>
     </header>
     <main>
-    <button onclick="history.back()">Vissza az előző oldalra</button>
-    <form method="post">
-        <div>
-            <h2>Vetités létrehozása</h2>
-                <div class="input-container">
-                    <label class="form-label form-label" for="Date">Dátum:</label><br>
-                    <input type="date" name="date" id="date" required="">
+        <button onclick="history.back()" class="btn btn-secondary">Vissza az előző oldalra</button>
+        <div class="container-fluid ">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form id="reg" method="POST" action="" class="form-control form">
+                        <div>
+                            <h2>Vetités létrehozása</h2>
+                            <div class="input-container">
+                                <label class="form-label form-label" for="Date">Dátum:</label><br>
+                                <input type="date" name="date" id="date" required="">
+                            </div>
+                            <div class="input-container">
+                                <label class="form-label form-label" for="Time">Óra:Perc</label><br>
+                                <input type="time" name="time" id="time" required="">
+                            </div>
+                            <div class="input-container ">
+                                <label class="form-label form-label" for="Terem">Terem(1-4):</label><br>
+                                <input type="number" name="terem" id="terem" min="1" max="4" required="">
+                            </div>
+                            <div class="input-container">
+                                <label for="form-label form-label" for="film"></label>
+                                <select name="" id="filmdropdown" class="form-select-lg">
+                                    <optgroup label="Vetitések">Filmek</optgroup>
+                                </select>
+                            </div>
+                            <button class="button btn btn-secondary" onclick="vetitesREG()">Vetités regisztrálása</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="input-container">
-                    <label class="form-label form-label" for="Time">Óra:Perc</label><br>
-                    <input type="time" name="time" id="time" required="">
-                </div>
-                <div class="input-container ">
-                    <label class="form-label form-label" for="Terem">Terem(1-4):</label><br>
-                    <input type="number" name="terem" id="terem" min="1" max="4" required="">
-                </div>
-                <div class="input-container">
-                    <label for="form-label form-label" for="film"></label>
-                    <select name="" id="filmdropdown" class="form-select-lg">
-                        <optgroup label="Vetitések">Filmek</optgroup>
-                    </select>
-                </div>
+            </div>
         </div>
-    </form>
-    <button class="button" onclick="vetitesREG()">Vetités regisztrálása</button>
     </main>
     <footer>
         <h6>Kapcsolat</h6>
