@@ -198,7 +198,7 @@ function jegyvasarlas(){
             ulesek: lefoglaltulesek,
             arosszeg: osszar,
             jegyek: `Gyerek jegy:${jegy1} db, Felnőtt jegy:${jegy2} db, Nyugdíjas jegy:${jegy3} db, Családi jegycsomag:${jegy4} db, Csoportos jegycsomag:${jegy5} db.`,
-            uzenet: `Gyerek jegy:${jegy1} db, Felnőtt jegy:${jegy2} db, Nyugdíjas jegy:${jegy3} db, Családi jegycsomag:${jegy4} db, Csoportos jegycsomag:${jegy5} db. Összeg:${osszar}. Ülések: ${lefoglaltulesek}`
+            uzenet: `Gyerek jegy:${jegy1} db, Felnőtt jegy:${jegy2} db, Nyugdíjas jegy:${jegy3} db, Családi jegycsomag:${jegy4} db, Csoportos jegycsomag:${jegy5} db. Összeg:${osszar}Ft. Ülések: ${lefoglaltulesek}`
         })       
     }
 

@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 8000;
 const jwt = require("jsonwebtoken");
-const nodemailer = require('nodemailer');
+const nodeMailer = require('nodemailer');
 // const session = require('express-session');
 
 // app.use(session({
@@ -538,29 +538,35 @@ app.post('/jegyvasar', (req, res) => {
             console.log(maxid)
         })
 
-        // // Hozzon létre egy Nodemailer transzportert
-        // const transporter = nodemailer.createTransport({
-        // // A transzporter beállításainak konfigurálása (pl. SMTP beállítások)
-        // });
-        // // Construct email opciók
-        // const mailOptions = {
-        // from: 'duna.mozi@gmail.com',
-        // to: req.body.email,
-        // subject: "Megvásárolt jegyek",
-        // text: req.body.uzenet
-        // };
+        //létrehozzuk a node mailer csomagot
+        const transporter = nodeMailer.createTransport({
+            service: "Gmail",
+            host:'smtp.gmail.com',
+            port: 456,
+            secure: true,
+            auth: {
+                user: 'duna.mozi2@gmail.com',
+                pass: 'jgvs wepu zxfq bbhl'
+            }
+        });
 
-        // transporter.sendMail(mailOptions, (error, info) => {
-        //     if (error) {
-        //         console.error('Error:', error);
-        //         res.status(500).send({ error: 'Nem sikerült elküldeni az e-mailt' });
-        //     } else {
-        //         console.log('Email elküldve:', info.response);
-        //         res.status(200).send({ status: 200, success: "Sikeres email elküldése" });
-        //     }
-        // });
+        const mailOptions = {
+            from: 'duna.mozi2@gmail.com',
+            to: req.body.email,
+            subject: "Megvásárolt jegyek",
+            text: req.body.uzenet
+        }
 
-        
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error('Error:', error);
+                res.status(500).send({ error: 'Nem sikerült elküldeni az e-mailt' });
+            } else {
+                console.log('Email elküldve:', info.response);
+                res.status(200).send({ status: 200, success: "Sikeres email elküldése" });
+            }
+          });
 });
 
 
