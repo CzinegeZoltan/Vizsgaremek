@@ -14,6 +14,7 @@ body {
 main {
     background-color: rgb(255, 255, 255);
     margin: 10px;
+    margin-bottom: 135px;
 }
 
 .container,
@@ -28,6 +29,12 @@ header {
 }
 
 footer {
+    position: fixed;
+    left: 50%; /* vízszintesen középre igazítás */
+    transform: translateX(-50%); /* az elem vízszintes közepére igazítása */
+    bottom: 0;
+    width: 100%;
+    max-width: 72%;
     text-align: center;
 }
 

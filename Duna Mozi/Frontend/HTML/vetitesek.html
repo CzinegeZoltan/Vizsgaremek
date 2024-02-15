@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <title>Duna Mozi Filmek</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="icon" type="image/x-icon" href="../IMG/icon.ico">
+    <script src="../Backend/App/script.js"></script>
+    <script src="JS/kereses.js"></script>
+    <!--<script src="../JS/nyelvvalasztas.js"></script>-->
+    <script src="JS/filmek.js"></script>
+    <script src="JS/kategoriak.js"></script>
+    <script src="JS/szovegKeres.js"></script>
+    <script>
+        function documentReady(){
+            fillKategoriaList()
+        }
+    </script>
+</head>
+
+<body onload="documentReady()">
+    <header class=" fixelt row">
+            <h1 class="kozepszoveg"><img src="../IMG/icon.png" alt="" id="ico">Duna Mozi</h1>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link " aria-current="page" href="jegyvasarlas.html">Jegyvásárlás</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link " href="táblázatok.html">Jegyek és Nyitvatartás</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="../Index.html">Főoldal</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class=" navbar-collapse">
+                        <!--<form action="POST"></form>
+                    <select name="nyelv" id="lang" class="form-select-lg" onchange="Nyelvvalaszt()">
+                        <option value="1">HU</option>
+                        <option value="2">ENG</option>
+                    </select>
+                    <samp id="nyelv"></samp>-->
+                    </div>
+            </nav>
+        </header>
+    <main>
+      
+    </main>
+    <footer>
+        <h6>Kapcsolat</h6>
+        <p>Tel.: +36 70 258 8769</p>
+        <p>E-mail: duna.mozi@gmail.com</p>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+    <script>
+        function keresNOTnull(){
+            const cim = document.getElementById("szovegkeres").value;
+
+            if(cim === ''){
+                return alert("Üres a cím mező a kereséshez!");
+            }
+        }
+    </script>
+    
+</body>
+
+</html>
