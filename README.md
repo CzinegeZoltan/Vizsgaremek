@@ -8,7 +8,7 @@ A Duna Mozi a viszga projektünk. Néhány kiemelkedő funkció:
 
 ## Technológiai Stack
 
-- **Frontend:** Az oldal HTML, CSS és JavaScript segítségével kerül megvalósításra, amelyek garantálják a felhasználóbarát felületet és a reszponzív design-t.
+- **Frontend:** Az oldal HTML, CSS, Bootstrep és JavaScript segítségével kerül megvalósításra, amelyek garantálják a felhasználóbarát felületet és a reszponzív design-t.
 - **Backend:** A weboldal hátterét a Node.js szolgáltatja, amely hatékonyan kezeli a felhasználói kéréseket, és lehetővé teszi az adatbázis-kezelést.
 
 ## Célkitűzés
