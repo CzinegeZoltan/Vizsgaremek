@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `dunamozi`.`jegyek` (
   `jegynev` VARCHAR(100),
   `ar` INT NOT NULL,
   PRIMARY KEY(`jegyid`)
-)
+);
 
 -- -----------------------------------------------------
 -- Table `DunaMozi`.`vásárlások`
@@ -138,8 +138,26 @@ CREATE TABLE IF NOT EXISTS `dunamozi`.`vasarlasok` (
   `fizetett(Ft)` INT,
   `jegyek` TEXT,
   PRIMARY KEY(`vasarlasid`)
-)
+);
 
+-- -----------------------------------------------------
+-- Table `DunaMozi`.`események`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dunamozi`.`esemenyek`(
+  `esemenyid` INT NOT NULL AUTO_INCREMENT,
+  `esemenyNev` VARCHAR(100),
+  `datum` DATETIME NULL,
+  `kep_url` TEXT,
+  PRIMARY KEY(`esemenyid`)
+);
+
+-- -----------------------------------------------------
+-- Table `DunaMozi`.`összekötő`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dunamozi`.`osszekoto`(
+  `eid` INT NOT NULL,
+  `fid` INT NOT NULL
+);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -689,9 +707,19 @@ END;
 
 DELIMITER ;
 
+DELIMITER //
 
+CREATE PROCEDURE IF NOT EXISTS vetitesFELSOROL()
+BEGIN
+  SELECT filmek.filmnev as nev,vetitesek.`vetitesDATUM` as datum, vetitesek.`Vetites_idVetitoTerem` as terem, filmek.film_keplink as keplink
+  FROM vetitesek
+  INNER JOIN filmek ON vetitesek.`Vetites_idfilmek` = filmek.idfilmek
+  WHERE vetitesek.`vetitesDATUM` >= CURDATE();
+END;
 
+DELIMITER ;
 
+CALL vetitesFELSOROL()
 
 
 

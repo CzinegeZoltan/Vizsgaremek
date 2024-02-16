@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+.vetites {
+    height: 200px;
+    width: 80%; /* Adjust the width as needed */
+    border-radius: 10px; /* Adjust the border radius as needed */
+    overflow: hidden; /* Ensure that the background image does not overflow */
+    background-size: 100% auto; /* Cover the entire width of the div, maintain aspect ratio */
+    background-position: 100% 20%; /* Center the background image */
+    display: flex;
+    transition: box-shadow 0.3s ease; /* Add transition effect for smooth hover */
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+}
+
+.vetites:hover {
+    box-shadow: 0 2px 4px 8px rgba(0, 0, 0, 0.6); /* Add black shadow on hover */
+}
+
+.szoveg{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    margin: 0;
+}
+
+.szoveg{
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+    height: 170px;
+    width: 500px;
+    padding: 20px;
+    border-radius: 30px; /* Add border radius for rounded corners */
+    align-items: center;
+}
+
+.szoveg p{
+    color: #333; /* Dark text color */
+    font-size: 20px; /* Adjust font size */
+    font-weight: bold; /* Make the characters bolder */
+    margin: 10px 0; /* Add margin for spacing between paragraphs */
+}

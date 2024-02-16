@@ -8,6 +8,7 @@ const app = express();
 const port = 8000;
 const jwt = require("jsonwebtoken");
 const nodeMailer = require('nodemailer');
+
 // const session = require('express-session');
 
 // app.use(session({
@@ -327,6 +328,21 @@ app.get('/vetitesek', (req, res) => {
     })
 })
 
+app.get('/vetitesekfel', (req, res) => {
+
+    var con = mysql.createConnection(new Config());
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log('sikeresen le lett kérdezve a vetítésekFELSOROL');
+    })
+
+    const sql = 'CALL vetitesekFELSOROL();'
+    con.query(sql, (err, result) => {
+        if (err) res.status(404).send({ status: 404, error: "Hiba a vetítések lekérdezésekor" });
+        res.send(result[0]);
+    })
+})
+
 app.post('/vetitesekinfo', (req, res) => {
 
     var con = mysql.createConnection(new Config());
@@ -550,11 +566,12 @@ app.post('/jegyvasar', (req, res) => {
             }
         });
 
+
         const mailOptions = {
             from: 'duna.mozi2@gmail.com',
             to: req.body.email,
             subject: "Megvásárolt jegyek",
-            text: req.body.uzenet
+            html: req.body.uzenet,
         }
 
 

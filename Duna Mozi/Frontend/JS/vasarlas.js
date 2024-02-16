@@ -180,7 +180,6 @@ function jegyarakVasarlas(){
             div.innerHTML = `<label class="form-label form-label">${arak.jegynev}:<br><button onclick="jegyplusz${arak.jegyid}()">+1</button><p id="${arak.jegyid}"></p><button onclick="jegyminusz${arak.jegyid}()">-1</button>`;           
             vasarlas.appendChild(div);
         });
-        console.log(jegyek)
     })
     .catch((err) => {
         console.error(err);
@@ -189,6 +188,7 @@ function jegyarakVasarlas(){
 
 function jegyvasarlas(){
     const lefoglaltulesek = document.getElementById("selected-seats").innerHTML;
+    var img = document.getElementById("poszter").src;
     const data = {
         method: "POST",
         headers: {"Content-Type" : "application/json",},
@@ -198,7 +198,7 @@ function jegyvasarlas(){
             ulesek: lefoglaltulesek,
             arosszeg: osszar,
             jegyek: `Gyerek jegy:${jegy1} db, Felnőtt jegy:${jegy2} db, Nyugdíjas jegy:${jegy3} db, Családi jegycsomag:${jegy4} db, Csoportos jegycsomag:${jegy5} db.`,
-            uzenet: `Gyerek jegy:${jegy1} db, Felnőtt jegy:${jegy2} db, Nyugdíjas jegy:${jegy3} db, Családi jegycsomag:${jegy4} db, Csoportos jegycsomag:${jegy5} db. Összeg:${osszar}Ft. Ülések: ${lefoglaltulesek}`
+            uzenet: `<div><img src="${img}" style="width:300px;height:400px;"/></div><ul><li>Film: ${document.getElementById("dropdown").options[dropdown.selectedIndex].text}</li><li>Időpont: ${document.getElementById("idopont").innerHTML}</li><li>Helyszín: ${document.getElementById("helyszin").innerHTML}</li><li>Gyerek jegy:${jegy1} db, Felnőtt jegy:${jegy2} db, Nyugdíjas jegy:${jegy3} db, Családi jegycsomag:${jegy4} db, Csoportos jegycsomag:${jegy5} db</li><li>Összeg:${osszar}Ft</li><li>Ülések: ${lefoglaltulesek}</li></ul>`
         })       
     }
 
