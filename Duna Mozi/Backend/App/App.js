@@ -336,7 +336,8 @@ app.get('/vetitesekfel', (req, res) => {
         console.log('sikeresen le lett kérdezve a vetítésekFELSOROL');
     })
 
-    const sql = 'CALL vetitesekFELSOROL();'
+    //const sql = 'SELECT * FROM vetitesek'
+    const sql = 'CALL vetitesFELSOROL();'
     con.query(sql, (err, result) => {
         if (err) res.status(404).send({ status: 404, error: "Hiba a vetítések lekérdezésekor" });
         res.send(result[0]);

@@ -7,19 +7,19 @@
 
 .vetites {
     height: 200px;
-    width: 80%; /* Adjust the width as needed */
-    border-radius: 10px; /* Adjust the border radius as needed */
-    overflow: hidden; /* Ensure that the background image does not overflow */
-    background-size: 100% auto; /* Cover the entire width of the div, maintain aspect ratio */
-    background-position: 100% 20%; /* Center the background image */
+    width: 80%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-size: 100% auto;
+    background-position: 100% 20%;
     display: flex;
-    transition: box-shadow 0.3s ease; /* Add transition effect for smooth hover */
-    justify-content: center; /* Horizontally center the content */
-    align-items: center; /* Vertically center the content */
+    transition: box-shadow 0.3s ease;
+    justify-content: center;
+    align-items: center;
 }
 
 .vetites:hover {
-    box-shadow: 0 2px 4px 8px rgba(0, 0, 0, 0.6); /* Add black shadow on hover */
+    box-shadow: 0 2px 4px 8px rgba(0, 0, 0, 0.6);
 }
 
 .szoveg{
