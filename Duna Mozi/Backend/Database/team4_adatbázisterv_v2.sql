@@ -721,6 +721,26 @@ DELIMITER ;
 
 CALL vetitesFELSOROL()
 
+DELIMITER //
+
+CREATE PROCEDURE IF NOT EXISTS filmINFO(IN filmid INT)
+BEGIN
+  SELECT filmnev,foszereplok, filmdescription, filmhossz, filmkorhatár as kor
+  FROM filmek
+  WHERE idfilmek = filmid;
+END;
+
+DELIMITER ;
+
+
+
+
+
+
+
+
+
+
 
 
 

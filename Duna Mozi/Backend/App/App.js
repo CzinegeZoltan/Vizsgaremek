@@ -169,13 +169,27 @@ app.get('/filmek', (req, res) => {
       if (err) throw err;
       console.log('sikeresen le lett kérdezve a filmek');
   })
-  con.query('select idfilmek,foszereplok,filmnev,filmdescription,filmhossz,filmkorhatár,film_KategoriaId,film_keplink from filmek', (err, result) => {
+  con.query('select idfilmek, film_keplink from filmek', (err, result) => {
       if (err) res.status(404).send({ status: 404, error: "Hiba a filmek lekérdezésekor" });
       res.send(result);
   })
 })
 
-// PROCCEDÚRÁVÁ át alakítás kellene
+app.post('/filmekinfo', (req, res) => {
+
+    var con = mysql.createConnection(new Config());
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log('sikeresen le lett kérdezve a filmekinfo');
+    })
+
+    const sql = "CALL filmINFO(?)";
+    con.query(sql,[req.body.id], (err, result) => {
+        if (err) res.status(404).send({ status: 404, error: "Hiba a filmINFO lekérdezésekor" });
+        res.send(result[0]);
+    })
+  })
+
 app.post('/kereses', (req, res) => {
     const kvalue = req.body.katvalue;
     var con = mysql.createConnection(new Config());
@@ -187,25 +201,25 @@ app.post('/kereses', (req, res) => {
 
   if (kvalue == "0") {
       console.log('Kategória ID nincs');
-      con.query('SELECT idfilmek, filmnev, filmdescription, filmhossz, filmkorhatár, film_KategoriaId, film_keplink FROM filmek INNER JOIN kategoria ON filmek.film_KategoriaId = kategoria.KategoriaId', (err, result) => {
+      con.query('SELECT idfilmek, film_keplink FROM filmek INNER JOIN kategoria ON filmek.film_KategoriaId = kategoria.KategoriaId', (err, result) => {
           if (err) {
-              res.status(404).send({ status: 404, error: "Error querying films with category" });
+              res.status(404).send({ status: 404, error: "Hiba a filmek kategóriával történő lekérdezésekor" });
           } else {
               res.send(result);
           }
       });
   } else {
       console.log('Kategória ID van');
-      con.query('SELECT idfilmek, filmnev, filmdescription, filmhossz, filmkorhatár, film_KategoriaId, film_keplink FROM filmek INNER JOIN kategoria ON filmek.film_KategoriaId = kategoria.KategoriaId WHERE KategoriaId LIKE ?', [kvalue], (err, result) => {
+      con.query('SELECT idfilmek, film_keplink FROM filmek INNER JOIN kategoria ON filmek.film_KategoriaId = kategoria.KategoriaId WHERE KategoriaId LIKE ?', [kvalue], (err, result) => {
           if (err) {
-              res.status(404).send({ status: 404, error: "Error querying films with category" });
+              res.status(404).send({ status: 404, error: "Hiba a filmek kategóriával történő lekérdezésekor" });
           } else {
               res.send(result);
           }
       });
   }
 
-  con.end(); // Bezárjuk az adatbázist
+  con.end();
 })
 
 app.post('/szovegkeres', (req, res) => {
@@ -221,7 +235,7 @@ app.post('/szovegkeres', (req, res) => {
         if (err) res.status(404).send({ status: 404, error: "Hiba a filmek lekérdezésekor névvel" });
         res.send(result[0]);
     })
-  con.end(); // Bezárjuk az adatbázist
+  con.end();
 });
 
 app.post('/usermod', (req, res) => {
@@ -336,7 +350,6 @@ app.get('/vetitesekfel', (req, res) => {
         console.log('sikeresen le lett kérdezve a vetítésekFELSOROL');
     })
 
-    //const sql = 'SELECT * FROM vetitesek'
     const sql = 'CALL vetitesFELSOROL();'
     con.query(sql, (err, result) => {
         if (err) res.status(404).send({ status: 404, error: "Hiba a vetítések lekérdezésekor" });
