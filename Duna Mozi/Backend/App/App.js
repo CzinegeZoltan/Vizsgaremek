@@ -188,7 +188,7 @@ app.post('/filmekinfo', (req, res) => {
         if (err) res.status(404).send({ status: 404, error: "Hiba a filmINFO lekérdezésekor" });
         res.send(result[0]);
     })
-  })
+})
 
 app.post('/kereses', (req, res) => {
     const kvalue = req.body.katvalue;
@@ -599,6 +599,46 @@ app.post('/jegyvasar', (req, res) => {
             }
           });
 });
+
+app.get('/esemenyek', (req, res) => {
+
+    var con = mysql.createConnection(new Config());
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log('sikeresen le lett kérdezve a vetítések');
+    })
+    const sql = 'CALL esemenyek();'
+    con.query(sql, (err, result) => {
+        if (err) res.status(404).send({ status: 404, error: "Hiba a vetítések lekérdezésekor" });
+        res.send(result[0]);
+    })
+})
+
+app.post('/esemenyekfilmek', (req, res) => {
+
+    var con = mysql.createConnection(new Config());
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log('sikeresen le lett kérdezve az esemenyekinfo');
+    })
+
+    const sql = "CALL esemenyekFILMEK(?)";
+    con.query(sql,[req.body.id], (err, result) => {
+        if (err) res.status(404).send({ status: 404, error: "Hiba a filmINFO lekérdezésekor" });
+        res.send(result[0]);
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
 
 
 

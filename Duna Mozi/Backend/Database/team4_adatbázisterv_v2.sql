@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `dunamozi`.`vasarlasok` (
 CREATE TABLE IF NOT EXISTS `dunamozi`.`esemenyek`(
   `esemenyid` INT NOT NULL AUTO_INCREMENT,
   `esemenyNev` VARCHAR(100),
-  `datum` DATETIME NULL,
+  `datum` DATE NULL,
   `kep_url` TEXT,
   PRIMARY KEY(`esemenyid`)
 );
@@ -730,13 +730,23 @@ BEGIN
   WHERE idfilmek = filmid;
 END;
 
-DELIMITER ;
+CREATE PROCEDURE IF NOT EXISTS esemenyek()
+BEGIN
+  SELECT esemenyek.esemenyNev, esemenyek.datum, esemenyek.kep_url AS link
+  FROM esemenyek
+  WHERE esemenyek.datum >= CURDATE();
+END;
 
+DELIMITER //
 
-
-
-
-
+CREATE PROCEDURE IF NOT EXISTS esemenyekFILMEK(IN eseid INT)
+BEGIN
+  SELECT filmek.filmnev
+  FROM esemenyek
+  INNER JOIN osszekoto ON esemenyek.esemenyid = osszekoto.eid
+  INNER JOIN filmek ON osszekoto.fid = filmek.idfilmek
+  WHERE esemenyek.esemenyid = eseid;
+END;
 
 
 

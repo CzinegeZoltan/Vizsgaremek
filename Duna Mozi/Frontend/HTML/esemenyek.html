@@ -2,7 +2,7 @@
 <html lang="hu">
 
 <head>
-    <title>Vetitesek</title>
+    <title>Esemenyek</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../CSS/vetites.css">
     <link rel="icon" type="image/x-icon" href="../IMG/icon.ico">
     <!--<script src="../JS/nyelvvalasztas.js"></script>-->
-    <script src="../JS/vetitesFELSOROL.js"></script>
+    <script src="../JS/esemenyek.js"></script>
     <script>
         function documentReady(){
             
@@ -40,7 +40,7 @@
                                 <a class="nav-link" href="../Index.html">Főoldal</a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="esemenyek.html">Események</a>
+                                <a class="nav-link" href="vetitesek.html">Vetítések</a>
                             </li>
                         </ul>
                     </div>
@@ -58,6 +58,7 @@
       <div id="container" class="flex-container">
         <!-- Itt lesznek felsorolva a vetítések -->
       </div>
+      
     </main>
     <footer>
         <h6>Kapcsolat</h6>
@@ -69,6 +70,14 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
     
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <span class="close" id="close"></span>
+            <div id="esemenyinfopopup">
+
+            </div>        
+        </div>
+    </div>
 </body>
 
 </html>
