@@ -169,7 +169,7 @@ app.get('/filmek', (req, res) => {
       if (err) throw err;
       console.log('sikeresen le lett kérdezve a filmek');
   })
-  con.query('select idfilmek, film_keplink from filmek', (err, result) => {
+  con.query('select idfilmek,filmnev, film_keplink from filmek', (err, result) => {
       if (err) res.status(404).send({ status: 404, error: "Hiba a filmek lekérdezésekor" });
       res.send(result);
   })
@@ -273,6 +273,8 @@ app.post('/usertor', (req, res) => {
             }
         })
 });
+
+//
 
 app.post('/filmreg', (req, res) => {
 
@@ -629,9 +631,91 @@ app.post('/esemenyekfilmek', (req, res) => {
     })
 })
 
+app.post('/esemenyekreg', (req, res) => {
+    var con = mysql.createConnection(new Config());
+
+    con.connect(function (err) {
+        if (err) {
+            console.error('Error connecting to database:', err);
+            return;
+        }
+        console.log('Connected to database');
+    });
+
+    const esemenyreg = "CALL esemenyREG(?,?,?)";
+    con.query(esemenyreg, [req.body.nev, req.body.idopont, req.body.keplink], (err, result) => {
+        if (err) {
+            console.error('Error inserting data:', err);
+            res.status(500).send({ status: 500, error: "Failed to insert data" });
+            return;
+        }
+
+        con.query("SELECT LAST_INSERT_ID() as lastID", (err, result) => {
+            if (err) {
+                console.error('Error getting last inserted ID:', err);
+                res.status(500).send({ status: 500, error: "Failed to retrieve last inserted ID" });
+                return;
+            }
+
+            const esemnyid = result[0].lastID;
+            console.log('Last inserted ID:', esemnyid);
+
+            const idArray = req.body.filmid; // Just assign the value directly
+
+            const osszekoto = 'CALL esemenyFILMinsert(?,?)';
+
+            idArray.forEach(id => {
+                con.query(osszekoto, [esemnyid, id], (err, result) => {
+                    if (err) {
+                        console.error(err);
+                        res.status(404).send({ status: 404, error: "Hiba az ülés rögzítésekor" });
+                    } else {
+                        console.log(`Film ID ${id} successfully inserted for event ID ${esemnyid}`);
+                    }
+                });
+            });
+
+            con.end(function (err) {
+                if (err) {
+                    console.error('Error closing database connection:', err);
+                    return;
+                }
+            });
 
 
+            res.status(200).send({ status: 200, success: "Sikeres vetites adatrögzítés" });
+        });
+    });
+});
 
+app.post('/esemenytor', (req, res) => {
+
+    var con = mysql.createConnection(new Config());
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log('sikeres csatlakozás a eseményTORRE');
+    })
+        const eid = req.body.id;
+        const userSQL = 'CALL esemenyTOR(?)';
+        con.query(userSQL, eid, (err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(404).send({ status: 404, error: "Hiba a film rögzítésekor" });
+            } else {
+                res.status(200).send({ status: 200, success: "Sikeres esemény törlése" })
+            }
+        })
+
+        const osszekototorol = 'CALL osszekotoTOR(?)';
+        con.query(osszekototorol, eid, (err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(404).send({ status: 404, error: "Hiba a székek törlésekor" });
+            } else {
+                console.log("Sikeresen törölve lettek a kiválasztott filmek")
+            }
+        }) 
+});
 
 
 

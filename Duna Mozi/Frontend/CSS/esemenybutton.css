@@ -1,0 +1,26 @@
+.filmekarea{
+    align-self: center;
+    min-width: 100px;
+    min-height: 200px;
+    width: auto;
+    height: auto;
+    background-color:#f8e4bb ;  
+}
+
+.filmdiv{
+    background-color: #f3f5f7;
+    display: inline-flex;
+    border-radius: 20px
+}
+
+.filmp{
+    color: #110f16;
+}
+
+.filmbutton{
+    margin:5px;
+    border-radius:20px;
+    border: solid;
+    background: none;
+    color:red
+}

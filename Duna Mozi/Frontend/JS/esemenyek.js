@@ -9,6 +9,7 @@ function fillEsemenyek(){
         data.forEach((esemenyek) => {
             const div = document.createElement("div");
             div.className="";
+            div.id = esemenyek.esemenyid;
             div.innerHTML = `<div style="background-image: url(${esemenyek.link})" class="card"><div class="card-body"><p>${esemenyek.esemenyNev}</p><p>${esemenyek.datum}</p></div></div>`
             vetitescontainer.appendChild(div);
             vetitescontainer.appendChild(document.createElement("br"));
@@ -29,7 +30,7 @@ function fillEsemenyek(){
             div.addEventListener('click', function(event){
                 popup.style.display = 'block';
                 const clickedDivId = event.currentTarget.id;
-              
+
                 const data = {
                     method: "POST",
                     headers: {"Content-Type" : "application/json"},
@@ -46,9 +47,8 @@ function fillEsemenyek(){
                         esemenyekfilmekpopup.innerHTML = "<h2>Filmek</h2>";
                         data.forEach((info) => {
                             const div = document.createElement("div");
-                            // div.className("");
-                            div.innerHTML = `<p>${info.filmnev}</p>`;
-                            filminfopopup.appendChild(div)
+                            div.innerHTML += `<p>${info.filmnev}</p>`;
+                            esemenyekfilmekpopup.appendChild(div)
                         })
                     })
                     .catch(error => console.error('Error:', error));

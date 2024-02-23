@@ -9,15 +9,17 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="../CSS/vetitesmod.css">
+    <link rel="stylesheet" href="../CSS/esemenybutton.css">
     <link rel="icon" type="image/x-icon" href="../IMG/icon.ico">
     <script src="../JS/livetoken.js"></script>
     <script src="../JS/filmDROPDOWN.js"></script>
-    <script src="../JS/vetitesREG.js"></script>
+    <script src="../JS/esemenyekreg.js"></script>
     <script>
         function documentReady(){
             livetoken();
         }
     </script>
+    
     <title>Esemény létrehozása</title>
 </head>
 
@@ -30,28 +32,36 @@
         <div class="container-fluid ">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <form id="reg" method="POST" action="" class="form-control form">
-                        <div>
-                            <h2>Esemény létrehozása</h2>
-                            <div class="input-container">
-                                <label class="form-label form-label" for="Date">Esemény neve:</label><br>
-                                <input type="text" name="name" id="name" required="">
-                            </div>
-                            <div class="input-container">
-                                <label class="form-label form-label" for="Date">Dátum:</label><br>
-                                <input type="date" name="date" id="date" required="">
-                            </div>
-                            <div class="input-container">
-                                <label class="form-label form-label" for="link">Kép linkje:</label><br>
-                                <input type="text" name="link" id="link" required="">
-                            </div>
-                            <button class="button btn btn-secondary" onclick="">Esemény regisztrálása</button>
+                    <div>
+                        <h2>Esemény létrehozása</h2>
+                        <div class="input-container">
+                            <label class="form-label" for="Date">Esemény neve:</label><br>
+                            <input type="text" name="name" id="name" required="">
                         </div>
-                    </form>
+                        <div class="input-container">
+                            <label class="form-label" for="Date">Dátum:</label><br>
+                            <input type="date" name="date" id="date" required="">
+                        </div>
+                        <div class="input-container">
+                            <label class="form-label" for="link">Kép linkje:</label><br>
+                            <input type="text" name="link" id="link" required="">
+                            </div>
+                        <div class="input-container">
+                            <label class="form-label" for="">Filmek:</label><br>
+                            <select name="filmek" id="filmdropdown" class="" onload="fillFilmekList()" onchange="addFilm()">
+                                <optgroup label="Film kategoria">Filmek</optgroup>
+                                <option value="" disabled selected hidden>Válassza ki a filmeket</option>
+                            </select>
+                        </div>
+                        <div style="align-content:center;">
+                            <div id="filmekarea" class="filmekarea">
+                        </div>
+                    </div>            
+                        <button class="button btn btn-secondary" onclick="esemenyREG()">Esemény regisztrálása</button>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 </body>
-
 </html>

@@ -732,7 +732,7 @@ END;
 
 CREATE PROCEDURE IF NOT EXISTS esemenyek()
 BEGIN
-  SELECT esemenyek.esemenyNev, esemenyek.datum, esemenyek.kep_url AS link
+  SELECT esemenyek.esemenyid, esemenyek.esemenyNev, esemenyek.datum, esemenyek.kep_url AS link
   FROM esemenyek
   WHERE esemenyek.datum >= CURDATE();
 END;
@@ -748,11 +748,35 @@ BEGIN
   WHERE esemenyek.esemenyid = eseid;
 END;
 
+DELIMITER //
+CREATE PROCEDURE IF NOT EXISTS esemenyFILMinsert(IN esid INT, filmid INT)
+BEGIN
+    insert INTO osszekoto(eid,fid) VALUES(esid,filmid);
+END;
 
+DELIMITER //
+CREATE PROCEDURE IF NOT EXISTS esemenyREG(IN nev VARCHAR(150), idopont DATE, keplink TEXT)
+BEGIN
+    insert INTO esemenyek (`esemenyNev`, datum, kep_url) VALUES (nev,idopont,keplink);
+END;
 
+DELIMITER //
+CREATE PROCEDURE IF NOT EXISTS esemenyMOD(IN nev VARCHAR(150), idopont DATE, keplink TEXT, eid INT)
+BEGIN
+  UPDATE esemenyek SET `esemenyNev` = nev, datum = idopont, kep_url = keplink WHERE esemenyid = eid;
+END;
 
+DELIMITER //
+CREATE PROCEDURE IF NOT EXISTS esemenyTOR(IN eid INT)
+BEGIN
+  DELETE FROM esemenyek WHERE esemenyid = eid;
+END;
 
-
+DELIMITER //
+CREATE PROCEDURE IF NOT EXISTS osszekotoTOR(IN eseid INT)
+BEGIN
+  DELETE FROM osszekoto WHERE osszekoto.eid = eseid;
+END;
 
 
 

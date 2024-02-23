@@ -45,3 +45,11 @@
     font-weight: bold; /* Make the characters bolder */
     margin: 10px 0; /* Add margin for spacing between paragraphs */
 }
+
+
+.felsorol{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

@@ -36,37 +36,37 @@
                     <form id="reg" method="POST" action="" class="form-control form reg">
                         <h2>Film módosítása</h2>
                         <div class="input-container">
-                            <label class="form-label form-label" for="Password-agen">Filmek:</label>
+                            <label class="form-label" for="">Filmek:</label>
                             <select name="filmek" id="filmdropdown" class="" onload="fillFilmekList()" onchange="">
                                 <optgroup label="Film kategoria">Filmek</optgroup>
                                 <option value=""></option>
                             </select>
                         </div>                    
                         <div class="input-container">
-                            <label class="form-label form-label" for="Filmnev">Film neve:</label><br>
+                            <label class="form-label" for="Filmnev">Film neve:</label><br>
                             <input type="text" name="name" id="name" required="">
                         </div>
                         <div class="input-container ">
-                            <label class="form-label form-label" for="filmdescription">Főszereplők:</label><br>
+                            <label class="form-label" for="filmdescription">Főszereplők:</label><br>
                             <input type="text" name="szereplok" id="szereplok" required="">
                         </div>
                         <div class="input-container ">
-                            <label class="form-label form-label" for="filmdescription">Film leírása:</label><br>
+                            <label class="form-label" for="filmdescription">Film leírása:</label><br>
                             <input type="text" name="desription" id="desription" required="">
                         </div>
                         <div class="input-container">
-                            <label class="form-label form-label" for="hossz">Film hossza:</label><br>
+                            <label class="form-label" for="hossz">Film hossza:</label><br>
                             <input type="number" name="hossz" id="hossz" required="">
                         </div>
                         <div class="input-container">
-                            <label class="form-label form-label" for="Password-agen">Film korhatár:</label><br>
+                            <label class="form-label" for="Password-agen">Film korhatár:</label><br>
                             <input type="number" name="korhatar" id="korhatar" required="">
                         </div>
                         <div class="input-container">
-                            <label class="form-label form-label" for="Password-agen">Film kategóriája:</label>
+                            <label class="form-label" for="Password-agen">Film kategóriája:</label>
                             <select name="kategoria" id="dropdown" class="" onload="fillKategoriaList()" onchange="">
                                 <optgroup label="Film kategoria">Film kategória</optgroup>
-                                <option value=""></option>
+                                <option value="" disabled selected hidden>Válassza ki a filmet</option>
                             </select>
                         </div>
                         <div class="input-container">
