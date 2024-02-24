@@ -1,6 +1,6 @@
 module.exports = class Config {
     user =  "root";
-    password = "";
+    password = "my-secret-pw";
     database = "dunamozi";
     host = "localhost";
     constructor() {

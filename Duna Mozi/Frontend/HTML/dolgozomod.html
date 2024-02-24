@@ -18,7 +18,7 @@
         <h1 class="kozepszoveg"><img src="../IMG/icon.png" alt="" id="ico">Duna Mozi</h1>
     </header>
     <main>
-        <button onclick="history.back()">Vissza az előző oldalra</button>
+        <button onclick="history.back()" class="btn btn-secondary">Vissza az előző oldalra</button>
         <div class="row justify-content-center">
             <div class="col-md-6">
                     <form id="reg" method="POST" action="" class="form-control form reg">
@@ -39,12 +39,17 @@
                             <label class="form-label form-label" for="Password">Jelszó:</label><br>
                             <input type="password" name="password" id="password" required="">
                         </div>
-                    <button class="button" onclick="felhMod()">Felhasználó módosítása</button>
-                    <button class="button" onclick="felhTOR()">Felhasználó törlése</button>
-                </div>
+                        <button class="button btn btn-secondary" onclick="felhMod()" class="btn btn-secondary">Felhasználó módosítása</button>
+                        <button class="button btn btn-secondary" onclick="felhTOR()" class="btn btn-secondary">Felhasználó törlése</button>
+                    </div>
             </div>
         </form>
     </main>
+    <footer>
+        <h6>Kapcsolat</h6>
+        <p>Tel.: +36 70 258 8769</p>
+        <p>E-mail: duna.mozi@gmail.com</p>
+    </footer>
     <script src="../JS/felhasznaloLEK.js"></script>
     <script src="../JS/felhasznaloADATBETOLT.js"></script>
     <script src="../JS/felhasznaloMOD.js"></script>

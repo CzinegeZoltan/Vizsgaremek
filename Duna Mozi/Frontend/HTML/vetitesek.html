@@ -2,19 +2,22 @@
 <html lang="hu">
 
 <head>
-    <title>Vetitesek</title>
+    <title>Duna Mozi Filmek</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="../CSS/style.css">
-    <link rel="stylesheet" href="../CSS/vetites.css">
     <link rel="icon" type="image/x-icon" href="../IMG/icon.ico">
+    <script src="../Backend/App/script.js"></script>
+    <script src="JS/kereses.js"></script>
     <!--<script src="../JS/nyelvvalasztas.js"></script>-->
-    <script src="../JS/vetitesFELSOROL.js"></script>
+    <script src="JS/filmek.js"></script>
+    <script src="JS/kategoriak.js"></script>
+    <script src="JS/szovegKeres.js"></script>
     <script>
         function documentReady(){
-            
+            fillKategoriaList()
         }
     </script>
 </head>
@@ -39,9 +42,6 @@
                             <li class="nav-item active">
                                 <a class="nav-link" href="../Index.html">Főoldal</a>
                             </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" href="esemenyek.html">Események</a>
-                            </li>
                         </ul>
                     </div>
                     <div class=" navbar-collapse">
@@ -55,19 +55,27 @@
             </nav>
         </header>
     <main>
-      <div id="container" class="flex-container felsorol">
-        <!-- Itt lesznek felsorolva a vetítések -->
-      </div>
+      
     </main>
     <footer>
         <h6>Kapcsolat</h6>
         <p>Tel.: +36 70 258 8769</p>
-        <p>E-mail: duna.mozi2@gmail.com</p>
+        <p>E-mail: duna.mozi@gmail.com</p>
     </footer>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
+
+    <script>
+        function keresNOTnull(){
+            const cim = document.getElementById("szovegkeres").value;
+
+            if(cim === ''){
+                return alert("Üres a cím mező a kereséshez!");
+            }
+        }
+    </script>
     
 </body>
 

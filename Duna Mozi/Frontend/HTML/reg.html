@@ -27,7 +27,7 @@
         <h1 class="kozepszoveg"><img src="../IMG/icon.png" alt="" id="ico">Duna Mozi</h1>
     </header>
     <main>
-        <button onclick="history.back()">Vissza az előző oldalra</button>
+        <button onclick="history.back()" class="btn btn-secondary">Vissza az előző oldalra</button>
         <div class="container-fluid ">
             <div class="row justify-content-center">
                 <div class="col-md-6">
@@ -49,13 +49,18 @@
                             <label class="form-label form-label" for="Password-agen">Jelszó ujra:</label><br>
                             <input type="password" name="password2" id="password2" required="" onchange="jojelszo()">
                         </div>
-                        <input type="submit" value="Regisztráció" class="button" onclick="regisztracio()">
+                        <!-- <input type="submit" value="Regisztráció" class="button" onclick="regisztracio()"> -->
+                        <button onclick="regisztracio()" class="btn btn-secondary">fillKategoriaList</button>
                     </form>
                 </div>
             </div>
         </div>
-        <button onclick="regisztracio()">fillKategoriaList</button>
     </main>
+    <footer>
+        <h6>Kapcsolat</h6>
+        <p>Tel.: +36 70 258 8769</p>
+        <p>E-mail: duna.mozi@gmail.com</p>
+    </footer>
     
     <script>
         function jojelszo(){

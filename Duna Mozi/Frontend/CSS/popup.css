@@ -14,11 +14,20 @@
 /* Popup content */
 .popup-content {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 1% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    max-width: 400px;
+    max-width: 20%;
+    text-align: center;
+}
+.popup-film-content {
+    background-color: #fefefe;
+    margin: 7% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 72%;
     text-align: center;
 }
 
