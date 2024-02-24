@@ -1,6 +1,6 @@
 # Duna Mozi Projekt
 
-A Duna Mozi a viszga projektünk. Néhány kiemelkedő funkció:
+A Duna Mozi a vizsga projektünk. Néhány kiemelkedő funkció:
 
 - **Jegyfoglalás és Ülésválasztás:** A látogatók könnyedén foglalhatnak jegyeket a kedvenc filmjeikre. Az ülések kiválasztása után a vásárlás gombra kattintva véglegesíthetik a foglalást.
 - **Filmek és Vetítések:** Az oldalon megtalálhatók a legfrissebb filmek címei, leírásai és vetítési időpontjai. A látogatók könnyen tájékozódhatnak a filmkínálatról.
@@ -10,6 +10,7 @@ A Duna Mozi a viszga projektünk. Néhány kiemelkedő funkció:
 
 - **Frontend:** Az oldal HTML, CSS, Bootstrep és JavaScript segítségével kerül megvalósításra, amelyek garantálják a felhasználóbarát felületet és a reszponzív design-t.
 - **Backend:** A weboldal hátterét a Node.js szolgáltatja, amely hatékonyan kezeli a felhasználói kéréseket, és lehetővé teszi az adatbázis-kezelést.
+- **Adatbázis:** MySQL adatbázist használunk a projektben.
 
 ## Célkitűzés
 
