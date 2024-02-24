@@ -8,7 +8,7 @@ A Duna Mozi a vizsga projektünk. Néhány kiemelkedő funkció:
 
 ## Technológiai Stack
 
-- **Frontend:** Az oldal HTML, CSS, Bootstrep és JavaScript segítségével kerül megvalósításra, amelyek garantálják a felhasználóbarát felületet és a reszponzív design-t.
+- **Frontend:** Az oldal HTML, CSS, Bootstrep és JavaScript segítségével kerül megvalósításra, amelyek garantálják a felhasználóbarát felületet és a reszponzív design-t (Telefonon, tableten, és számítógépen is ugyan az a weboldal jelenjen meg és igazidjon az adott képernyő méretéhaz és felbontásához.).
 - **Backend:** A weboldal hátterét a Node.js szolgáltatja, amely hatékonyan kezeli a felhasználói kéréseket, és lehetővé teszi az adatbázis-kezelést.
 - **Adatbázis:** MySQL adatbázist használunk a projektben.
 
