@@ -9,6 +9,9 @@ function fillJegyekarList() {
                 tr.innerHTML = `<td>${jegyek.jegynev}</td><td>${jegyek.ar}</td>`;
                 jegyektable.appendChild(tr);
             });
+
+            // Bootstrap osztályok hozzáadása
+            jegyektable.classList.add("table", "table-bordered", "table-hover", "table-striped");
         })
         .catch(err => console.error(err));
 }
