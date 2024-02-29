@@ -20,61 +20,94 @@
             FillVetittesekList();
         }
     </script>
+    <script src="../JS/vetitesDROPDOWN.js"></script>
+    <script src="../JS/vetitesINFO.js"></script>
+    <script src="../JS/szekbetolt.js"></script>
+    <script>
+        function documentREADY(){
+            FillVetittesekList();
+        }
+    </script>
     <title>Duna Mozi Helyfoglaló</title>
 </head>
 
 <body>
     <header class=" fixelt row">
         <h1 class="kozepszoveg"><img src="../IMG/icon.png" alt="" id="ico">Duna Mozi</h1>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-            <div class=" navbar-collapse">
-                <ul class="navbar-nav">
-                    <li class="nav-item active"><a class="nav-link" href="../Index.html">Filmek</a></li>
-                    <!-- <li class="nav-item active"><a class="nav-link" href="HTMLS/.html">ENG</a></li> -->
-                </ul>
-                <samp id="nyelv"></samp>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <li class="nav-item"><a class="nav-link" href="../Index.html">Filmek</a></li>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="vetitesek.html">Vetítések</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="esemenyek.html">Események</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link " href="táblázatok.html">Jegyek és Nyitvatartás</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
+        
     </header>
     <main>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4">
+                <h2>Válassz helyet</h2>
+                <form action="POST">
                     <div class="row">
-                        <h2>Válassz helyet</h2>
-                        <form action="POST">
-                            <div class="row">
-                                <div class="valasztas col-xs-6 col-sm-6 col-md-10 col-lg-10">
-                                    <select name="kategoria" id="dropdown" class="form-select-lg" onchange="VetitesekINFO(), fillSzekList(), jegyekreset()">
-                                        <optgroup label="vetitések">Vetitések</optgroup>
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div>
-                        <h2>Vetítés információk:</h2>
-                        <div class="input-container">
-                            <label class="form-label form-label" for="Filmnev">Film vetítése:</label><br>
-                            <p id="idopont"></p>
+                        <div class="valasztas col-xs-6 col-sm-6 col-md-10 col-lg-10">
+                            <select name="kategoria" id="dropdown" class="form-select form-select-lg" onchange="VetitesekINFO(), fillSzekList()">
+                                <optgroup label="vetitések">Vetitések</optgroup>
+                                <option value=""></option>
+                                <option value=""></option>
+                            </select>
                         </div>
-                        <div class="input-container">
-                            <label class="form-label form-label" for="Filmnev">Helyszín:</label><br>
-                            <p id="helyszin"></p>
+                        <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
+                            <button type="button" onclick="" class="button-subscribe btn btn-outline-dark ">Vásárlás</button>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4" id="poster">
-    
-                </div>
-                <div class="col-md-4">
+                </form>
             </div>
+            <div>
+                <h2>Vetítés információk:</h2>
+                <div class="input-container">
+                    <label class="form-label form-label" for="Filmnev">Film vetítése:</label><br>
+                    <p id="idopont"></p>
+                </div>
+                <div class="input-container">
+                    <label class="form-label form-label" for="Filmnev">Helyszín:</label><br>
+                    <p id="helyszin"></p>
+                </div>
+            </div>
+            <div>
+                <h2>Vetítés információk:</h2>
+                <div class="input-container">
+                    <label class="form-label form-label" for="Filmnev">Film vetítése:</label><br>
+                    <p id="idopont"></p>
+                </div>
+                <div class="input-container">
+                    <label class="form-label form-label" for="Filmnev">Helyszín:</label><br>
+                    <p id="helyszin"></p>
+                </div>
             </div>
             <div class="row">
                 <div id="seat-map">
                     <div class="row kozepszek">
                         <div class="kiir" id="A"></div>
+                        <div id="seatmapA">
+
+                        </div>
+                        <div class="kiir">A sor:</div>
                         <div id="seatmapA">
 
                         </div>
@@ -84,9 +117,17 @@
                         <div id="seatmapB">
                             
                         </div>
+                        <div class="kiir">B sor:</div>
+                        <div id="seatmapB">
+
+                        </div>
                     </div>
                     <div class="row kozepszek">
                         <div class="kiir" id="C"></div>
+                        <div id="seatmapC">
+
+                        </div>
+                        <div class="kiir">C sor:</div>
                         <div id="seatmapC">
 
                         </div>
@@ -96,15 +137,27 @@
                         <div id="seatmapD">
 
                         </div>
+                        <div class="kiir">D sor:</div>
+                        <div id="seatmapD">
+
+                        </div>
                     </div>
                     <div class="row kozepszek">
                         <div class="kiir" id="E"></div>
                         <div id="seatmapE">
 
                         </div>
+                        <div class="kiir">E sor:</div>
+                        <div id="seatmapE">
+
+                        </div>
                     </div>
                     <div class="row kozepszek">
                         <div class="kiir" id="F"></div>
+                        <div id="seatmapF">
+
+                        </div>
+                        <div class="kiir">F sor:</div>
                         <div id="seatmapF">
 
                         </div>
@@ -115,10 +168,10 @@
             </div>
         </div>
         
-        <button id="popupButton" onclick="jegyarakVasarlas(), mennyiseg()">Vásárlás</button>
+        <button id="popupButton" onclick="jegyarakVasarlas(), mennyiseg()" class="btn btn-outline-dark ">Vásárlás</button>
 
         <div class="popup" id="popup">
-            <div class="popup-content">
+            <div class="popup-content form-control ablak">
                 <span class="close" id="close"></span>
                 <p>Jegyvásárlás</p>
                 <div class="input-container">
@@ -126,11 +179,7 @@
                     <p id="mennyiseg"></p>
                 </div>
                 <div id="vasarlas">
-                    
-                </div>
-                <div class="input-container">
-                    <label class="form-label form-label" for="Time">Email cím:</label><br>
-                    <input type="email" required="" id="email">
+
                 </div>
                 <div class="input-container">
                     <label class="form-label form-label" for="Time">Kiválasztott jegy(ek) mennyisége:</label><br>
@@ -140,14 +189,15 @@
                     <label class="form-label form-label" for="Time">Jegyek ára:</label><br>
                     <p id="jegyar"></p>
                 </div>
-                <button onclick="proba(), jegyvasarlas()">Jegy(ek) megvásárlása</button>
+                <button onclick="proba()" class="btn btn-outline-dark ">Jegy(ek) megvásárlása</button>
             </div>
         </div>
+        <button onclick="" class="btn btn-outline-dark ">vetitések</button>
     </main>
     <footer>
         <h6>Kapcsolat</h6>
         <p>Tel.: +36 70 258 8769</p>
-        <p>E-mail: duna.mozi2@gmail.com</p>
+        <p>E-mail: duna.mozi@gmail.com</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

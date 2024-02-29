@@ -21,7 +21,7 @@
         <button onclick="history.back()" class="btn btn-secondary">Vissza az előző oldalra</button>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                    <form id="reg" method="POST" action="" class="form-control form reg">
+                    <div id="reg" class="form-control form reg">
                     <h2>Alkalmazott módosítása</h2>
                         <select name="felhasznalo" id="dropdown" class="form-select-lg" onload="fillUserList()"
                             onchange="felhAdatBetolt()">
@@ -40,11 +40,17 @@
                             <input type="password" name="password" id="password" required="">
                         </div>
                         <button class="button btn btn-secondary" onclick="felhMod()" class="btn btn-secondary">Felhasználó módosítása</button>
+                        <br>
                         <button class="button btn btn-secondary" onclick="felhTOR()" class="btn btn-secondary">Felhasználó törlése</button>
                     </div>
             </div>
         </form>
     </main>
+    <footer>
+        <h6>Kapcsolat</h6>
+        <p>Tel.: +36 70 258 8769</p>
+        <p>E-mail: duna.mozi@gmail.com</p>
+    </footer>
     <script src="../JS/felhasznaloLEK.js"></script>
     <script src="../JS/felhasznaloADATBETOLT.js"></script>
     <script src="../JS/felhasznaloMOD.js"></script>
