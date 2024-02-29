@@ -1,4 +1,3 @@
-/* Popup container */
 .popup {
     display: none;
     position: fixed;
@@ -11,7 +10,6 @@
     background-color: rgba(0,0,0,0.5);
 }
 
-/* Popup content */
 .popup-content {
     background-color: #fefefe;
     margin: 1% auto;
@@ -31,7 +29,6 @@
     text-align: center;
 }
 
-/* Close button */
 .close {
     color: #aaa;
     float: right;

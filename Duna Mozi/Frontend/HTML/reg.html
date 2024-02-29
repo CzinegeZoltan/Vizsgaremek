@@ -31,7 +31,6 @@
         <div class="container-fluid ">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <form id="reg" method="POST" action="" class="form-control form reg">
                         <h2>Alkalmazott felvétel</h2>
                         <div class="input-container">
                             <label class="form-label form-label" for="userName">Felhasználónév:</label><br>
@@ -49,18 +48,11 @@
                             <label class="form-label form-label" for="Password-agen">Jelszó ujra:</label><br>
                             <input type="password" name="password2" id="password2" required="" onchange="jojelszo()">
                         </div>
-                        <!-- <input type="submit" value="Regisztráció" class="button" onclick="regisztracio()"> -->
                         <button onclick="regisztracio()" class="btn btn-secondary">fillKategoriaList</button>
-                    </form>
                 </div>
             </div>
         </div>
     </main>
-    <footer>
-        <h6>Kapcsolat</h6>
-        <p>Tel.: +36 70 258 8769</p>
-        <p>E-mail: duna.mozi@gmail.com</p>
-    </footer>
     
     <script>
         function jojelszo(){
