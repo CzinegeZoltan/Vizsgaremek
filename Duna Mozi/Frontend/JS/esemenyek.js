@@ -8,9 +8,17 @@ function fillEsemenyek(){
 
         data.forEach((esemenyek) => {
             const div = document.createElement("div");
-            div.className="";
+            div.className="vetites";
             div.id = esemenyek.esemenyid;
-            div.innerHTML = `<div style="background-image: url(${esemenyek.link})" class="card"><div class="card-body"><p>${esemenyek.esemenyNev}</p><p>${esemenyek.datum}</p></div></div>`
+            div.style.backgroundImage = `url(${esemenyek.link})`;
+                var eredetiDatum = new Date(esemenyek.datum);
+                var ev = eredetiDatum.getFullYear();
+                var honap = ('0' + (eredetiDatum.getMonth() + 1)).slice(-2);
+                var nap = ('0' + eredetiDatum.getDate()).slice(-2);
+
+                // Formázott dátum string létrehozása
+                var formazottDatumString = ev + '.' + honap + '.' + nap + '.';
+            div.innerHTML= `<div class=" szoveg"><p>${esemenyek.esemenyNev}</p><p>${formazottDatumString}</p></div></div>`;
             vetitescontainer.appendChild(div);
             vetitescontainer.appendChild(document.createElement("br"));
 
