@@ -29,8 +29,6 @@
 
 .seat {
     padding: 5px 30px;
-    width: 30px;
-    height: 30px;
     margin: 5px;
     background-color: #e0e0e0;
     border: 1px solid #ccc;
@@ -51,4 +49,8 @@
 
 #gomb{
     background-color: burlywood;
+}
+.foglalt{
+    padding: 5px 30px;
+    margin: 5px;
 }
