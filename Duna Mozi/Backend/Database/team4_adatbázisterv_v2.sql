@@ -409,9 +409,9 @@ DELIMITER ;
 
 DELIMITER //
 
-CREATE PROCEDURE IF NOT EXISTS vetitesMOD(IN datum DATETIME, teremid INT, filmid INT, vetitesid INT)
+CREATE PROCEDURE IF NOT EXISTS vetitesMOD(IN datum DATETIME, filmid INT, vetitesid INT)
 BEGIN
-    UPDATE vetitesek SET `vetitesDATUM`= datum, `Vetites_idVetitoTerem` = teremid, `Vetites_idfilmek`=filmid WHERE `idVetitesek`= vetitesid;
+    UPDATE vetitesek SET `vetitesDATUM`= datum, `Vetites_idfilmek`=filmid WHERE `idVetitesek`= vetitesid;
 END;
 
 DELIMITER ;

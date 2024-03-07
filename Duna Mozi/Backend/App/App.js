@@ -238,43 +238,41 @@ app.post('/szovegkeres', (req, res) => {
   con.end();
 });
 
-app.post('/usermod', (req, res) => {
-
+app.put('/usermod', (req, res) => {
     var con = mysql.createConnection(new Config());
     con.connect(function (err) {
         if (err) throw err;
-        console.log('sikeres csatlakozás: USERMOD');
-    })
-        const userSQL = 'CALL alkalmazottMOD(?,?,?,?)';
-        con.query(userSQL, [req.body.name, req.body.password, req.body.email,req.body.id], (err, result) => {
-            if (err) {
-                console.log(err)
-                res.status(404).send({ status: 404, error: "Hiba a user módosításakor" });
-            } else {
-                res.status(200).send({ status: 200, success: "Sikeres user módosítás"})
-            }
-        })
+        console.log('Successful connection: USERMOD');
+    });
+
+    const userSQL = 'CALL alkalmazottMOD(?,?,?,?)';
+    con.query(userSQL, [req.body.name, req.body.password, req.body.email, req.body.id], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(404).send({ status: 404, error: "Error modifying user" });
+        } else {
+            res.status(200).send({ status: 200, success: "Successful user modification" });
+        }
+    });
 });
 
-app.post('/usertor', (req, res) => {
-
+app.delete('/usertor', (req, res) => {
     var con = mysql.createConnection(new Config());
     con.connect(function (err) {
         if (err) throw err;
-        console.log('sikeres csatlakozás: USERTOR');
-    })
-        const userSQL = 'CALL alkalmazottTOR(?)';
-        con.query(userSQL, [req.body.id], (err, result) => {
-            if (err) {
-                console.log(err)
-                res.status(404).send({ status: 404, error: "Hiba a user törlésekor" });
-            } else {
-                res.status(200).send({ status: 200, success: "Sikeres dolgozó törlés"})
-            }
-        })
-});
+        console.log('Successful connection: USERTOR');
+    });
 
-//
+    const userSQL = 'CALL alkalmazottTOR(?)';
+    con.query(userSQL, [req.body.id], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(404).send({ status: 404, error: "Error deleting user" });
+        } else {
+            res.status(200).send({ status: 200, success: "Successful user deletion" });
+        }
+    });
+});
 
 app.post('/filmreg', (req, res) => {
 
@@ -294,40 +292,40 @@ app.post('/filmreg', (req, res) => {
         })
 });
 
-app.post('/filmmod', (req, res) => {
-
+app.put('/filmmod', (req, res) => {
     var con = mysql.createConnection(new Config());
     con.connect(function (err) {
         if (err) throw err;
-        console.log('sikeres csatlakozás a filmMODRA');
-    })
-        const userSQL = 'CALL filmMOD(?,?,?,?,?,?,?,?)';
-        con.query(userSQL, [req.body.name,req.body.szereplok, req.body.desription, req.body.hossz, req.body.korhatar, req.body.kategoria, req.body.link,req.body.id], (err, result) => {
-            if (err) {
-                console.log(err)
-                res.status(404).send({ status: 404, error: "Hiba a film rögzítésekor" });
-            } else {
-                res.status(200).send({ status: 200, success: "Sikeres film adat módósítás"})
-            }
-        })
+        console.log('Successful connection to FILMMOD');
+    });
+
+    const filmSQL = 'CALL filmMOD(?,?,?,?,?,?,?,?)';
+    con.query(filmSQL, [req.body.name, req.body.szereplok, req.body.description, req.body.hossz, req.body.korhatar, req.body.kategoria, req.body.link, req.body.id], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(404).send({ status: 404, error: "Error modifying film data" });
+        } else {
+            res.status(200).send({ status: 200, success: "Successful film data modification" });
+        }
+    });
 });
 
-app.post('/filmtor', (req, res) => {
-
+app.delete('/filmtor', (req, res) => {
     var con = mysql.createConnection(new Config());
     con.connect(function (err) {
         if (err) throw err;
-        console.log('sikeres csatlakozás: FILMTOR');
-    })
-        const userSQL = 'CALL filmTOR(?)';
-        con.query(userSQL, [req.body.id], (err, result) => {
-            if (err) {
-                console.log(err)
-                res.status(404).send({ status: 404, error: "Hiba a film törlésekor" });
-            } else {
-                res.status(200).send({ status: 200, success: "Sikeres film törlés"})
-            }
-        })
+        console.log('Successful connection: FILMTOR');
+    });
+
+    const filmSQL = 'CALL filmTOR(?)';
+    con.query(filmSQL, [req.body.id], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(404).send({ status: 404, error: "Error deleting film" });
+        } else {
+            res.status(200).send({ status: 200, success: "Successful film deletion" });
+        }
+    });
 });
 
 app.get('/vetitesek', (req, res) => {
@@ -498,51 +496,51 @@ app.post('/vetitesreg', (req, res) => {
         })
 });
 
-app.post('/vetitesmod', (req, res) => {
-
+app.put('/vetitesmod', (req, res) => {
     var con = mysql.createConnection(new Config());
     con.connect(function (err) {
         if (err) throw err;
-        console.log('sikeres csatlakozás a vetitesMODRA');
-    })
-        const userSQL = 'CALL vetitesMOD(?,?,?,?)';
-        con.query(userSQL, [req.body.date, req.body.terem, req.body.film, req.body.vetitesid], (err, result) => {
-            if (err) {
-                console.log(err)
-                res.status(404).send({ status: 404, error: "Hiba a film rögzítésekor" });
-            } else {
-                res.status(200).send({ status: 200, success: "Sikeres vetites adatmódosításában" })
-            }
-        })
+        console.log('Successful connection to vetitesMOD');
+    });
+
+    const vetitesSQL = 'CALL vetitesMOD(?,?,?)';
+    con.query(vetitesSQL, [req.body.datum, req.body.filmid, req.body.vetitesid], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(404).send({ status: 404, error: "Sikertelen módosítás" });
+        } else {
+            res.status(200).send({ status: 200, success: "Sikeres adat módosítás" });
+        }
+    });
 });
 
-app.post('/vetitestor', (req, res) => {
-
+app.delete('/vetitestor', (req, res) => {
     var con = mysql.createConnection(new Config());
+    
     con.connect(function (err) {
         if (err) throw err;
-        console.log('sikeres csatlakozás a vetitesTORRE');
-    })
-        const vetid = req.body.vetitesid;
-        const userSQL = 'CALL vetitesTOR(?)';
-        con.query(userSQL, vetid, (err, result) => {
-            if (err) {
-                console.log(err)
-                res.status(404).send({ status: 404, error: "Hiba a film rögzítésekor" });
-            } else {
-                res.status(200).send({ status: 200, success: "Sikeres vetites adatmódosításában" })
-            }
-        })
-
-        const ulestorL = 'CALL ulesTOR(?)';
-        con.query(ulestorL, vetid, (err, result) => {
-            if (err) {
-                console.log(err)
-                res.status(404).send({ status: 404, error: "Hiba a székek törlésekor" });
-            } else {
-                console.log("Sikeresen törölve lettek az ülések")
-            }
-        }) 
+        console.log('Successful connection to vetitesTORRE');
+    });
+    
+    const vetitesSQL = 'CALL vetitesTOR(?)';
+    con.query(vetitesSQL, [req.body.vetitesid], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(404).send({ status: 404, error: "Error deleting screening" });
+        } else {
+            const ulestorL = 'CALL ulesTOR(?)';
+            con.query(ulestorL, [req.body.vetitesid], (err, result) => {
+                if (err) {
+                    console.log(err);
+                    res.status(404).send({ status: 404, error: "Error deleting seats" });
+                } else {
+                    console.log("Seats deleted successfully");
+                }
+            });
+            
+            res.status(200).send({ status: 200, success: "Successful screening deletion" });
+        }
+    });
 });
 
 app.post('/ulesfoglal', (req, res) => {
@@ -698,7 +696,7 @@ app.post('/esemenyekreg', (req, res) => {
             const esemnyid = result[0].lastID;
             console.log('Last inserted ID:', esemnyid);
 
-            const idArray = req.body.filmid; // Just assign the value directly
+            const idArray = req.body.filmid;
 
             const osszekoto = 'CALL esemenyFILMinsert(?,?)';
 
@@ -726,51 +724,52 @@ app.post('/esemenyekreg', (req, res) => {
     });
 });
 
-app.post('/esemenymod', (req, res) => {
-
+app.put('/esemenymod', (req, res) => {
     var con = mysql.createConnection(new Config());
     con.connect(function (err) {
         if (err) throw err;
-        console.log('sikeres csatlakozás a vetitesMODRA');
-    })
-        const userSQL = 'CALL esemenyMOD(?,?,?,?)';
-        con.query(userSQL, [req.body.nev, req.body.idopont, req.body.keplink, req.body.eid], (err, result) => {
-            if (err) {
-                console.log(err)
-                res.status(404).send({ status: 404, error: "Hiba a film rögzítésekor" });
-            } else {
-                res.status(200).send({ status: 200, success: "Sikeres vetites adatmódosításában" })
-            }
-        })
+        console.log('Successful connection to esemenyMOD');
+    });
+
+    const esemenySQL = 'CALL esemenyMOD(?,?,?,?)';
+    con.query(esemenySQL, [req.body.nev, req.body.idopont, req.body.keplink, req.body.eid], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(404).send({ status: 404, error: "Error modifying event data" });
+        } else {
+            res.status(200).send({ status: 200, success: "Successful event data modification" });
+        }
+    });
 });
 
-app.post('/esemenytor', (req, res) => {
-
+app.delete('/esemenytor', (req, res) => {
+    const eid = req.params.id;
     var con = mysql.createConnection(new Config());
+
     con.connect(function (err) {
         if (err) throw err;
-        console.log('sikeres csatlakozás a eseményTORRE');
-    })
-        const eid = req.body.id;
-        const userSQL = 'CALL esemenyTOR(?)';
-        con.query(userSQL, eid, (err, result) => {
-            if (err) {
-                console.log(err)
-                res.status(404).send({ status: 404, error: "Hiba a film rögzítésekor" });
-            } else {
-                res.status(200).send({ status: 200, success: "Sikeres esemény törlése" })
-            }
-        })
+        console.log('Successful connection to eseményTORRE');
+    });
 
-        const osszekototorol = 'CALL osszekotoTOR(?)';
-        con.query(osszekototorol, eid, (err, result) => {
-            if (err) {
-                console.log(err)
-                res.status(404).send({ status: 404, error: "Hiba a székek törlésekor" });
-            } else {
-                console.log("Sikeresen törölve lettek a kiválasztott filmek")
-            }
-        }) 
+    const esemenySQL = 'CALL esemenyTOR(?)';
+    con.query(esemenySQL, eid, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(404).send({ status: 404, error: "Error deleting event" });
+        } else {
+            const osszekototorol = 'CALL osszekotoTOR(?)';
+            con.query(osszekototorol, eid, (err, result) => {
+                if (err) {
+                    console.log(err);
+                    res.status(404).send({ status: 404, error: "Error deleting connections" });
+                } else {
+                    console.log("Successfully deleted associated connections");
+                }
+            });
+
+            res.status(200).send({ status: 200, success: "Successful event deletion" });
+        }
+    });
 });
 
 
