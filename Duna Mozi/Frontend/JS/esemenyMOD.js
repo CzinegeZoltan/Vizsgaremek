@@ -6,7 +6,7 @@ function esemenyMOD(){
             name: document.getElementById("name").value,
             idopont: document.getElementById("date").value,
             keplink: document.getElementById("link").value,
-            id: document.getElementById("dropdown").value
+            eid: document.getElementById("dropdown").value
         })       
     }
     

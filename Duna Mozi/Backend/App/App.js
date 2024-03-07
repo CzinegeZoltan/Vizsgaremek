@@ -726,6 +726,24 @@ app.post('/esemenyekreg', (req, res) => {
     });
 });
 
+app.post('/esemenymod', (req, res) => {
+
+    var con = mysql.createConnection(new Config());
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log('sikeres csatlakozás a vetitesMODRA');
+    })
+        const userSQL = 'CALL esemenyMOD(?,?,?,?)';
+        con.query(userSQL, [req.body.nev, req.body.idopont, req.body.keplink, req.body.eid], (err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(404).send({ status: 404, error: "Hiba a film rögzítésekor" });
+            } else {
+                res.status(200).send({ status: 200, success: "Sikeres vetites adatmódosításában" })
+            }
+        })
+});
+
 app.post('/esemenytor', (req, res) => {
 
     var con = mysql.createConnection(new Config());
