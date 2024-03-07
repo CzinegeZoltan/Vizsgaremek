@@ -83,7 +83,7 @@ function fillSzekList(){
                 } else {
                     const button = document.createElement("button");
                     button.value = szekek.ules_id;
-                    button.classList.add('a');
+                    button.classList.add('foglalt');
                     button.setAttribute('id',"gomb");
                     button.textContent = szekek.szekszam;
 

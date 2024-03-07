@@ -7,7 +7,7 @@ function fillVetitesekList(){
         const vetitesDropDown = document.getElementById("dropdown");
         data.forEach((vetitesek) => {
             const option = document.createElement("option");
-            option.value = vetitesek.idVetitesek;
+            option.value = vetitesek.idvetitesek;
             option.text = vetitesek.filmnev;
             vetitesDropDown.appendChild(option);
         });

@@ -19,7 +19,7 @@ function VetitesekINFO(){
         //Be helyezzük az adatokat
         document.getElementById("idopont").innerHTML = data[0].datum;
         document.getElementById("helyszin").innerHTML = data[0].Terem;
-        document.getElementById("poster").innerHTML = `<img id="poszter" src="${data[0].keplink}" class="img-thumbnail poster"/>`;
+        document.getElementById("poster").innerHTML = `<img id="poszter" src="${data[0].film_keplink}" class="img-thumbnail poster"/>`;
     }).catch((error) => {
         console.log(error);
     });
