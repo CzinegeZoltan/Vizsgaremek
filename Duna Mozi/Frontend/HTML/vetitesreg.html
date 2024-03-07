@@ -14,7 +14,7 @@
     <script src="../JS/filmDROPDOWN.js"></script>
     <script src="../JS/vetitesREG.js"></script>
     <script>
-        function documentReady(){
+        function documentReady() {
             livetoken();
         }
     </script>
@@ -26,10 +26,11 @@
         <h1 class="kozepszoveg"><img src="../IMG/icon.png" alt="" id="ico">Duna Mozi</h1>
     </header>
     <main>
-        <button onclick="history.back()" class="btn btn-secondary">Vissza az előző oldalra</button>
+        <button onclick="history.back()" class="button btn btn-secondary">Vissza az előző oldalra</button>
         <div class="container-fluid ">
             <div class="row justify-content-center">
                 <div class="col-md-6">
+                    <div id="reg" class="form-control form">
                         <div>
                             <h2>Vetités létrehozása</h2>
                             <div class="input-container">
@@ -50,12 +51,18 @@
                                     <optgroup label="Vetitések">Filmek</optgroup>
                                 </select>
                             </div>
-                            <button class="button btn btn-secondary" onclick="vetitesREG()">Vetités regisztrálása</button>
                         </div>
+                        <button class="button btn btn-secondary" onclick="vetitesREG()">Vetités regisztrálása</button>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
+    <footer>
+        <h6>Kapcsolat</h6>
+        <p>Tel.: +36 70 258 8769</p>
+        <p>E-mail: duna.mozi@gmail.com</p>
+    </footer>
 </body>
 
 </html>
