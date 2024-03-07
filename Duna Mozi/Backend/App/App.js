@@ -360,32 +360,70 @@ app.get('/vetitesekfel', (req, res) => {
 })
 
 app.post('/vetitesekinfo', (req, res) => {
-
     var con = mysql.createConnection(new Config());
     con.connect(function (err) {
-        if (err) throw err;
-        console.log('sikeresen le lett kérdezve a vetítésekINFO');
-    })
-    const sql = 'CALL vetitesINFO(?);'
-    con.query(sql,[req.body.id], (err, result) => {
-        if (err) res.status(404).send({ status: 404, error: "Hiba a vetítésekINFO lekérdezésekor" });
-        res.send(result[0]);
-    })
-})
+        if (err) {
+            console.error('Hiba az adatbázishoz való kapcsolódás során:', err);
+            res.status(500).send({ status: 500, error: "Hiba az adatbázishoz való kapcsolódás során" });
+            return;
+        }
+        
+        console.log('Sikeresen kapcsolódva az adatbázishoz');
+        
+        const sql = 'CALL vetitesINFO(?)';
+        con.query(sql, [req.body.id], (err, result) => {
+            if (err) {
+                console.error('Hiba a lekérdezés során:', err);
+                res.status(500).send({ status: 500, error: "Hiba a lekérdezés során" });
+                return;
+            }
+            
+            console.log('Sikeres lekérdezés a vetítések INFO-ról');
+            res.send(result[0]);
+        });
+
+        con.end(function(err) {
+            if (err) {
+                console.error('Hiba az adatbáziskapcsolat bezárása során:', err);
+            } else {
+                console.log('Adatbáziskapcsolat sikeresen lezárva');
+            }
+        });
+    });
+});
 
 app.post('/szekek', (req, res) => {
-
     var con = mysql.createConnection(new Config());
     con.connect(function (err) {
-        if (err) throw err;
-        console.log('sikeresen le lett kérdezve a székek');
-    })
-    const sql = 'CALL vetitesULESEK(?);'
-    con.query(sql,[req.body.id] ,(err, result) => {
-        if (err) res.status(404).send({ status: 404, error: "Hiba a székek lekérdezésekor" });
-        res.send(result[0]);
-    })
-})
+        if (err) {
+            console.error('Hiba az adatbázishoz való kapcsolódás során:', err);
+            res.status(500).send({ status: 500, error: "Hiba az adatbázishoz való kapcsolódás során" });
+            return;
+        }
+        
+        console.log('Sikeresen kapcsolódva az adatbázishoz');
+        
+        const sql = 'CALL vetitesULESEK(?)';
+        con.query(sql, [req.body.id], (err, result) => {
+            if (err) {
+                console.error('Hiba a lekérdezés során:', err);
+                res.status(500).send({ status: 500, error: "Hiba a lekérdezés során" });
+                return;
+            }
+            
+            console.log('Sikeres lekérdezés a székekről');
+            res.send(result[0]);
+            
+            con.end(function(err) {
+                if (err) {
+                    console.error('Hiba az adatbáziskapcsolat bezárása során:', err);
+                } else {
+                    console.log('Adatbáziskapcsolat sikeresen lezárva');
+                }
+            });
+        });
+    });
+});
 
 app.post('/vetitesreg', (req, res) => {
 
