@@ -195,12 +195,12 @@ function jegyvasarlas(){
     const lefoglaltulesek = document.getElementById("selected-seats").innerHTML;
     var img = document.getElementById("poszter").src;
 
-    if(jegydb != mennyiseg){
+    if(jegydb != szekdb){
         alert("Nincsen kiválasztva eggyenlő mennyiségű jegy a kiválasztott székek mennyiséghez képest!")
     } else if(!document.getElementById("email").value){
         alert("Nincsen kitöltve az email terület!")
     }
-    else if(document.getElementById("email").value && jegydb == mennyiseg){
+    else if(document.getElementById("email").value && jegydb == szekdb){
         const data = {
             method: "POST",
             headers: {"Content-Type" : "application/json",},
