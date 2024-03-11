@@ -136,7 +136,7 @@
             </div>
         </div>
 
-        <button id="popupButton" onclick="jegyarakVasarlas(), mennyiseg()" class="btn btn-outline-dark button-subscribebtn">Vásárlás</button>
+        <button id="popupButton" onclick="jegyarakVasarlas(), mennyiseg()" class="btn btn-outline-dark button-subscribebtn" disabled>Vásárlás</button>
 
         <div class="popup" id="popup">
             <div class="popup-content">
@@ -151,7 +151,7 @@
                 </div>
                 <div class="input-container">
                     <label class="form-label" for="Time">Email cím:</label><br>
-                    <input type="email" required="" id="email">
+                    <input onchange="disabledonoff()" type="email" required="" id="email">
                 </div>
                 <div class="input-container">
                     <label class="form-label" for="Time">Kiválasztott jegy(ek) mennyisége:</label><br>
@@ -161,7 +161,7 @@
                     <label class="form-label" for="Time">Jegyek ára:</label><br>
                     <p id="jegyar"></p>
                 </div>
-                <button onclick="proba(), jegyvasarlas()" class="btn btn-outline-dark button-subscribebtn">Jegy(ek) megvásárlása</button>
+                <button id="megvasar" onclick="proba(), jegyvasarlas()" class="btn btn-outline-dark button-subscribebtn" disabled>Jegy(ek) megvásárlása</button>
             </div>
         </div>
     </main>
@@ -174,6 +174,25 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <script src="../JS/popup.js"></script>
+    <script>
+        function disabledonoff(){
+            const vevoemail = document.getElementById("email").value;
+            var megvasarbutton = document.getElementById("megvasar");
+
+            console.log(vevoemail);
+            console.log(megvasarbutton)
+
+
+            if(vevoemail.length != 0){
+                megvasarbutton.disabled = false;
+            } else if(!vevoemail){
+                megvasarbutton.disabled = true;
+            }
+            
+        }
+
+
+    </script>
 </body>
 
 </html>

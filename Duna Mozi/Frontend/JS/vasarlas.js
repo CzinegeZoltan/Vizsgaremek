@@ -192,30 +192,39 @@ function jegyarakVasarlas(){
 function jegyvasarlas(){
     const lefoglaltulesek = document.getElementById("selected-seats").innerHTML;
     var img = document.getElementById("poszter").src;
-    const data = {
-        method: "POST",
-        headers: {"Content-Type" : "application/json",},
-        body: JSON.stringify({
-            email: document.getElementById("email").value,
-            vetitesid: document.getElementById("dropdown").value,
-            ulesek: lefoglaltulesek,
-            arosszeg: osszar,
-            jegyek: `Gyerek jegy:${jegy1} db, Felnőtt jegy:${jegy2} db, Nyugdíjas jegy:${jegy3} db, Családi jegycsomag:${jegy4} db, Csoportos jegycsomag:${jegy5} db.`,
-            uzenet: `<div><header style="background-color: #e9cc92; text-align: center;"><h3>Kedves ügyfelünk. Köszönjük a vásárlást a ${document.getElementById("dropdown").options[dropdown.selectedIndex].text} filmre.</h3></header><div><img src="${img}" style="width:300px;height:400px;"/></div><ul><br><li>Időpont: ${document.getElementById("idopont").innerHTML}</li><li>Helyszín: ${document.getElementById("helyszin").innerHTML}</li><li>Gyerek jegy:${jegy1} db, Felnőtt jegy:${jegy2} db, Nyugdíjas jegy:${jegy3} db, Családi jegycsomag:${jegy4} db, Csoportos jegycsomag:${jegy5} db</li><li>Összeg:${osszar}Ft</li><li>Ülések: ${lefoglaltulesek}</li></ul><footer style="background-color: #e9cc92; text-align: center;"><h4>Reméljük élvezni fogja a filmet!</h4></footer></div>`
-        })       
-    }
 
-    fetch('http://localhost:8000/jegyvasar', data)
-        .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            if (data.status == 404) {
-                err = document.getElementById("error");
-                err.innerHTML = data.error;
-            }
-            alert("Sikeres ülés foglalás");
-        }).catch((error) => {
-            console.log(error);
-        });
+    if(jegydb != mennyiseg){
+        alert("Nincsen kiválasztva eggyenlő mennyiségű jegy a kiválasztott székek mennyiséghez képest!")
+    } else if(!document.getElementById("email").value){
+        alert("Nincsen kitöltve az email terület!")
+    }
+    else if(document.getElementById("email").value && jegydb == mennyiseg){
+        const data = {
+            method: "POST",
+            headers: {"Content-Type" : "application/json",},
+            body: JSON.stringify({
+                email: document.getElementById("email").value,
+                vetitesid: document.getElementById("dropdown").value,
+                ulesek: lefoglaltulesek,
+                arosszeg: osszar,
+                jegyek: `Gyerek jegy:${jegy1} db, Felnőtt jegy:${jegy2} db, Nyugdíjas jegy:${jegy3} db, Családi jegycsomag:${jegy4} db, Csoportos jegycsomag:${jegy5} db.`,
+                uzenet: `<div><header style="background-color: #e9cc92; text-align: center;"><h3>Kedves ügyfelünk. Köszönjük a vásárlást a ${document.getElementById("dropdown").options[dropdown.selectedIndex].text} filmre.</h3></header><div><img src="${img}" style="width:300px;height:400px;"/></div><ul><br><li>Időpont: ${document.getElementById("idopont").innerHTML}</li><li>Helyszín: ${document.getElementById("helyszin").innerHTML}</li><li>Gyerek jegy:${jegy1} db, Felnőtt jegy:${jegy2} db, Nyugdíjas jegy:${jegy3} db, Családi jegycsomag:${jegy4} db, Csoportos jegycsomag:${jegy5} db</li><li>Összeg:${osszar}Ft</li><li>Ülések: ${lefoglaltulesek}</li></ul><footer style="background-color: #e9cc92; text-align: center;"><h4>Reméljük élvezni fogja a filmet!</h4></footer></div>`
+            })       
+        }
+    
+        fetch('http://localhost:8000/jegyvasar', data)
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                if (data.status == 404) {
+                    err = document.getElementById("error");
+                    err.innerHTML = data.error;
+                }
+                alert("Sikeres ülés foglalás");
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
+    
 }

@@ -97,12 +97,18 @@ function fillSzekList(){
                             selectedSeatsID.push(szekek.ules_id);
                             button.style.backgroundColor = 'green';
                             document.getElementById("mennyiseg").innerHTML = selectedSeatsID.length
+                            var vasarButton = document.getElementById("popupButton");
+                            vasarButton.disabled = vasarButton.disabled = false;
                         } else {
 
                             selectedSeats.splice(seatIndex, 1);
                             selectedSeatsID.splice(seatIndex, 1);
                             button.style.backgroundColor = 'burlywood'
                             document.getElementById("mennyiseg").innerHTML = selectedSeatsID.length
+                            if(selectedSeatsID.length == 0){
+                                var vasarButton = document.getElementById("popupButton");
+                                vasarButton.disabled = true;
+                            }
                         }
 
                         updateSelectedSeats();
