@@ -177,7 +177,7 @@ function jegyarakVasarlas(){
             jegyek.push({id:arak.jegyid, price:arak.ar})
             const div = document.createElement("div");
             div.className="input-container";
-            div.innerHTML = `<label class="form-label">${arak.jegynev}:<br>
+            div.innerHTML = `<label class="form-label">${arak.jegynev}:</label><br>
             <button class="btn btn-outline-dark button-subscribebtn" onclick="jegyminusz${arak.jegyid}()">-1</button>
             <span style="margin: 5px 10px; border: 1px solid black; padding: 10px 20px" id="${arak.jegyid}"></span>
             <button class="btn btn-outline-dark button-subscribebtn" onclick="jegyplusz${arak.jegyid}()">+1</button>`;           
