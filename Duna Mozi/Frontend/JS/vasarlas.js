@@ -189,6 +189,8 @@ function jegyarakVasarlas(){
     });
 }
 
+
+
 function jegyvasarlas(){
     const lefoglaltulesek = document.getElementById("selected-seats").innerHTML;
     var img = document.getElementById("poszter").src;
@@ -211,6 +213,8 @@ function jegyvasarlas(){
                 uzenet: `<div><header style="background-color: #e9cc92; text-align: center;"><h3>Kedves ügyfelünk. Köszönjük a vásárlást a ${document.getElementById("dropdown").options[dropdown.selectedIndex].text} filmre.</h3></header><div><img src="${img}" style="width:300px;height:400px;"/></div><ul><br><li>Időpont: ${document.getElementById("idopont").innerHTML}</li><li>Helyszín: ${document.getElementById("helyszin").innerHTML}</li><li>Gyerek jegy:${jegy1} db, Felnőtt jegy:${jegy2} db, Nyugdíjas jegy:${jegy3} db, Családi jegycsomag:${jegy4} db, Csoportos jegycsomag:${jegy5} db</li><li>Összeg:${osszar}Ft</li><li>Ülések: ${lefoglaltulesek}</li></ul><footer style="background-color: #e9cc92; text-align: center;"><h4>Reméljük élvezni fogja a filmet!</h4></footer></div>`
             })       
         }
+
+        console.log(selectedSeatsID)
     
         fetch('http://localhost:8000/jegyvasar', data)
             .then((response) => {
@@ -225,6 +229,31 @@ function jegyvasarlas(){
             }).catch((error) => {
                 console.log(error);
             });
+
+            const  szekdata = {
+                method: "POST",
+                headers: {"Content-Type" : "application/json",},
+                body: JSON.stringify({
+                    ulesek: selectedSeatsID
+                })       
+            }
+        
+            fetch('http://localhost:8000/ulesfoglal', szekdata)
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    if (data.status == 404) {
+                        err = document.getElementById("error");
+                        err.innerHTML = data.error;
+                    }
+                    alert("Sikeres ülés foglalás");
+                    window.location.href = "../Index.html"
+                }).catch((error) => {
+                    console.log(error);
+                });
         }
-    
+        
+            
+        
 }

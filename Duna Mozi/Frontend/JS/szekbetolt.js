@@ -146,27 +146,3 @@ function fillSzekList(){
 }
 
 
-function proba(){
-    const data = {
-        method: "POST",
-        headers: {"Content-Type" : "application/json",},
-        body: JSON.stringify({
-            ulesek: selectedSeatsID
-        })       
-    }
-
-    fetch('http://localhost:8000/ulesfoglal', data)
-        .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            if (data.status == 404) {
-                err = document.getElementById("error");
-                err.innerHTML = data.error;
-            }
-            alert("Sikeres ülés foglalás");
-            window.location.href = "../Index.html"
-        }).catch((error) => {
-            console.log(error);
-        });
-}
