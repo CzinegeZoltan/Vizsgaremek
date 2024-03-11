@@ -772,20 +772,6 @@ app.delete('/esemenytor', (req, res) => {
     });
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 app.get('/kilep', (req, res) => {
 
     function kilep(err){
