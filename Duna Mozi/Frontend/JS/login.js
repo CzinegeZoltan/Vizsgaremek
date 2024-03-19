@@ -18,6 +18,7 @@ loginData = (data) => {
 
     console.log(data)
     
+
     fetch('http://localhost:8000/login', data)
     .then((response) => {
         return response.json();
@@ -26,6 +27,7 @@ loginData = (data) => {
             err = document.getElementById("error");
             err.innerHTML = data.error;
         }
+        localStorage.setItem("userID",data.userID)
             window.location.href = data.redirection;
         }).catch((err) => {
             console.error(err);

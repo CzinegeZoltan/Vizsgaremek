@@ -7,6 +7,7 @@ function kilepes(){
             err = document.getElementById("error");
             err.innerHTML = data.error;
         }
+        localStorage.removeItem("userID")
         window.location.href = data.redirection;
     }).catch((err) => {
         console.error(err);

@@ -53,25 +53,25 @@ app.post('/login', (req,res) =>{
         if (err) throw err;
         console.log('Sikeres csatlakozás');
     })
-
+ 
     const sql = 'call userLogin(?,?)';
-        
+       
     con.query(sql,[req.body.email,req.body.password], (err,result) =>{
         if (err) throw err;
         if (result[0].length > 0){
             let alkalmazott = result[0][0];
-
-            felhIDraktarozas(result[0][0].idalkalmazott);
-
+ 
+            const ID = result[0][0].idalkalmazott
+ 
             const jasonba1 = {
                 id: result[0][0].idalkalmazott,
                 email: result[0][0].email
-            } 
+            }
             const options = {
                 expiresIn:"2h",
             }
             const token = jwt.sign(jasonba1, Key, options);
-
+ 
             con.query('call UpdateToken(?,?)',[result[0][0].idalkalmazott,token],(err,result,fields)=>{
                 if (err) throw err;
                 alkalmazott.token = token;
@@ -79,11 +79,11 @@ app.post('/login', (req,res) =>{
             const userRole = result[0][0].admin;
             switch (userRole) {
               case 0:
-                res.status(200).json({ status: 'success', message: 'Sikeres bejelentkezés', admin:0, redirection:"alkalmazott.html"});
+                res.status(200).json({ userID:ID, status: 'success', message: 'Sikeres bejelentkezés', admin:0, redirection:"alkalmazott.html"});
                 console.log("Dolgozó");
-                break; 
+                break;
               case 1:
-                res.status(200).json({ status: 'success', message: 'Sikeres bejelentkezés', admin:1, redirection:"admin.html"});
+                res.status(200).json({ userID:ID, status: 'success', message: 'Sikeres bejelentkezés', admin:1, redirection:"admin.html"});
                 console.log("Admin")
                 break;
               default:
@@ -91,7 +91,7 @@ app.post('/login', (req,res) =>{
                 console.log("Sikertelen bejelentkezés")
                 break;
             }
-
+ 
             jwt.verify(token, Key, (err, decoded) => {
                 if (err) {
                   // Token verifikálása sikertelen (már nem érvényes vagy nem valid)
@@ -108,28 +108,48 @@ app.post('/login', (req,res) =>{
 });
 
 app.post('/userToken', (req, res) => {
-    const userID = felhIDlekeres();
+    const userID = req.body.userID;
     console.log(userID);
+ 
     var con = mysql.createConnection(new Config());
     con.connect(function (err) {
-        if (err) throw err;
-        console.log('sikeresen le lett kérdezve a token');
-    })
-    con.query('select token from alkalmazott WHERE idalkalmazott = ?',[userID], (err, result) => {
-        const token = result[0].token;       
-        jwt.verify(token, Key, (err, decoded) => {
+        if (err) {
+            console.error('Hiba az adatbázishoz való kapcsolódáskor:', err);
+            return res.status(500).send({ error: "Az adatbázishoz való kapcsolódás sikertelen." });
+        }
+        console.log('Sikeresen le lett kérdezve a userToken.');
+ 
+        if (userID === null) {
+            return res.status(404).send({ status:404, error: "Illetéktelen behatolás: Hiányzó felhasználói azonosító." });
+        }
+ 
+        con.query('SELECT token FROM alkalmazott WHERE idalkalmazott = ?', [userID], (err, result) => {
             if (err) {
-              console.error('Token verifikálás sikertelen:', err.message);
-              if (err.name === 'TokenExpiredError') {
-                console.log('Elavult token');
-              }
-            } else {
-              console.log('A token valid eddig:', new Date(decoded.exp * 1000));
-              res.send(result);
+                console.error('Hiba az adatbázis lekérdezése során:', err);
+                return res.status(500).send({ error: "Hiba az adatbázis lekérdezése során." });
             }
-          });        
-    })
-})
+   
+            if (!result || result.length === 0) {
+                return res.status(404).send({ error: "Felhasználóhoz nem található token." });
+            }
+   
+            const token = result[0].token;
+            jwt.verify(token, Key, (err, decoded) => {
+                if (err) {
+                    console.error('Token verifikálás sikertelen:', err.message);
+                    if (err.name === 'TokenExpiredError') {
+                        console.log('Elavult token');
+                    }
+                    return res.status(401).send({ error: "A token érvénytelen." });
+                }
+                console.log('A token valid eddig:', new Date(decoded.exp * 1000));
+                res.send(result);
+            });
+        });
+    });
+ 
+   
+});
 
 app.post('/reg', (req, res) => {
 
@@ -773,12 +793,10 @@ app.delete('/esemenytor', (req, res) => {
 });
 
 app.get('/kilep', (req, res) => {
-
+ 
     function kilep(err){
         console.log('sikeres kijelentkezés');
-    
-        felhIDtorles();
-    
+   
         if (err) {
             console.log(err)
             res.status(404).send({ status: 404, error: "Hiba kijelentkezéskor"});
