@@ -1,3 +1,24 @@
+function vetitesmodchek() {
+    var date = new Date(document.getElementById("date").value);
+    var time = document.getElementById("time").value;
+    var terem = document.getElementById("terem").value;
+
+    var teremRegex = /^[1234]+$/; 
+
+
+    if ( !date.getTime() ||!time || !terem) {
+        return alert("Töltsön ki minden mezőt!")
+    }
+     else if(date.getTime()<=Date.now()){
+         return alert("Nem jövőbeli dátumot adott meg!")
+     }
+     else if (!terem.match(teremRegex)){
+        return alert("Nem létező terem!")
+     }
+    else {
+        vetitesMOD();
+    }
+}
 function vetitesMOD() {
     const data = {
         method: "PUT",

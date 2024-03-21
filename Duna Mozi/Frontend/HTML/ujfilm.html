@@ -47,12 +47,12 @@
                             <input type="text" name="desription" id="desription" required="">
                         </div>
                         <div class="input-container">
-                            <label class="form-label form-label" for="hossz">Film hossza:</label><br>
+                            <label class="form-label form-label" for="hossz">Film hossza (percben):</label><br>
                             <input type="number" name="hossz" id="hossz" required="">
                         </div>
                         <div class="input-container">
                             <label class="form-label form-label" for="Password-agen">Film korhatár:</label><br>
-                            <input type="number" name="korhatar" id="korhatar" required="">
+                            <input type="number" name="korhatar" id="korhatar" required="" min="1" max="18">
                         </div>
                         <div class="input-container">
                             <label class="form-label form-label" for="Password-agen">Film kategóriája:</label>
@@ -65,7 +65,7 @@
                             <label class="form-label form-label" for="link">Kép linkje:</label><br>
                             <input type="text" name="link" id="link" required="">
                         </div>
-                        <button onclick="filmREG()" class="button btn btn-secondary">Film feltöltése</button>
+                        <button onclick=" filmregchek()" class="button btn btn-secondary">Film feltöltése</button>
                         <!-- <input type="submit" value="Film feltöltése" class="button" onclick=""> -->
                     </div>
                 </div>

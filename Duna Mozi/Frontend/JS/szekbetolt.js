@@ -92,13 +92,17 @@ function fillSzekList(){
 
                         const seatIndex = selectedSeats.indexOf(szekek.szekszam + szekek.sor);
                         if (seatIndex === -1) {
-
+                            if(selectedSeatsID.length+1>30){
+                                return alert("Maximum 30 széket foglalhat le!")
+                            }
+                            else{
                             selectedSeats.push(szekek.szekszam + szekek.sor);
                             selectedSeatsID.push(szekek.ules_id);
                             button.style.backgroundColor = 'green';
                             document.getElementById("mennyiseg").innerHTML = selectedSeatsID.length
                             var vasarButton = document.getElementById("popupButton");
                             vasarButton.disabled = vasarButton.disabled = false;
+                            }
                         } else {
 
                             selectedSeats.splice(seatIndex, 1);
