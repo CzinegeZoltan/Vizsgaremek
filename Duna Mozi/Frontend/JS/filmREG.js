@@ -7,9 +7,9 @@ function filmregchek() {
     var dropdown = document.getElementById("dropdown").value;
     var link = document.getElementById("link").value;
 
-    var alapRegex = /^[a-zA-Z0-9áéíóöőúüűÁÉÍÓÖŐÚÜŰ,\s!?'%()]+$/; //film cím leírás
-    var szereplokRegex = /^[a-zA-Z0-9áéíóöőúüűÁÉÍÓÖŐÚÜŰ'-]+$/;
-    var linkRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    var alapRegex = /^[a-zA-Z0-9áéíóöőúüűÁÉÍÓÖŐÚÜŰ,\s!?'%()]+$/;
+    var szereplokRegex = /^[a-zA-Z0-9áéíóöőúüűÁÉÍÓÖŐÚÜŰ'-\s]+$/;
+    var linkRegex = /^(https?|ftp?|http):\/\/[^\s/$.?#].[^\s]*$/i;
 
 
     if (!name || !szereplok || !desription || !hossz || !korhatar || dropdown=='' || !link) {
@@ -22,7 +22,7 @@ function filmregchek() {
         return alert("Hiba a szereplők nevénél! Nem engedéjezett karaktert tartalmaz!")
     }
     else if (!link.match(linkRegex)) {
-        return alert("Hibás link! Nem engedéjezett karaktert tartalmaz!")
+        return alert("Hibás link! Nem engedéjezett karaktert tartalmaz, vagy nem felel meg a link formai követelményének!")
     }
     else {
         filmREG();

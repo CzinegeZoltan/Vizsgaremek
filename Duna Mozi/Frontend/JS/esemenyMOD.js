@@ -3,8 +3,8 @@ function esemenymodchek() {
     var date = new Date(document.getElementById("date").value);
     var link = document.getElementById("link").value;
 
-    var alapRegex = /^[a-zA-Z0-9áéíóöőúüűÁÉÍÓÖŐÚÜŰ,\s!?'%()]+$/; 
-    var linkRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    var alapRegex = /^[a-zA-Z0-9áéíóöőúüűÁÉÍÓÖŐÚÜŰ,-\s!?'%()]+$/; 
+    var linkRegex = /^(https?|ftp?|http):\/\/[^\s/$.?#].[^\s]*$/i;
 
 
     if (!name || !date.getTime() || filmid.length == 0 || !link) {
@@ -17,7 +17,7 @@ function esemenymodchek() {
         return alert("Hibás cím! Az esemény címe nem engedéjezett karaktert tartalmaz! Ezeket használhatja: a-z A-Z 0-9 Ékezetes karakterek , szóköz ! ? ' % ( )")
     }
     else if (!link.match(linkRegex)) {
-        return alert("Hibás link! Nem engedéjezett karaktert tartalmaz!")
+        return alert("Hibás link! Nem engedéjezett karaktert tartalmaz, vagy nem felel meg a link formai követelményének!")
     }
     else {
         esemenyMOD();

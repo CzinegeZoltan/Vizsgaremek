@@ -13,10 +13,9 @@ function login(){
 loginData = (data) => {
     if(!email.value || !password.value){
         console.log("Hibás kitöltés!");
-        return;
+        return alert("Kérem töltse ki az adatbeviteli mezőket!")
     }
 
-    console.log(data)
     
 
     fetch('http://localhost:8000/login', data)
@@ -31,5 +30,6 @@ loginData = (data) => {
             window.location.href = data.redirection;
         }).catch((err) => {
             console.error(err);
+           return alert("Roszz e-mail vagy jelszó!")
         });
 }

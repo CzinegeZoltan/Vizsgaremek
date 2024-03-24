@@ -38,6 +38,7 @@ function vetitesMOD() {
         if (data.status === 404) {
             console.error(data.error);
         } else {
+            alert("Sikeres vetités modósítás");
             history.back();
         }
     })
@@ -62,7 +63,7 @@ function vetitesTOR() {
                 err = document.getElementById("error");
                 err.innerHTML = data.error;
             } else {
-                alert("Sikeres film törlése");
+                alert("Sikeres vetités törlése");
                 history.back();
             }
         })

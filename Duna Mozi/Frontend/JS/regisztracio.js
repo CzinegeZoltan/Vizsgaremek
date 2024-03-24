@@ -11,6 +11,9 @@ function regchek() {
     if (!name || !email || !password || !password2) {
         return alert("Töltsön ki minden mezőt!")
     }
+    else if(password != password2){
+        return alert("Nem ugyan az a jelszó!")
+    }
     else if (!name.match(userNameRegex)) {
         return alert("Hibás név! A felhasználónév csak kis és nagy betűket és számokat tartalmazhat!")
     }

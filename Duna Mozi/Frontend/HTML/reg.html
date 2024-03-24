@@ -48,7 +48,7 @@
                         </div>
                         <div class="input-container">
                             <label class="form-label form-label" for="Password-agen">Jelszó ujra:</label><br>
-                            <input type="password" name="password2" id="password2" required="" onchange="jojelszo()">
+                            <input type="password" name="password2" id="password2" required="">
                         </div>
                         <!-- <input type="submit" value="Regisztráció" class="button" onclick="regisztracio()"> -->
                         <button onclick="regchek()" class="btn btn-secondary">Felhasználó regisztrálása</button>
@@ -57,21 +57,6 @@
             </div>
         </div>
     </main>
-
-    
-    <script>
-        function jojelszo(){
-            const jelszo1 = document.getElementById("password").value;
-            const jelszo2 = document.getElementById("password2").value;
-
-            console.log(jelszo1);
-            console.log(jelszo2);
-
-            if(jelszo1 != jelszo2){
-                return alert("Nem ugyan az a jelszó!")
-            }
-        }
-    </script>
 </body>
 
 </html>

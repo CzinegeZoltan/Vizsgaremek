@@ -1,0 +1,168 @@
+/// <reference types="cypress"/>
+describe('template spec', () => {
+  beforeEach('Belépés a login oldalra', () => {
+    cy.visit('http://127.0.0.1:5500/Vizsgaremek/Duna%20Mozi/Frontend/HTML/bejel.html')
+  })
+  const joAdminEmail = 'havlagb1@gmail.com'
+  const joAdminjelszo = "Admin"
+
+  const tesztNev = 'Cypress Jóska'
+  const tesztNev2 = 'Cypress Jóska Elemér'
+  const rossztesztNev = 'Cypress@Jóska'
+  const tesztEmail = 'cypress.joske24@gmail.com'
+  const rossztesztEmail = 'cypress.joske24gmail.com'
+  const tesztjelszo = 'CypressJoskaJelszava01'
+  const tesztjelszo2 = 'CypressJoskaJelszava02'
+  const roszztesztjelszo = 'CypressJóskaJelszava01'
+
+  it('Alkalmazott regisztráció teszt jó adatokkal', () => {
+    cy.get('input[type=email]').type(joAdminEmail)
+    cy.get('input[type=password').type(joAdminjelszo)
+    cy.get('button').contains('Bejelentkezés').click()
+    cy.get('button').contains('Új dolgozó').click()
+    cy.get('input[type=text]').type(tesztNev)
+    cy.get('input[type=email]').type(tesztEmail)
+    cy.get('input[type=password]').eq(0).type(tesztjelszo)
+    cy.get('input[type=password]').eq(1).type(tesztjelszo)
+    cy.get('button').contains('Felhasználó regisztrálása').click()
+    cy.on('window:alert', (str) => { expect(str).to.equal('Sikeres felhasználó regisztrálása') })
+  })
+  it('Alkalmazott modósítása teszt jó adatokkal', () => {
+    cy.wait(5000)
+    cy.get('input[type=email]').type(joAdminEmail)
+    cy.get('input[type=password]').type(joAdminjelszo)
+    cy.get('button').contains('Bejelentkezés').click()
+    cy.get('button').contains('Dolgozó módosítása').click()
+    cy.get('select').select(tesztNev)
+    cy.get('input[type=text]').type(tesztNev2)
+    cy.get('input[type=email]').clear().type(tesztEmail)
+    cy.get('input[type=password]').clear().type(tesztjelszo)
+    cy.get('button').contains('Felhasználó módosítása').click()
+    cy.on('window:alert', (str) => { expect(str).to.equal('Sikeres felhasználó módosítása') })
+  })
+  it('Alkalmazott regisztráció teszt hiányos adatokkal (nincs névmegadás)', () => {
+    cy.wait(5000)
+    cy.get('input[type=email]').type(joAdminEmail)
+    cy.get('input[type=password').type(joAdminjelszo)
+    cy.get('button').contains('Bejelentkezés').click()
+    cy.get('button').contains('Új dolgozó').click()
+    cy.get('input[type=email]').type(tesztEmail)
+    cy.get('input[type=password]').eq(0).type(tesztjelszo)
+    cy.get('input[type=password]').eq(1).type(tesztjelszo)
+    cy.get('button').contains('Felhasználó regisztrálása').click()
+    cy.on('window:alert', (str) => { expect(str).to.equal('Töltsön ki minden mezőt!') })
+  })
+  it('Alkalmazott modósítása teszt hiányos adatokkal (nincs névmegadás)', () => {
+    cy.wait(5000)
+    cy.get('input[type=email]').type(joAdminEmail)
+    cy.get('input[type=password]').type(joAdminjelszo)
+    cy.get('button').contains('Bejelentkezés').click()
+    cy.get('button').contains('Dolgozó módosítása').click()
+    cy.get('select').select(tesztNev2)
+    cy.get('input[type=email]').clear().type(tesztEmail)
+    cy.get('input[type=password]').clear().type(tesztjelszo)
+    cy.get('button').contains('Felhasználó módosítása').click()
+    cy.on('window:alert', (str) => { expect(str).to.equal('Töltsön ki minden mezőt!') })
+  })
+  it('Alkalmazott regisztráció teszt regex-nek nem megfelelő jelszóval', () => {
+    cy.wait(5000)
+    cy.get('input[type=email]').type(joAdminEmail)
+    cy.get('input[type=password').type(joAdminjelszo)
+    cy.get('button').contains('Bejelentkezés').click()
+    cy.get('button').contains('Új dolgozó').click()
+    cy.get('input[type=text]').type(tesztNev)
+    cy.get('input[type=email]').type(tesztEmail)
+    cy.get('input[type=password]').eq(0).type(roszztesztjelszo)
+    cy.get('input[type=password]').eq(1).type(roszztesztjelszo)
+    cy.get('button').contains('Felhasználó regisztrálása').click()
+    cy.on('window:alert', (str) => { expect(str).to.equal('Hibás jelszó! A jelszó csak a-z kisbetűket A-Z nagybetűket 0-9 számokat valamint ezen karaktereket: . _ + - ~ ! ? tartalmazhat! Ékezetes karaktert NEM!') })
+  })
+  it('Alkalmazott regisztráció teszt regex-nek nem megfelelő névvel', () => {
+    cy.wait(5000)
+    cy.get('input[type=email]').type(joAdminEmail)
+    cy.get('input[type=password').type(joAdminjelszo)
+    cy.get('button').contains('Bejelentkezés').click()
+    cy.get('button').contains('Új dolgozó').click()
+    cy.get('input[type=text]').type(rossztesztNev)
+    cy.get('input[type=email]').type(tesztEmail)
+    cy.get('input[type=password]').eq(0).type(tesztjelszo)
+    cy.get('input[type=password]').eq(1).type(tesztjelszo)
+    cy.get('button').contains('Felhasználó regisztrálása').click()
+    cy.on('window:alert', (str) => { expect(str).to.equal('Hibás név! A felhasználónév csak kis és nagy betűket és számokat tartalmazhat!') })
+  })
+  it('Alkalmazott regisztráció teszt regex-nek nem megfelelő e-mail címmel', () => {
+    cy.wait(5000)
+    cy.get('input[type=email]').type(joAdminEmail)
+    cy.get('input[type=password').type(joAdminjelszo)
+    cy.get('button').contains('Bejelentkezés').click()
+    cy.get('button').contains('Új dolgozó').click()
+    cy.get('input[type=text]').type(tesztNev)
+    cy.get('input[type=email]').type(rossztesztEmail)
+    cy.get('input[type=password]').eq(0).type(tesztjelszo)
+    cy.get('input[type=password]').eq(1).type(tesztjelszo)
+    cy.get('button').contains('Felhasználó regisztrálása').click()
+    cy.on('window:alert', (str) => { expect(str).to.equal('Hibás E-mail cím! Az E-mail cím nem érvényes!') })
+  })
+  it('Alkalmazott regisztráció teszt külnböző jelszavakkal', () => {
+    cy.wait(5000)
+    cy.get('input[type=email]').type(joAdminEmail)
+    cy.get('input[type=password').type(joAdminjelszo)
+    cy.get('button').contains('Bejelentkezés').click()
+    cy.get('button').contains('Új dolgozó').click()
+    cy.get('input[type=text]').type(tesztNev)
+    cy.get('input[type=email]').type(tesztEmail)
+    cy.get('input[type=password]').eq(0).type(tesztjelszo)
+    cy.get('input[type=password]').eq(1).type(tesztjelszo2)
+    cy.get('button').contains('Felhasználó regisztrálása').click()
+    cy.on('window:alert', (str) => { expect(str).to.equal('Nem ugyan az a jelszó!') })
+  })
+  it('Alkalmazott modósítása teszt regex-nek nem megfelelő jelszóval', () => {
+    cy.wait(5000)
+    cy.get('input[type=email]').type(joAdminEmail)
+    cy.get('input[type=password]').type(joAdminjelszo)
+    cy.get('button').contains('Bejelentkezés').click()
+    cy.get('button').contains('Dolgozó módosítása').click()
+    cy.get('select').select(tesztNev2)
+    cy.get('input[type=text]').type(tesztNev2)
+    cy.get('input[type=email]').clear().type(tesztEmail)
+    cy.get('input[type=password]').clear().type(roszztesztjelszo)
+    cy.get('button').contains('Felhasználó módosítása').click()
+    cy.on('window:alert', (str) => { expect(str).to.equal('Hibás jelszó! A jelszó csak a-z kisbetűket A-Z nagybetűket 0-9 számokat valamint ezen karaktereket: . _ + - ~ ! ? tartalmazhat! Ékezetes karaktert NEM!') })
+  })
+  it('Alkalmazott modósítása teszt regex-nek nem megfelelő névvel', () => {
+    cy.wait(5000)
+    cy.get('input[type=email]').type(joAdminEmail)
+    cy.get('input[type=password]').type(joAdminjelszo)
+    cy.get('button').contains('Bejelentkezés').click()
+    cy.get('button').contains('Dolgozó módosítása').click()
+    cy.get('select').select(tesztNev2)
+    cy.get('input[type=text]').type(rossztesztNev)
+    cy.get('input[type=email]').clear().type(tesztEmail)
+    cy.get('input[type=password]').clear().type(tesztjelszo)
+    cy.get('button').contains('Felhasználó módosítása').click()
+    cy.on('window:alert', (str) => { expect(str).to.equal('Hibás név! A felhasználónév csak kis és nagy betűket és számokat tartalmazhat!') })
+  })
+  it('Alkalmazott modósítása teszt regex-nek nem megfelelő e-mail címmel', () => {
+    cy.wait(5000)
+    cy.get('input[type=email]').type(joAdminEmail)
+    cy.get('input[type=password]').type(joAdminjelszo)
+    cy.get('button').contains('Bejelentkezés').click()
+    cy.get('button').contains('Dolgozó módosítása').click()
+    cy.get('select').select(tesztNev2)
+    cy.get('input[type=text]').type(tesztNev2)
+    cy.get('input[type=email]').clear().type(rossztesztEmail)
+    cy.get('input[type=password]').clear().type(tesztjelszo)
+    cy.get('button').contains('Felhasználó módosítása').click()
+    cy.on('window:alert', (str) => { expect(str).to.equal('Hibás E-mail cím! Az E-mail cím nem érvényes!') })
+  })
+  it('Alkalmazott törlése teszt jó adatokkal', () => {
+    cy.wait(5000)
+    cy.get('input[type=email]').type(joAdminEmail);
+    cy.get('input[type=password]').type(joAdminjelszo);
+    cy.get('button').contains('Bejelentkezés').click();
+    cy.get('button').contains('Dolgozó módosítása').click();
+    cy.get('select').select(tesztNev2)
+    cy.get('button').contains('Felhasználó törlése').click();
+    cy.on('window:alert', (str) => { expect(str).to.equal('Sikeres felhasználó törlése') })
+  })
+})
