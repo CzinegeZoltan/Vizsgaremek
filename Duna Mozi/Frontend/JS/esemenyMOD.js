@@ -7,7 +7,7 @@ function esemenymodchek() {
     var linkRegex = /^(https?|ftp?|http):\/\/[^\s/$.?#].[^\s]*$/i;
 
 
-    if (!name || !date.getTime() || filmid.length == 0 || !link) {
+    if (!name || !date.getTime() || !link) {
         return alert("Töltsön ki minden mezőt!")
     }
     else if(date.getTime()<=Date.now()){
