@@ -1,7 +1,7 @@
 /// <reference types="cypress"/>
 describe('template spec', () => {
   it('Iletéktelen hozzáférés próba', () => {
-    cy.visit('http://127.0.0.1:5500/Vizsgaremek/Duna%20Mozi/Frontend/HTML/admin.html')
+    cy.visit('http://127.0.0.1:5500/Duna%20Mozi/Frontend/HTML/bejel.html')
     cy.url().should('include', 'bejel.html')
   })
   it('Navbar teszt', () => {

@@ -1,7 +1,7 @@
 /// <reference types="cypress"/>
 describe('template spec', () => {
   beforeEach('Belépés a login oldalra', () => {
-    cy.visit('http://127.0.0.1:5500/Vizsgaremek/Duna%20Mozi/Frontend/HTML/bejel.html')
+    cy.visit('http://127.0.0.1:5500/Duna%20Mozi/Frontend/HTML/bejel.html')
   })
   const joAdminEmail='havlagb1@gmail.com'
   const joAdminjelszo= "Admin"
