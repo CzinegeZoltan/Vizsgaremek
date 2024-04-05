@@ -28,7 +28,7 @@ describe('template spec', () => {
     cy.get('button').contains('Esemény regisztrálása').click()
     cy.on('window:alert', (str) => { expect(str).to.equal('Sikeres esemény létrehozás') })
   })
-  it('Esemény modósítása teszt jó adatokkal', () => {
+  it('Esemény módosítása teszt jó adatokkal', () => {
     cy.wait(5000)
     cy.get('input[type=email]').type(joAdminEmail)
     cy.get('input[type=password]').type(joAdminjelszo)
@@ -55,7 +55,7 @@ describe('template spec', () => {
     cy.get('button').contains('Esemény regisztrálása').click()
     cy.on('window:alert', (str) => { expect(str).to.equal('Töltsön ki minden mezőt!') })
   })
-  it('Esemény modósítása teszt hiányos adatokkal (nincs névmegadás)', () => {
+  it('Esemény módosítása teszt hiányos adatokkal (nincs névmegadás)', () => {
     cy.wait(5000)
     cy.get('input[type=email]').type(joAdminEmail)
     cy.get('input[type=password]').type(joAdminjelszo)
@@ -68,7 +68,7 @@ describe('template spec', () => {
     cy.get('button').contains('Esemény módosítása').click()
     cy.on('window:alert', (str) => { expect(str).to.equal('Töltsön ki minden mezőt!') })
   })
-  it('Esemémy regisztráció teszt regex-nek nem megfelelő eseménynév', () => {
+  it('Esemény regisztráció teszt regex-nek nem megfelelő eseménynév', () => {
     cy.wait(5000)
     cy.get('input[type=email]').type(joAdminEmail)
     cy.get('input[type=password]').type(joAdminjelszo)
@@ -82,7 +82,7 @@ describe('template spec', () => {
     cy.get('button').contains('Esemény regisztrálása').click()
     cy.on('window:alert', (str) => { expect(str).to.equal("Hibás cím! Az esemény címe nem engedéjezett karaktert tartalmaz! Ezeket használhatja: a-z A-Z 0-9 Ékezetes karakterek , szóköz ! ? ' % ( )") })
   })
-  it('Esemémy regisztráció teszt regex-nek nem megfelelő linkel', () => {
+  it('Esemény regisztráció teszt regex-nek nem megfelelő linkel', () => {
     cy.wait(5000)
     cy.get('input[type=email]').type(joAdminEmail)
     cy.get('input[type=password]').type(joAdminjelszo)
@@ -96,7 +96,7 @@ describe('template spec', () => {
     cy.get('button').contains('Esemény regisztrálása').click()
     cy.on('window:alert', (str) => { expect(str).to.equal('Hibás link! Nem engedéjezett karaktert tartalmaz, vagy nem felel meg a link formai követelményének!') })
   })
-  it('Esemémy regisztráció teszt rossz dátum', () => {
+  it('Esemény regisztráció teszt rossz dátum', () => {
     cy.get('input[type=email]').type(joAdminEmail)
     cy.get('input[type=password]').type(joAdminjelszo)
     cy.get('button').contains('Bejelentkezés').click()
@@ -109,7 +109,7 @@ describe('template spec', () => {
     cy.get('button').contains('Esemény regisztrálása').click()
     cy.on('window:alert', (str) => { expect(str).to.equal('Nem jövőbeli dátumot adott meg!') })
   })
-    it('Esemény modósítása teszt regex-nek nem megfelelő eseménynév', () => {
+    it('Esemény módosítása teszt regex-nek nem megfelelő eseménynév', () => {
     cy.wait(5000)
     cy.get('input[type=email]').type(joAdminEmail)
     cy.get('input[type=password]').type(joAdminjelszo)
@@ -123,7 +123,7 @@ describe('template spec', () => {
     cy.get('button').contains('Esemény módosítása').click()
     cy.on('window:alert', (str) => { expect(str).to.equal("Hibás cím! Az esemény címe nem engedéjezett karaktert tartalmaz! Ezeket használhatja: a-z A-Z 0-9 Ékezetes karakterek , szóköz ! ? ' % ( )") })
   })
-  it('Esemény modósítása teszt regex-nek nem megfelelő link', () => {
+  it('Esemény módosítása teszt regex-nek nem megfelelő link', () => {
     cy.wait(5000)
     cy.get('input[type=email]').type(joAdminEmail)
     cy.get('input[type=password]').type(joAdminjelszo)

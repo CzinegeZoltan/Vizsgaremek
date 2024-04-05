@@ -66,7 +66,7 @@ describe('template spec', () => {
     cy.get('button').contains('Film feltöltése').click()
     cy.on('window:alert', (str) => { expect(str).to.equal('Töltsön ki minden mezőt!') })
   })
-  it('Film modósítása teszt hiányos adatokkal (nincs névmegadás)', () => {
+  it('Film módosítása teszt hiányos adatokkal (nincs névmegadás)', () => {
     cy.wait(5000)
     cy.get('input[type=email]').type(joAdminEmail)
     cy.get('input[type=password]').type(joAdminjelszo)

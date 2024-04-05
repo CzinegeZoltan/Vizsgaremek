@@ -28,7 +28,7 @@ describe('template spec', () => {
     cy.get('button').contains('Vissza az előző oldalra').click()
     cy.url().should('include', 'alkalmazott.html')
   })
-  it('Alkalmazott be tud-e lépni a film módósítása oldalra',()=>{
+  it('Alkalmazott be tud-e lépni a film módosítása oldalra',()=>{
     cy.wait(5000)
     cy.get('input[type=email]').type(joEmail)
     cy.get('input[type=password').type(jojelszo)
@@ -36,7 +36,7 @@ describe('template spec', () => {
     cy.get('button').contains('Film módosítása').click()
     cy.url().should('include', 'filmmod.html')
   })
-  it('Alkalmazott ki tud-e lépni a flim feltöltő oldalról',()=>{
+  it('Alkalmazott ki tud-e lépni a flim módosítása oldalról',()=>{
     cy.wait(5000)
     cy.get('input[type=email]').type(joEmail)
     cy.get('input[type=password').type(jojelszo)
@@ -62,7 +62,7 @@ describe('template spec', () => {
     cy.get('button').contains('Vissza az előző oldalra').click()
     cy.url().should('include', 'alkalmazott.html')
   })
-  it('Alkalmazott be tud-e lépni a esemény módósítása oldalra',()=>{
+  it('Alkalmazott be tud-e lépni a esemény módosítása oldalra',()=>{
     cy.wait(5000)
     cy.get('input[type=email]').type(joEmail)
     cy.get('input[type=password').type(jojelszo)
@@ -70,7 +70,7 @@ describe('template spec', () => {
     cy.get('button').contains('Esemény módosítása').click()
     cy.url().should('include', 'esemenymod.html')
   })
-  it('Alkalmatott ki tud-e lépni a esemény feltöltő oldalról',()=>{
+  it('Alkalmatott ki tud-e lépni a esemény módosítása oldalról',()=>{
     cy.wait(5000)
     cy.get('input[type=email]').type(joEmail)
     cy.get('input[type=password').type(jojelszo)
@@ -96,7 +96,7 @@ describe('template spec', () => {
     cy.get('button').contains('Vissza az előző oldalra').click()
     cy.url().should('include', 'alkalmazott.html')
   })
-  it('Alkalmazott be tud-e lépni a vetítés módósítása oldalra',()=>{
+  it('Alkalmazott be tud-e lépni a vetítés módosítása oldalra',()=>{
     cy.wait(5000)
     cy.get('input[type=email]').type(joEmail)
     cy.get('input[type=password').type(jojelszo)
@@ -104,7 +104,7 @@ describe('template spec', () => {
     cy.get('button').contains('Vetítés módosítása').click()
     cy.url().should('include', 'vetitesmod.html')
   })
-  it('Alkalmazott ki tud-e lépni a vetítés feltöltő oldalról',()=>{
+  it('Alkalmazott ki tud-e lépni a vetítés módosítása oldalról',()=>{
     cy.wait(5000)
     cy.get('input[type=email]').type(joEmail)
     cy.get('input[type=password').type(jojelszo)

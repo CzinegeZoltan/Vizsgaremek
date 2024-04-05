@@ -11,7 +11,7 @@ describe('template spec', () => {
     cy.get('button').contains('Bejelentkezés').click()
     cy.url().should('include', 'admin.html')
   })
-  it('Admin be tud-e lépni a doldozó feltöltő oldalra',()=>{
+  it('Admin be tud-e lépni a dolgozó feltöltő oldalra',()=>{
     cy.wait(5000)
     cy.get('input[type=email]').type(joAdminEmail)
     cy.get('input[type=password').type(joAdminjelszo)
@@ -19,7 +19,7 @@ describe('template spec', () => {
     cy.get('button').contains('Új dolgozó').click()
     cy.url().should('include', 'reg.html')
   })
-  it('Admin ki tud-e lépni a doldozó feltöltő oldalról',()=>{
+  it('Admin ki tud-e lépni a dolgozó feltöltő oldalról',()=>{
     cy.wait(5000)
     cy.get('input[type=email]').type(joAdminEmail)
     cy.get('input[type=password').type(joAdminjelszo)
@@ -28,7 +28,7 @@ describe('template spec', () => {
     cy.get('button').contains('Vissza az előző oldalra').click()
     cy.url().should('include', 'admin.html')
   })
-  it('Admin be tud-e lépni a doldozó módósítása oldalra',()=>{
+  it('Admin be tud-e lépni a dolgozó módosítása oldalra',()=>{
     cy.wait(5000)
     cy.get('input[type=email]').type(joAdminEmail)
     cy.get('input[type=password').type(joAdminjelszo)
@@ -36,7 +36,7 @@ describe('template spec', () => {
     cy.get('button').contains('Dolgozó módosítása').click()
     cy.url().should('include', 'dolgozomod.html')
   })
-  it('Admin ki tud-e lépni a doldozó feltöltő oldalról',()=>{
+  it('Admin ki tud-e lépni a dolgozó módosítása oldalról',()=>{
     cy.wait(5000)
     cy.get('input[type=email]').type(joAdminEmail)
     cy.get('input[type=password').type(joAdminjelszo)
@@ -62,7 +62,7 @@ describe('template spec', () => {
     cy.get('button').contains('Vissza az előző oldalra').click()
     cy.url().should('include', 'admin.html')
   })
-  it('Admin be tud-e lépni a film módósítása oldalra',()=>{
+  it('Admin be tud-e lépni a film módosítása oldalra',()=>{
     cy.wait(5000)
     cy.get('input[type=email]').type(joAdminEmail)
     cy.get('input[type=password').type(joAdminjelszo)
@@ -70,7 +70,7 @@ describe('template spec', () => {
     cy.get('button').contains('Film módosítása').click()
     cy.url().should('include', 'filmmod.html')
   })
-  it('Admin ki tud-e lépni a flim feltöltő oldalról',()=>{
+  it('Admin ki tud-e lépni a film módosítása oldalról',()=>{
     cy.wait(5000)
     cy.get('input[type=email]').type(joAdminEmail)
     cy.get('input[type=password').type(joAdminjelszo)
@@ -96,7 +96,7 @@ describe('template spec', () => {
     cy.get('button').contains('Vissza az előző oldalra').click()
     cy.url().should('include', 'admin.html')
   })
-  it('Admin be tud-e lépni a esemény módósítása oldalra',()=>{
+  it('Admin be tud-e lépni a esemény módosítása oldalra',()=>{
     cy.wait(5000)
     cy.get('input[type=email]').type(joAdminEmail)
     cy.get('input[type=password').type(joAdminjelszo)
@@ -104,7 +104,7 @@ describe('template spec', () => {
     cy.get('button').contains('Esemény módosítása').click()
     cy.url().should('include', 'esemenymod.html')
   })
-  it('Admin ki tud-e lépni a esemény feltöltő oldalról',()=>{
+  it('Admin ki tud-e lépni a esemény módosítása oldalról',()=>{
     cy.wait(5000)
     cy.get('input[type=email]').type(joAdminEmail)
     cy.get('input[type=password').type(joAdminjelszo)
@@ -130,7 +130,7 @@ describe('template spec', () => {
     cy.get('button').contains('Vissza az előző oldalra').click()
     cy.url().should('include', 'admin.html')
   })
-  it('Admin be tud-e lépni a vetítés módósítása oldalra',()=>{
+  it('Admin be tud-e lépni a vetítés módosítása oldalra',()=>{
     cy.wait(5000)
     cy.get('input[type=email]').type(joAdminEmail)
     cy.get('input[type=password').type(joAdminjelszo)
@@ -138,7 +138,7 @@ describe('template spec', () => {
     cy.get('button').contains('Vetítés módosítása').click()
     cy.url().should('include', 'vetitesmod.html')
   })
-  it('Admin ki tud-e lépni a vetítés feltöltő oldalról',()=>{
+  it('Admin ki tud-e lépni a vetítés módosítása oldalról',()=>{
     cy.wait(5000)
     cy.get('input[type=email]').type(joAdminEmail)
     cy.get('input[type=password').type(joAdminjelszo)

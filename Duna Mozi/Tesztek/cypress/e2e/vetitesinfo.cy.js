@@ -11,7 +11,6 @@ describe('template spec', () => {
   const tesztido='10:00'
   const tesztido2='11:00'
   const tesztterem='4'
-  const tesztterem2='2'
   const rossztesztterem='6'
   const tesztvetitettfilm='Gyalog galopp'
   it('Vetités regisztráció teszt jó adatokkal', () => {
@@ -57,6 +56,7 @@ describe('template spec', () => {
     cy.on('window:alert', (str) => { expect(str).to.equal('Töltsön ki minden mezőt!') })
   })
   it('Vetités regisztráció teszt rossz dátum', () => {
+    cy.wait(5000)
     cy.get('input[type=email]').type(joAdminEmail)
     cy.get('input[type=password]').type(joAdminjelszo)
     cy.get('button').contains('Bejelentkezés').click()
