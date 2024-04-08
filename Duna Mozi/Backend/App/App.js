@@ -758,7 +758,7 @@ app.put('/esemenymod', (req, res) => {
 });
 
 app.delete('/esemenytor', (req, res) => {
-    const eid = req.params.id;
+    const eid = req.body.id;
     var con = mysql.createConnection(new Config());
 
     con.connect(function (err) {

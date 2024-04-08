@@ -1,3 +1,19 @@
+function kereseschek() {
+    var szovegkeres = document.getElementById("szovegkeres").value;
+
+    var alapRegex = /^[a-zA-Z0-9áéíóöőúüűÁÉÍÓÖŐÚÜŰ,\s!?'%()]+$/;
+
+
+    if(!szovegkeres){
+        return alert("Üres a cím mező a kereséshez!");
+    }
+    else if (!szovegkeres.match(alapRegex)) {
+        return alert("Hibás cím! A film címe nem engedéjezett karaktert tartalmaz!")
+    }
+    else {
+        szovegKeres();
+    }
+}
 function szovegKeres(){
         const data = {
             method: "POST",
@@ -60,7 +76,6 @@ function szovegKeres(){
                             filminfopopup.innerHTML = "";
                             data.forEach((info) => {
                                 const div = document.createElement("div");
-                                // div.className("");
                                 div.innerHTML = `<h2>${info.filmnev}</h2><h4>Film szereplők:</h4><p>${info.foszereplok}</p><h4>Leírás:</h4><p>${info.filmdescription}</p><h4>Film hossza:</h4><p>${info.filmhossz}</p><h4>Korhatár:</h4><p>${info.kor}</p>`;
                                 filminfopopup.appendChild(div)
                             })

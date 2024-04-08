@@ -1,18 +1,3 @@
-function kereseschek() {
-    var szovegkeres = document.getElementById("szovegkeres").value;
-
-    var alapRegex = /^[a-zA-Z0-9áéíóöőúüűÁÉÍÓÖŐÚÜŰ,\s!?'%()]+$/;
-
-
-   
-     if (!szovegkeres.match(alapRegex)) {
-        return alert("Hibás cím! A film címe nem engedéjezett karaktert tartalmaz!")
-    }
-    else {
-        Katker();
-    }
-}
-
 function Katker() {
     const data = {
         method: "POST",
