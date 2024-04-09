@@ -17,7 +17,6 @@ function fillSzekList(){
             return response.json();
         })
         .then(data => {
-            // Kitöröljük at előző adatokat
             document.getElementById("seatmapA").innerHTML = "";
             document.getElementById("seatmapB").innerHTML = "";
             document.getElementById("seatmapC").innerHTML = "";
@@ -26,7 +25,6 @@ function fillSzekList(){
             document.getElementById("seatmapF").innerHTML = "";
             document.getElementById("selected-seats").innerHTML = "";
 
-            // Sorok Meghatározása
             document.getElementById("A").innerHTML = "A sor";
             document.getElementById("B").innerHTML = "B sor";
             document.getElementById("C").innerHTML = "C sor";
@@ -35,7 +33,6 @@ function fillSzekList(){
             document.getElementById("F").innerHTML = "F sor";
  
 
-            // Szerezzen hivatkozásokat konténer elemekre
             const szekekButtonsA = document.getElementById("seatmapA");
             const szekekButtonsB = document.getElementById("seatmapB");
             const szekekButtonsC = document.getElementById("seatmapC");
@@ -49,7 +46,6 @@ function fillSzekList(){
                 selectedSeatsSpan.textContent = selectedSeats.join(', ');
             }
 
-            // ismételt végrehajtás az adatokon, és hozzon létre gombokat dinamikusan
             data.forEach((szekek) => {
                 if (szekek.foglalt == "1") {
                     const seatDiv = document.createElement("div");
@@ -57,7 +53,6 @@ function fillSzekList(){
                     seatDiv.textContent = szekek.szekszam;
                     seatDiv.style.backgroundColor = "red";
 
-                    // Adja hozzá a div-t a megfelelő tárolóhoz a sor alapján
                     switch (szekek.sor) {
                         case "A":
                             szekekButtonsA.appendChild(seatDiv);
@@ -87,7 +82,6 @@ function fillSzekList(){
                     button.setAttribute('id',"gomb");
                     button.textContent = szekek.szekszam;
 
-                    // Adja hozzá az eseményfigyelőt a gombhoz
                     button.addEventListener('click', function () {
 
                         const seatIndex = selectedSeats.indexOf(szekek.szekszam + szekek.sor);
@@ -118,7 +112,6 @@ function fillSzekList(){
                         updateSelectedSeats();
                     });
 
-                    // A sor alapján fűzze hozzá a gombot a megfelelő tárolóhoz
                     switch (szekek.sor) {
                         case "A":
                             szekekButtonsA.appendChild(button);
@@ -148,5 +141,3 @@ function fillSzekList(){
             console.log(error);
         });
 }
-
-

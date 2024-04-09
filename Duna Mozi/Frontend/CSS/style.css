@@ -10,6 +10,12 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+@media only screen and (max-width: 768px) {
+    body {
+        background-image: none;
+        background-color: white;
+    }
+}
 
 main {
     background-color: rgb(255, 255, 255);
@@ -31,8 +37,8 @@ header {
 
 footer {
     position: fixed;
-    left: 50%; /* vízszintesen középre igazítás */
-    transform: translateX(-50%); /* az elem vízszintes közepére igazítása */
+    left: 50%; 
+    transform: translateX(-50%);
     bottom: 0;
     width: 100%;
     max-width: 72%;

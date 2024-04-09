@@ -1,6 +1,6 @@
 .rowgomb {
-    justify-content: space-between; /* Az elemeket egymás között helyezi el */
-    flex-wrap: nowrap; /* Megakadályozza a gombok több sorba kerülését */
+    justify-content: space-between; 
+    flex-wrap: nowrap;
     margin-bottom: 10px;
 }
 
@@ -12,11 +12,11 @@
 .vezerlopanel {
     text-align: center;
     margin: auto;
-    width: 60%; /* Teljes szélességűre állítjuk */
-    height: 50vh; /* Teljes magasságúra állítjuk */
+    width: 60%; 
+    height: 50vh; 
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Az elemek középen helyezkedjenek el a függőleges tengelyen */
+    justify-content: space-between;
 }
 .kilep{
     max-width: 110px;

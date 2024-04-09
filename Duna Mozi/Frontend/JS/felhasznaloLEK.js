@@ -5,7 +5,6 @@ function fillUserList(){
     })
     .then(data => {
         const kategoriaDropDown = document.getElementById("dropdown");
-        //Betöltjük a felhasználókat
         data.forEach((user) => {
             if(user.admin != "1"){
             const option = document.createElement("option");

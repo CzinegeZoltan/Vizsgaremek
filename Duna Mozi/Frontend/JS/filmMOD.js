@@ -65,7 +65,7 @@ function filmMOD() {
 
 function filmTOR() {
     const data = {
-        method: "DELETE", // Change method to DELETE
+        method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             id: document.getElementById("filmdropdown").value
@@ -81,7 +81,7 @@ function filmTOR() {
                 err = document.getElementById("error");
                 err.innerHTML = data.error;
             } else {
-                alert("Sikeres film törlése"); // Successful deletion message
+                alert("Sikeres film törlése");
                 history.back();
             }
         })

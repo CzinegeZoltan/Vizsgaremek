@@ -60,7 +60,6 @@ function Katker() {
                         filminfopopup.innerHTML = "";
                         data.forEach((info) => {
                             const div = document.createElement("div");
-                            // div.className("");
                             div.innerHTML = `<h2>${info.filmnev}</h2><h4>Film főszereplők:</h4><p>${info.foszereplok}</p><h4>Leírás:</h4><p>${info.filmdescription}</p><h4>Film hossza:</h4><p>${info.filmhossz}</p><h4>Korhatár:</h4><p>${info.kor}</p>`;
                             filminfopopup.appendChild(div)
                         })

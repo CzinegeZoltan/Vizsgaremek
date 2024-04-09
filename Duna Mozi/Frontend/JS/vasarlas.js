@@ -26,7 +26,6 @@ function jegyekreset(){
     return szekdb = 0, elozoertek = 0,document.getElementById("jegydb").innerHTML = jegydb,document.getElementById("jegyar").innerHTML = osszar + "Ft";
 }
 
-// Gyermek jegyek
 function jegyplusz1(){
     
     if(jegydb + 1 <= szekdb){
@@ -54,7 +53,6 @@ function jegyminusz1(){
     document.getElementById("jegyar").innerHTML = osszar + "Ft";
 }
 
-//Felnőtt jegyek
 function jegyplusz2(){
     if(jegydb + 1 <= szekdb){
         jegydb++;
@@ -81,7 +79,6 @@ function jegyminusz2(){
     document.getElementById("jegyar").innerHTML = osszar + "Ft";
 }
 
-//Nyugdíjas jegyek
 function jegyplusz3(){
     if(jegydb + 1 <= szekdb){
         jegydb++;
@@ -110,7 +107,6 @@ function jegyminusz3(){
     document.getElementById("jegyar").innerHTML = osszar + "Ft";
 }
 
-//Családi jegycsomag
 function jegyplusz4(){
     if(jegydb + 4 <= szekdb){
         jegydb+= 4;
@@ -137,7 +133,6 @@ function jegyminusz4(){
     document.getElementById("jegyar").innerHTML = osszar + "Ft";
 }
 
-//10fős csoport jegycsomag
 function jegyplusz5(){
     if(jegydb + 10 <= szekdb){
         jegydb+=10;

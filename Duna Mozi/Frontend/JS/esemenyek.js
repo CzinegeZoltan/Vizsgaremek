@@ -15,8 +15,6 @@ function fillEsemenyek(){
                 var ev = eredetiDatum.getFullYear();
                 var honap = ('0' + (eredetiDatum.getMonth() + 1)).slice(-2);
                 var nap = ('0' + eredetiDatum.getDate()).slice(-2);
-
-                // Formázott dátum string létrehozása
                 var formazottDatumString = ev + '.' + honap + '.' + nap + '.';
             div.innerHTML= `<div class=" szoveg"><p>${esemenyek.esemenyNev}</p><p>${formazottDatumString}</p></div></div>`;
             vetitescontainer.appendChild(div);

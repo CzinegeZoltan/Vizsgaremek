@@ -10,7 +10,6 @@ function fillJegyekarList() {
                 jegyektable.appendChild(tr);
             });
 
-            // Bootstrap osztályok hozzáadása
             jegyektable.classList.add("table", "table-bordered", "table-hover", "table-striped");
         })
         .catch(err => console.error(err));

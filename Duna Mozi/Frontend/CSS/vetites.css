@@ -31,19 +31,18 @@
 }
 
 .szoveg{
-    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+    background-color: rgba(255, 255, 255, 0.7); 
     height: 170px;
     width: 500px;
     padding: 20px;
-    border-radius: 30px; /* Add border radius for rounded corners */
-    align-items: center;
+    border-radius: 30px; 
 }
 
 .szoveg p{
-    color: #333; /* Dark text color */
-    font-size: 20px; /* Adjust font size */
-    font-weight: bold; /* Make the characters bolder */
-    margin: 10px 0; /* Add margin for spacing between paragraphs */
+    color: #333; 
+    font-size: 20px; 
+    font-weight: bold; 
+    margin: 10px 0; 
 }
 
 
