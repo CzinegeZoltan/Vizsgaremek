@@ -9,23 +9,15 @@ const port = 8000;
 const jwt = require("jsonwebtoken");
 const nodeMailer = require('nodemailer');
 
-// const session = require('express-session');
-
-// app.use(session({
-//     secret: '',
-//     resave: false,
-//     saveUninitialized: true,
-//     cookie: { secure: true }
-// }));
 
 const Key = 'kulcs';
 
 
-app.use(cors({ origin: '*' })); //CORS Betöltés
-app.use(express.json()); //POST kérésekben body elérése
+app.use(cors({ origin: '*' })); 
+app.use(express.json()); 
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => { //Szerver futási teszt
+app.get('/', (req, res) => {
   res.send("<h1>Szerver fut</h1>")
 })
 
@@ -89,7 +81,6 @@ app.post('/login', (req,res) =>{
  
             jwt.verify(token, Key, (err, decoded) => {
                 if (err) {
-                  // Token verifikálása sikertelen (már nem érvényes vagy nem valid)
                   console.error('Nem sikerült verifikálni a tokent:', err.message);
                 } else {
                   console.log('Valid:', new Date(decoded.exp * 1000));
@@ -621,7 +612,6 @@ app.post('/jegyvasar', (req, res) => {
             console.log(maxid)
         })
 
-        //létrehozzuk a node mailer csomagot
         const transporter = nodeMailer.createTransport({
             service: "Gmail",
             host:'smtp.gmail.com',

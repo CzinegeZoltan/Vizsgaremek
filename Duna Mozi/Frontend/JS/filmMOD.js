@@ -7,7 +7,7 @@ function filmmodchek() {
     var dropdown = document.getElementById("dropdown").value;
     var link = document.getElementById("link").value;
 
-    var alapRegex = /^[a-zA-Z0-9áéíóöőúüűÁÉÍÓÖŐÚÜŰ,\s!?'%()]+$/; //film cím leírás
+    var alapRegex = /^[a-zA-Z0-9áéíóöőúüűÁÉÍÓÖŐÚÜŰ,\s!?'%()]+$/;
     var szereplokRegex = /^[a-zA-Z0-9áéíóöőúüűÁÉÍÓÖŐÚÜŰ'-\s]+$/;
     var linkRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
 

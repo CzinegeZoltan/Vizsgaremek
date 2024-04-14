@@ -15,7 +15,7 @@ function fillFilmek(){
             }
         
             const div = document.createElement("div");
-            div.className = "col-xs-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 film";
+            div.className = "col-xs-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 film posterkozep";
             div.id = film.idfilmek;
             div.innerHTML = `<img src="${film.film_keplink}" class="img-thumbnail poster"/>`;
             
