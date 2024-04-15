@@ -55,7 +55,7 @@ app.post('/login', (req,res) =>{
                 email: result[0][0].email
             }
             const options = {
-                expiresIn:"2h",
+                expiresIn:"10m",
             }
             const token = jwt.sign(jasonba1, Key, options);
  
@@ -66,11 +66,11 @@ app.post('/login', (req,res) =>{
             const userRole = result[0][0].admin;
             switch (userRole) {
               case 0:
-                res.status(200).json({ userID:ID, status: 'success', message: 'Sikeres bejelentkezés', admin:0, redirection:"alkalmazott.html"});
+                res.status(200).json({ userID:ID,userMail: result[0][0].email, status: 'success', message: 'Sikeres bejelentkezés', admin:0, redirection:"alkalmazott.html"});
                 console.log("Dolgozó");
                 break;
               case 1:
-                res.status(200).json({ userID:ID, status: 'success', message: 'Sikeres bejelentkezés', admin:1, redirection:"admin.html"});
+                res.status(200).json({ userID:ID,userMail: result[0][0].email, status: 'success', message: 'Sikeres bejelentkezés', admin:1, redirection:"admin.html"});
                 console.log("Admin")
                 break;
               default:
@@ -131,6 +131,25 @@ app.post('/userToken', (req, res) => {
                 console.log('A token valid eddig:', new Date(decoded.exp * 1000));
                 res.send(result);
             });
+ 
+            console.log(req.body);
+
+            const jasonba2 = {
+                id: req.body.userID,
+                email: req.body.userMail
+            }
+            const options = {
+                expiresIn:"10m",
+            }
+            const resettoken = jwt.sign(jasonba2, Key, options);
+
+            jwt.verify(resettoken, Key, (err, decoded) => {
+                if (err) {
+                  console.error('Nem sikerült verifikálni a tokent:', err.message);
+                } else {
+                  console.log('Valid:', new Date(decoded.exp * 1000));
+                }
+              });
         });
     });
  

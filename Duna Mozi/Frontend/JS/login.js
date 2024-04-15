@@ -41,6 +41,7 @@ loginData = (data) => {
             err.innerHTML = data.error;
         }
         localStorage.setItem("userID",data.userID)
+        localStorage.setItem("userMail",data.userMail)
             window.location.href = data.redirection;
         }).catch((err) => {
             console.error(err);

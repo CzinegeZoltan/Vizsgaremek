@@ -16,13 +16,17 @@ async function fillVetitesek() {
             var perc = ('0' + eredetiDatum.getMinutes()).slice(-2);
             var formazottDatumString = ev + '.' + honap + '.' + nap + '. ' + ora + ':' + perc;
             div.innerHTML = `<span class="szoveg"><p>Film címe: ${vetites.nev}</p><p>Időpont: ${formazottDatumString}</p><p>Terem: ${vetites.terem}</p></span>`
+
             div.addEventListener("click", async function() {
                 console.log("Clicked vetites id:", vetites.idvetitesek);
                 localStorage.setItem("selectedVetitesId", vetites.idvetitesek);
                 localStorage.setItem("selectedVetitesKeplink", vetites.keplink);
-                await new Promise(resolve => setTimeout(resolve, 500));
+                localStorage.setItem("selectedVetitesDatum", vetites.datum);
+                localStorage.setItem("selectedVetitesTerem", vetites.terem);
+                await new Promise(resolve => setTimeout(resolve, 500)); 
                 window.location.href = "jegyvasarlas.html";
             });
+
             vetitescontainer.appendChild(div);
             vetitescontainer.appendChild(document.createElement("br"));
         }

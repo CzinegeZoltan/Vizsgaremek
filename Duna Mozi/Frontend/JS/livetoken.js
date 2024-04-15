@@ -3,7 +3,8 @@ function livetoken() {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                userID: localStorage.getItem("userID")
+                userID: localStorage.getItem("userID"),
+                userMail: localStorage.getItem("userMail")
             })
         })
         .then((response) => {
@@ -18,6 +19,9 @@ function livetoken() {
                 err.innerHTML = data.error;
                 window.location.href = "bejel.html";
             }
+            else(
+                setTimeout(() => {kilepes()}, 600000)
+            )
         })
         .catch((err) => {
             console.error('Hiba történt a hálózati kérés során:', err);

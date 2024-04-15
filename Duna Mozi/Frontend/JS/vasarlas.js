@@ -188,6 +188,7 @@ function jegyarakVasarlas(){
 
 function jegyvasarlas(){
     const lefoglaltulesek = document.getElementById("selected-seats").innerHTML;
+    //if()
     var img = document.getElementById("poszter").src;
 
     if(jegydb != szekdb){
