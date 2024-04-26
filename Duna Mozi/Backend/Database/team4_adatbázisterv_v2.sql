@@ -298,8 +298,6 @@ INSERT INTO ulesek VALUES
 (null,3,1,"F",9,0),
 (null,3,1,"F",10,0);
 
-INSERT INTO ulesek VALUES
-()
 DELIMITER//
 
 CREATE PROCEDURE IF NOT EXISTS UpdateToken(IN id int, token TEXT)
